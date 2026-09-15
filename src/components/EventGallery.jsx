@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { ArrowRight, CalendarDays, History } from 'lucide-react';
 
@@ -201,108 +201,162 @@ export default function EventGallery() {
           </div>
 
 
-          {/* Past Event */}
-          <div
+          <PastEventCard 
+            title="Transforming IoT Ideas to Robotics Reality"
+            description="Our first-ever Robotics Club event was a blend of ideas, technology and teamwork — our very first step into the future. A two-day experience of innovation, hands-on learning and creativity with brilliant minds."
+            images={[
+              "/images/gallery1.jpg",
+              "/images/gallery2.jpg",
+              "/images/gallery3.jpg"
+            ]}
+          />
+
+        </div>
+      </div>
+    </section>
+  );
+}
+
+function PastEventCard({ title, description, images }) {
+  const [isExpanded, setIsExpanded] = useState(false);
+
+  return (
+    <div
+      onClick={() => setIsExpanded(!isExpanded)}
+      style={{
+        border: '1px solid rgba(102,155,188,0.35)',
+        borderRadius: '20px',
+        overflow: 'hidden',
+        background: 'linear-gradient(135deg, rgba(7,59,85,0.95), rgba(0,48,73,0.95))',
+        boxShadow: '0 8px 32px rgba(0,0,0,0.2)',
+        transition: 'all 0.4s cubic-bezier(0.4, 0, 0.2, 1)',
+        cursor: 'pointer',
+        transform: isExpanded ? 'scale(1.02)' : 'scale(1)',
+        borderColor: isExpanded ? 'rgba(102,155,188,0.8)' : 'rgba(102,155,188,0.35)'
+      }}
+      onMouseEnter={(e) => {
+        if (!isExpanded) {
+          e.currentTarget.style.transform = 'translateY(-5px)';
+          e.currentTarget.style.borderColor = 'rgba(102,155,188,0.8)';
+          e.currentTarget.style.boxShadow = '0 15px 40px rgba(102,155,188,0.25)';
+        }
+      }}
+      onMouseLeave={(e) => {
+        if (!isExpanded) {
+          e.currentTarget.style.transform = 'translateY(0)';
+          e.currentTarget.style.borderColor = 'rgba(102,155,188,0.35)';
+          e.currentTarget.style.boxShadow = '0 8px 32px rgba(0,0,0,0.2)';
+        }
+      }}
+    >
+      {/* Interactive Horizontal Image Scroll */}
+      <div
+        className="hide-scrollbar"
+        style={{
+          display: 'flex',
+          gap: '2px',
+          height: isExpanded ? '350px' : '180px', // Small when not expanded
+          overflowX: 'auto',
+          overflowY: 'hidden',
+          scrollBehavior: 'smooth',
+          transition: 'height 0.4s ease'
+        }}
+      >
+        {images.map((imgSrc, index) => (
+          <div key={index} style={{ flexShrink: 0, width: isExpanded ? '400px' : '280px', overflow: 'hidden' }}>
+            <img
+              src={imgSrc}
+              alt={`Event photo ${index + 1}`}
+              style={{
+                width: '100%',
+                height: '100%',
+                objectFit: 'cover',
+                display: 'block',
+                transition: 'transform 0.5s ease'
+              }}
+              onMouseEnter={(e) => { e.currentTarget.style.transform = 'scale(1.05)'; }}
+              onMouseLeave={(e) => { e.currentTarget.style.transform = 'scale(1)'; }}
+            />
+          </div>
+        ))}
+      </div>
+
+      {/* Past Event Information */}
+      <div style={{ padding: isExpanded ? '2.5rem' : '1.5rem 2rem', transition: 'padding 0.4s ease' }}>
+        <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', marginBottom: isExpanded ? '1.2rem' : '0' }}>
+          <div>
+            <p
+              style={{
+                fontFamily: "'Zen Dots', sans-serif",
+                display: 'inline-block',
+                padding: '0.45rem 0.9rem',
+                borderRadius: '999px',
+                background: 'rgba(102,155,188,0.15)',
+                color: '#669BBC',
+                fontSize: '0.65rem',
+                letterSpacing: '1px',
+                marginBottom: '1rem',
+                border: '1px solid rgba(102,155,188,0.3)'
+              }}
+            >
+              COMPLETED EVENT
+            </p>
+            
+            <h3
+              style={{
+                fontFamily: "'Zen Dots', sans-serif",
+                fontSize: isExpanded ? '1.8rem' : '1.3rem',
+                color: '#FDF0D5',
+                margin: 0,
+                lineHeight: 1.3,
+                transition: 'font-size 0.4s ease'
+              }}
+            >
+              {title}
+            </h3>
+          </div>
+          
+          <div style={{
+            color: '#C1121F',
+            fontFamily: "'Zen Dots', sans-serif",
+            fontSize: '0.75rem',
+            marginTop: '0.5rem',
+            display: 'flex',
+            alignItems: 'center',
+            gap: '0.5rem',
+            background: 'rgba(193,18,31,0.1)',
+            padding: '0.5rem 1rem',
+            borderRadius: '20px',
+            transition: 'background 0.3s ease'
+          }}>
+            {isExpanded ? 'Collapse' : 'Expand'} <ArrowRight size={16} style={{ transform: isExpanded ? 'rotate(-90deg)' : 'rotate(90deg)', transition: 'transform 0.3s ease' }} />
+          </div>
+        </div>
+
+        {/* Expandable Description */}
+        <div style={{ 
+          maxHeight: isExpanded ? '200px' : '0', 
+          opacity: isExpanded ? 1 : 0, 
+          overflow: 'hidden',
+          transition: 'all 0.4s cubic-bezier(0.4, 0, 0.2, 1)'
+        }}>
+          <p
             style={{
-              border: '1px solid rgba(102,155,188,0.35)',
-              borderRadius: '20px',
-              overflow: 'hidden',
-              background: 'rgba(0,48,73,0.75)'
+              color: '#91adbb',
+              lineHeight: 1.8,
+              fontSize: '1rem',
+              maxWidth: '850px',
+              margin: 0,
+              paddingTop: '1rem'
             }}
           >
-
-            {/* Images */}
-            <div
-              style={{
-                display: 'grid',
-                gridTemplateColumns: 'repeat(3, 1fr)',
-                gap: '4px'
-              }}
-            >
-
-              <img
-                src="/images/gallery1.jpg"
-                alt="Robotics Club past event"
-                style={{
-                  width: '100%',
-                  height: '280px',
-                  objectFit: 'cover',
-                  display: 'block'
-                }}
-              />
-
-              <img
-                src="/images/gallery2.jpg"
-                alt="Robotics Club past event"
-                style={{
-                  width: '100%',
-                  height: '280px',
-                  objectFit: 'cover',
-                  display: 'block'
-                }}
-              />
-
-              <img
-                src="/images/gallery3.jpg"
-                alt="Robotics Club past event"
-                style={{
-                  width: '100%',
-                  height: '280px',
-                  objectFit: 'cover',
-                  display: 'block'
-                }}
-              />
-
-            </div>
-
-
-            {/* Past Event Information */}
-            <div
-              style={{
-                padding: '2rem'
-              }}
-            >
-
-              <p
-                style={{
-                  fontFamily: "'Zen Dots', sans-serif",
-                  color: '#C1121F',
-                  fontSize: '0.7rem',
-                  letterSpacing: '1px',
-                  marginBottom: '0.8rem'
-                }}
-              >
-                PAST EVENT
-              </p>
-
-              <h3
-                style={{
-                  fontFamily: "'Zen Dots', sans-serif",
-                  fontSize: '1.5rem',
-                  marginBottom: '1rem',
-                  lineHeight: 1.4
-                }}
-              >
-                Transforming IoT Ideas to Robotics Reality
-              </h3>
-
-              <p
-                style={{
-                  color: '#669BBC',
-                  lineHeight: 1.8,
-                  maxWidth: '850px',
-                  margin: 0
-                }}
-              >
-                Our first-ever Robotics Club event was a blend of ideas,
-                technology and teamwork — our very first step into the future.
-                A two-day experience of innovation, hands-on learning and
-                creativity with brilliant minds.
-              </p>
-
-            </div>
-
-          </div>
+            {description}
+          </p>
+        </div>
+      </div>
+    </div>
+  );
+}
 
         </div>
 

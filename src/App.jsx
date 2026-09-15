@@ -11,6 +11,7 @@ import EventGallery from './components/EventGallery';
 import InventoryList from './components/InventoryList';
 import TeamSection from './components/TeamSection';
 import EventDetails from './components/EventDetails';
+import Members from './components/Members';
 
 
 function App() {
@@ -118,6 +119,13 @@ function App() {
                 About
               </NavLink>
 
+              <NavLink
+                to="/team"
+                style={navStyle}
+              >
+                Team
+              </NavLink>
+
               
 
               <NavLink
@@ -162,6 +170,12 @@ function App() {
             <Route
               path="/about"
               element={<InventoryList />}
+            />
+
+            {/* TEAM */}
+            <Route
+              path="/team"
+              element={<Members />}
             />
 
             
