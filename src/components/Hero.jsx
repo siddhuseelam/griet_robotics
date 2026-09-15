@@ -74,7 +74,8 @@ export default function Hero() {
             position: 'relative',
             zIndex: 1,
             paddingTop: '2rem',
-            paddingBottom: '2rem'
+            paddingBottom: '2rem',
+            marginTop: '-4rem'
           }}
         >
 
