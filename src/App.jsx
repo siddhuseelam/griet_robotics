@@ -11,7 +11,7 @@ import EventGallery from './components/EventGallery';
 import InventoryList from './components/InventoryList';
 import TeamSection from './components/TeamSection';
 import EventDetails from './components/EventDetails';
-
+import ClubMembers from './pages/ClubMembers';
 
 function App() {
   return (
@@ -118,7 +118,12 @@ function App() {
                 About
               </NavLink>
 
-              
+              <NavLink
+  to="/members"
+  style={navStyle}
+>
+  Members
+</NavLink>
 
               <NavLink
                 to="/contact"
@@ -164,7 +169,10 @@ function App() {
               element={<InventoryList />}
             />
 
-            
+            <Route
+  path="/members"
+  element={<ClubMembers />}
+/>
 
             {/* CONTACT */}
             <Route
