@@ -356,11 +356,4 @@ function PastEventCard({ title, description, images }) {
       </div>
     </div>
   );
-}
-
-        </div>
-
-      </div>
-    </section>
-  );
-}
+}
