@@ -34,7 +34,7 @@ function App() {
           }}
         >
           <div
-            className="container"
+            className="container header-container"
             style={{
               display: 'flex',
               justifyContent: 'space-between',
@@ -54,6 +54,7 @@ function App() {
               }}
             >
               <div
+                className="logo-container"
                 style={{
                   display: 'flex',
                   alignItems: 'center',
@@ -75,7 +76,7 @@ function App() {
                   }}
                 />
 
-                <span>
+                <span className="logo-text">
                   GRIET Robotics Club
                 </span>
               </div>

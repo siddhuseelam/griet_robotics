@@ -1592,4 +1592,90 @@ th {
   .gallery-hero h1 {
     font-size: 3.5rem;
   }
+
+  /* =========================================
+     GLOBAL RESPONSIVENESS
+  ========================================= */
+
+  /* Containers and Sections */
+  .container {
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
+  
+  .section {
+    padding-top: 3rem;
+    padding-bottom: 3rem;
+  }
+
+  .section-title {
+    font-size: 1.8rem;
+    margin-bottom: 2rem;
+  }
+
+  /* Grid Collapse */
+  .grid-cols-2,
+  .grid-cols-3,
+  .grid-cols-4 {
+    grid-template-columns: 1fr;
+  }
+
+  /* Navigation */
+  header nav {
+    gap: 0.8rem !important;
+    font-size: 0.65rem !important;
+  }
+
+  .logo-container {
+    justify-content: center;
+    width: 100%;
+  }
+
+  .logo-container img {
+    width: 36px !important;
+    height: 36px !important;
+  }
+
+  .logo-text {
+    font-size: 0.8rem !important;
+  }
+
+  /* Header Container */
+  .header-container {
+    flex-direction: column;
+    gap: 0.5rem !important;
+  }
+
+  /* Buttons */
+  .btn {
+    width: 100%;
+    margin-bottom: 0.5rem;
+  }
+
+  .past-event-card {
+    flex-direction: column !important;
+  }
+
+  .past-event-image-container {
+    flex: none !important;
+    width: 100% !important;
+    height: 250px !important;
+  }
+}
+
+/* =========================================
+   COMPONENTS
+========================================= */
+
+.past-event-card {
+  display: flex;
+  flex-direction: row;
+  align-items: stretch;
+}
+
+.past-event-image-container {
+  flex: 0 0 40%;
+  width: 40%;
+  position: relative;
+  overflow: hidden;
 }
