@@ -1,95 +1,230 @@
 import React from 'react';
-import { Code, Link, Mail } from 'lucide-react';
+import {
+  Phone,
+  Mail,
+  MapPin
+} from 'lucide-react';
 
-const defaultTeam = [
-  {
-    id: 1,
-    name: 'Alex Chen',
-    role: 'Club President / Hardware Lead',
-    imageSrc: '/images/team_placeholder_1.jpg',
-    github: '#',
-    linkedin: '#',
-  },
-  {
-    id: 2,
-    name: 'Sarah Jenkins',
-    role: 'Software Architecture Lead',
-    imageSrc: '/images/team_placeholder_2.jpg',
-    github: '#',
-    linkedin: '#',
-  },
-  {
-    id: 3,
-    name: 'David Okafor',
-    role: 'Mechanical Design Lead',
-    imageSrc: '/images/team_placeholder_3.jpg',
-    github: '#',
-    linkedin: '#',
-  },
-  {
-    id: 4,
-    name: 'Emily Wu',
-    role: 'Outreach Coordinator',
-    imageSrc: '/images/team_placeholder_4.jpg',
-    github: '#',
-    linkedin: '#',
-  }
-];
-
-export default function TeamSection({ team = defaultTeam }) {
+export default function TeamSection() {
   return (
-    <section className="section" id="team">
+    <section className="section" id="contact">
+
       <div className="container">
-        <h2 className="section-title">The Team</h2>
-        
-        <div className="grid grid-cols-4">
-          {team.map(member => (
-            <div key={member.id} style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', textAlign: 'center' }}>
-              <div style={{
-                width: '180px',
-                height: '180px',
-                borderRadius: '50%',
-                backgroundColor: 'var(--surface-border)',
-                backgroundImage: `url(${member.imageSrc})`,
-                backgroundSize: 'cover',
-                backgroundPosition: 'center',
-                marginBottom: '1.5rem',
-                border: '4px solid var(--surface)',
-                boxShadow: '0 0 0 2px var(--primary)',
-                position: 'relative',
-                overflow: 'hidden'
-              }}>
-                 {/* Fallback text if image doesn't load/exist yet */}
-                 <span style={{
-                  position: 'absolute',
-                  top: '50%', left: '50%',
-                  transform: 'translate(-50%, -50%)',
-                  color: 'var(--text-secondary)',
-                  fontFamily: 'var(--font-mono)',
-                  fontSize: '0.7rem'
-                }}>Avatar</span>
-              </div>
-              
-              <h3 style={{ fontSize: '1.2rem', marginBottom: '0.25rem' }}>{member.name}</h3>
-              <p className="text-secondary font-mono" style={{ fontSize: '0.85rem', marginBottom: '1rem', color: 'var(--primary)' }}>
-                {member.role}
-              </p>
-              
-              <div style={{ display: 'flex', gap: '1rem', color: 'var(--text-secondary)' }}>
-                <a href={member.github} style={{ color: 'inherit' }} onMouseOver={(e) => e.currentTarget.style.color = 'var(--primary)'} onMouseOut={(e) => e.currentTarget.style.color = 'inherit'}>
-                  <Code size={18} />
-                </a>
-                <a href={member.linkedin} style={{ color: 'inherit' }} onMouseOver={(e) => e.currentTarget.style.color = 'var(--primary)'} onMouseOut={(e) => e.currentTarget.style.color = 'inherit'}>
-                  <Link size={18} />
-                </a>
-                <a href="#" style={{ color: 'inherit' }} onMouseOver={(e) => e.currentTarget.style.color = 'var(--primary)'} onMouseOut={(e) => e.currentTarget.style.color = 'inherit'}>
-                  <Mail size={18} />
-                </a>
-              </div>
-            </div>
-          ))}
+
+        <p
+          className="text-accent font-mono"
+          style={{
+            marginBottom: '0.7rem'
+          }}
+        >
+          ROBOTICS CLUB, GRIET
+        </p>
+
+        <h1
+          style={{
+            fontSize: 'clamp(2.5rem, 6vw, 4.5rem)',
+            marginBottom: '0.7rem'
+          }}
+        >
+          Contact Us
+        </h1>
+
+        <p
+          className="text-secondary"
+          style={{
+            maxWidth: '650px',
+            lineHeight: 1.7,
+            marginBottom: '3rem'
+          }}
+        >
+          Have a question, collaboration idea, or want to know more
+          about the Robotics Club? Get in touch with us.
+        </p>
+
+
+        <div
+          className="grid grid-cols-2"
+          style={{
+            gap: '2rem'
+          }}
+        >
+
+          {/* Contact Information */}
+          <div className="card">
+
+            <h2
+              style={{
+                fontSize: '1.6rem',
+                marginBottom: '1.8rem'
+              }}
+            >
+              Get in Touch
+            </h2>
+
+
+            {/* Pranav */}
+            <ContactItem
+              icon={<Phone size={22} />}
+              title="Pranav"
+              value="+91 79899 07555"
+              href="tel:+917989907555"
+            />
+
+
+            {/* Chanakya */}
+            <ContactItem
+              icon={<Phone size={22} />}
+              title="Chanakya"
+              value="+91 7780129208"
+              href="tel:+917780129208"
+            />
+
+
+            {/* Email */}
+            <ContactItem
+              icon={<Mail size={22} />}
+              title="Email"
+              value="grietrobotics@gmail.com"
+              href="mailto:grietrobotics@gmail.com"
+            />
+
+
+            {/* Location */}
+            <ContactItem
+              icon={<MapPin size={22} />}
+              title="Location"
+              value="GRIET Campus, Hyderabad"
+            />
+
+          </div>
+
+
+          {/* Club Information */}
+          <div className="card">
+
+            <p
+              className="text-accent font-mono"
+              style={{
+                fontSize: '0.8rem',
+                marginBottom: '0.8rem'
+              }}
+            >
+              GRIET
+            </p>
+
+            <h2
+              style={{
+                fontSize: '1.8rem',
+                marginBottom: '1rem'
+              }}
+            >
+              Robotics Club
+            </h2>
+
+            <p
+              className="text-secondary"
+              style={{
+                lineHeight: 1.8,
+                marginBottom: '1.5rem'
+              }}
+            >
+              A student-driven community focused on robotics,
+              artificial intelligence, electronics, automation
+              and innovation.
+            </p>
+
+            <p
+              style={{
+                lineHeight: 1.8,
+                marginBottom: '1.5rem'
+              }}
+            >
+              Imagine · Engineer · Innovate
+            </p>
+
+            <p
+              className="text-secondary font-mono"
+              style={{
+                fontSize: '0.8rem'
+              }}
+            >
+              Robotics Club, Gokaraju Rangaraju Institute of
+              Engineering and Technology
+            </p>
+
+          </div>
+
         </div>
+
       </div>
+
     </section>
   );
+}
+
+
+/* Contact Item */
+
+function ContactItem({
+  icon,
+  title,
+  value,
+  href
+}) {
+
+  const content = (
+    <div
+      style={{
+        display: 'flex',
+        alignItems: 'center',
+        gap: '1rem',
+        marginBottom: '1.7rem'
+      }}
+    >
+
+      <div
+        style={{
+          color: 'var(--primary)',
+          display: 'flex'
+        }}
+      >
+        {icon}
+      </div>
+
+      <div>
+
+        <div
+          className="font-mono text-secondary"
+          style={{
+            fontSize: '0.75rem',
+            marginBottom: '0.25rem'
+          }}
+        >
+          {title}
+        </div>
+
+        <div>
+          {value}
+        </div>
+
+      </div>
+
+    </div>
+  );
+
+  if (href) {
+    return (
+      <a
+        href={href}
+        style={{
+          color: 'inherit',
+          textDecoration: 'none'
+        }}
+      >
+        {content}
+      </a>
+    );
+  }
+
+  return content;
 }
