@@ -74,7 +74,11 @@ export default function Hero() {
             position: 'relative',
             zIndex: 1,
             paddingTop: '4rem',
-            paddingBottom: '4rem'
+            paddingBottom: '4rem',
+            display: 'flex',
+            flexDirection: 'column',
+            alignItems: 'center',
+            textAlign: 'center'
           }}
         >
 
@@ -136,7 +140,7 @@ export default function Hero() {
               fontSize: '1.35rem',
               maxWidth: '750px',
               lineHeight: 1.5,
-              marginBottom: '1rem',
+              margin: '0 auto 1rem',
               color: '#FDF0D5'
             }}
           >
@@ -151,7 +155,7 @@ export default function Hero() {
               fontSize: '1rem',
               maxWidth: '700px',
               lineHeight: 1.8,
-              marginBottom: '2rem',
+              margin: '0 auto 2rem',
               color: '#669BBC'
             }}
           >
@@ -169,6 +173,7 @@ export default function Hero() {
               display: 'flex',
               flexWrap: 'wrap',
               gap: '0.8rem',
+              justifyContent: 'center',
               marginBottom: '2.5rem'
             }}
           >
@@ -202,7 +207,8 @@ export default function Hero() {
             style={{
               display: 'flex',
               gap: '1rem',
-              flexWrap: 'wrap'
+              flexWrap: 'wrap',
+              justifyContent: 'center'
             }}
           >
 
