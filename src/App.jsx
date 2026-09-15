@@ -11,7 +11,7 @@ import EventGallery from './components/EventGallery';
 import InventoryList from './components/InventoryList';
 import TeamSection from './components/TeamSection';
 import EventDetails from './components/EventDetails';
-import Gallery from './pages/Gallery';
+
 
 function App() {
   return (
@@ -118,12 +118,7 @@ function App() {
                 About
               </NavLink>
 
-              <NavLink
-                to="/gallery"
-                style={navStyle}
-              >
-                Gallery
-              </NavLink>
+              
 
               <NavLink
                 to="/contact"
@@ -169,11 +164,7 @@ function App() {
               element={<InventoryList />}
             />
 
-            {/* GALLERY */}
-            <Route
-              path="/gallery"
-              element={<Gallery />}
-            />
+            
 
             {/* CONTACT */}
             <Route
