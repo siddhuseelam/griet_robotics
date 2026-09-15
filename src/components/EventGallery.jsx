@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
-import { ArrowRight, CalendarDays, History } from 'lucide-react';
+import { ArrowRight, CalendarDays, History, X } from 'lucide-react';
 
 export default function EventGallery() {
   return (
@@ -218,10 +218,12 @@ export default function EventGallery() {
 }
 
 function PastEventCard({ title, description, images }) {
+  const [isModalOpen, setIsModalOpen] = useState(false);
   const featuredImage = images[0];
 
   return (
-    <div
+    <>
+      <div
       className="past-event-card"
       style={{
         border: '1px solid rgba(102,155,188,0.35)',
@@ -337,7 +339,12 @@ function PastEventCard({ title, description, images }) {
           padding: '0.6rem 1.2rem',
           borderRadius: '8px',
           background: 'rgba(193,18,31,0.1)',
-          transition: 'background 0.3s ease'
+          transition: 'background 0.3s ease',
+          cursor: 'pointer'
+        }}
+        onClick={(e) => {
+          e.stopPropagation();
+          setIsModalOpen(true);
         }}
         onMouseEnter={(e) => e.currentTarget.style.background = 'rgba(193,18,31,0.2)'}
         onMouseLeave={(e) => e.currentTarget.style.background = 'rgba(193,18,31,0.1)'}
@@ -346,5 +353,138 @@ function PastEventCard({ title, description, images }) {
         </div>
       </div>
     </div>
+
+    {/* Event Highlights Modal */}
+    {isModalOpen && (
+      <div 
+        onClick={() => setIsModalOpen(false)}
+        style={{
+          position: 'fixed',
+          top: 0, left: 0, right: 0, bottom: 0,
+          background: 'rgba(0,30,45,0.9)',
+          backdropFilter: 'blur(8px)',
+          WebkitBackdropFilter: 'blur(8px)',
+          zIndex: 9999,
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'center',
+          padding: '1.5rem'
+        }}
+      >
+        <div 
+          onClick={(e) => e.stopPropagation()}
+          className="hide-scrollbar"
+          style={{
+            background: 'linear-gradient(135deg, rgba(7,59,85,0.98), rgba(0,48,73,0.98))',
+            borderRadius: '20px',
+            maxWidth: '1000px',
+            width: '100%',
+            maxHeight: '90vh',
+            overflowY: 'auto',
+            border: '1px solid rgba(102,155,188,0.35)',
+            boxShadow: '0 20px 60px rgba(0,0,0,0.5)',
+            position: 'relative',
+            display: 'flex',
+            flexDirection: 'column'
+          }}
+        >
+          {/* Close Button */}
+          <button
+            onClick={() => setIsModalOpen(false)}
+            style={{
+              position: 'absolute',
+              top: '1.5rem',
+              right: '1.5rem',
+              background: 'rgba(193,18,31,0.15)',
+              border: '1px solid rgba(193,18,31,0.4)',
+              color: '#FDF0D5',
+              width: '45px',
+              height: '45px',
+              borderRadius: '50%',
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'center',
+              cursor: 'pointer',
+              zIndex: 10,
+              transition: 'background 0.3s ease'
+            }}
+            onMouseEnter={(e) => e.currentTarget.style.background = '#c1121f'}
+            onMouseLeave={(e) => e.currentTarget.style.background = 'rgba(193,18,31,0.15)'}
+          >
+            <X size={24} />
+          </button>
+          
+          {/* Image Gallery */}
+          <div 
+            className="hide-scrollbar" 
+            style={{ 
+              display: 'flex', 
+              overflowX: 'auto', 
+              gap: '4px', 
+              height: 'clamp(250px, 40vh, 450px)',
+              width: '100%',
+              backgroundColor: '#001a2c'
+            }}
+          >
+            {images.map((img, i) => (
+              <img 
+                key={i} 
+                src={img} 
+                alt={`Event highlight ${i+1}`} 
+                style={{ 
+                  height: '100%', 
+                  width: 'auto', 
+                  objectFit: 'contain',
+                  flexShrink: 0
+                }} 
+              />
+            ))}
+          </div>
+
+          {/* Modal Content */}
+          <div style={{ padding: 'clamp(2rem, 5vw, 3.5rem)' }}>
+            <p
+              style={{
+                fontFamily: "'Zen Dots', sans-serif",
+                display: 'inline-block',
+                padding: '0.45rem 0.9rem',
+                borderRadius: '999px',
+                background: 'rgba(102,155,188,0.15)',
+                color: '#669BBC',
+                fontSize: '0.65rem',
+                letterSpacing: '1px',
+                marginBottom: '1rem',
+                border: '1px solid rgba(102,155,188,0.3)'
+              }}
+            >
+              EVENT HIGHLIGHTS
+            </p>
+            <h3 
+              style={{ 
+                fontFamily: "'Zen Dots', sans-serif", 
+                fontSize: 'clamp(1.8rem, 5vw, 2.5rem)', 
+                color: '#FDF0D5', 
+                marginBottom: '1.5rem',
+                lineHeight: 1.2
+              }}
+            >
+              {title}
+            </h3>
+            <p 
+              style={{ 
+                color: '#c5d4dc', 
+                lineHeight: 1.8, 
+                fontSize: '1.05rem', 
+                margin: 0,
+                maxWidth: '900px'
+              }}
+            >
+              {description}
+            </p>
+          </div>
+        </div>
+      </div>
+    )}
+    </>
   );
 }
