@@ -1,7 +1,14 @@
-import React, { useEffect, useRef, useState } from 'react';
-import { ChevronLeft, ChevronRight } from 'lucide-react';
+import React, { useRef } from 'react';
 import teamData from '../assets/teamData.json';
 import TeamMemberCard from './TeamMemberCard';
+import Autoplay from 'embla-carousel-autoplay';
+import {
+  Carousel,
+  CarouselContent,
+  CarouselItem,
+  CarouselNext,
+  CarouselPrevious,
+} from './ui/carousel';
 
 export default function HomeTeam() {
   // Filter leads based on domain keywords
@@ -14,192 +21,55 @@ export default function HomeTeam() {
            domain.includes('secretary');
   });
 
-  // Duplicate leads for infinite scroll effect
-  const displayLeads = [...leads, ...leads, ...leads];
-
-  const scrollRef = useRef(null);
-  const autoScrollTimeoutRef = useRef(null);
-  const [isManualOverride, setIsManualOverride] = useState(false);
-
-  useEffect(() => {
-    const container = scrollRef.current;
-    if (!container) return;
-
-    let animationId;
-    let isHovering = false;
-
-    const scroll = () => {
-      if (!isHovering && !isManualOverride) {
-        container.scrollLeft += 1;
-      }
-      
-      // Manage infinite loop boundaries seamlessly
-      const singleSetWidth = container.scrollWidth / 3;
-      if (container.scrollLeft >= singleSetWidth * 1.5) {
-        container.scrollLeft -= singleSetWidth;
-      } else if (container.scrollLeft <= 0 && isManualOverride) {
-        container.scrollLeft += singleSetWidth;
-      }
-
-      animationId = requestAnimationFrame(scroll);
-    };
-
-    animationId = requestAnimationFrame(scroll);
-
-    container.addEventListener('mouseenter', () => (isHovering = true));
-    container.addEventListener('mouseleave', () => (isHovering = false));
-
-    return () => cancelAnimationFrame(animationId);
-  }, [isManualOverride]);
-
-  const handleManualScroll = (direction) => {
-    const container = scrollRef.current;
-    if (!container) return;
-
-    setIsManualOverride(true);
-    
-    // Scroll left or right
-    const scrollAmount = direction === 'left' ? -300 : 300;
-    container.scrollBy({ left: scrollAmount, behavior: 'smooth' });
-
-    // Clear existing timeout
-    if (autoScrollTimeoutRef.current) {
-      clearTimeout(autoScrollTimeoutRef.current);
-    }
-
-    // Resume auto scroll after 3 seconds of inactivity
-    autoScrollTimeoutRef.current = setTimeout(() => {
-      setIsManualOverride(false);
-    }, 3000);
-  };
+  const plugin = useRef(
+    Autoplay({ delay: 3000, stopOnInteraction: false, stopOnMouseEnter: true })
+  );
 
   return (
-    <section
-      style={{
-        padding: '5rem 0',
-        backgroundColor: '#073b55', // Updated to match the premium surface dark aesthetic instead of the previous bright color
-        color: 'var(--papaya-whip)',
-        borderTop: '1px solid rgba(var(--steel-blue-rgb), 0.25)'
-      }}
-    >
-      <div className="container">
-        {/* Section Heading with Nav Buttons */}
-        <div style={{ marginBottom: '2.5rem', display: 'flex', justifyContent: 'space-between', alignItems: 'flex-end', flexWrap: 'wrap', gap: '1rem' }}>
-          <div>
-            <p
-              style={{
-                marginBottom: '0.6rem',
-                color: 'var(--brick-red)',
-                fontSize: '0.75rem',
-                letterSpacing: '2px',
-                textTransform: 'uppercase',
-                fontFamily: "'Zen Dots', sans-serif"
-              }}
-            >
-              OUR TEAM
-            </p>
-
-            <h2
-              style={{
-                fontSize: 'clamp(2rem, 5vw, 3.2rem)',
-                margin: 0,
-                color: 'var(--papaya-whip)',
-                fontFamily: "'Zen Dots', sans-serif"
-              }}
-            >
-              Club Leads
-            </h2>
-
-            <p
-              style={{
-                marginTop: '0.8rem',
-                color: 'var(--steel-blue)',
-                fontSize: '0.9rem',
-                fontFamily: "'Zen Dots', sans-serif"
-              }}
-            >
-              Meet the students leading the Robotics Club of GRIET.
-            </p>
-          </div>
-
-          {/* Navigation Arrows */}
-          <div style={{ display: 'flex', gap: '0.8rem' }}>
-            <button
-              onClick={() => handleManualScroll('left')}
-              style={{
-                background: 'rgba(var(--steel-blue-rgb), 0.15)',
-                border: '1px solid rgba(var(--steel-blue-rgb), 0.35)',
-                borderRadius: '50%',
-                width: '45px',
-                height: '45px',
-                display: 'flex',
-                alignItems: 'center',
-                justifyContent: 'center',
-                color: 'var(--papaya-whip)',
-                cursor: 'pointer',
-                transition: 'all 0.3s ease'
-              }}
-              onMouseEnter={(e) => {
-                e.currentTarget.style.background = 'var(--brick-red)';
-                e.currentTarget.style.borderColor = 'var(--brick-red)';
-              }}
-              onMouseLeave={(e) => {
-                e.currentTarget.style.background = 'rgba(var(--steel-blue-rgb), 0.15)';
-                e.currentTarget.style.borderColor = 'rgba(var(--steel-blue-rgb), 0.35)';
-              }}
-            >
-              <ChevronLeft size={24} />
-            </button>
-            <button
-              onClick={() => handleManualScroll('right')}
-              style={{
-                background: 'rgba(var(--steel-blue-rgb), 0.15)',
-                border: '1px solid rgba(var(--steel-blue-rgb), 0.35)',
-                borderRadius: '50%',
-                width: '45px',
-                height: '45px',
-                display: 'flex',
-                alignItems: 'center',
-                justifyContent: 'center',
-                color: 'var(--papaya-whip)',
-                cursor: 'pointer',
-                transition: 'all 0.3s ease'
-              }}
-              onMouseEnter={(e) => {
-                e.currentTarget.style.background = 'var(--brick-red)';
-                e.currentTarget.style.borderColor = 'var(--brick-red)';
-              }}
-              onMouseLeave={(e) => {
-                e.currentTarget.style.background = 'rgba(var(--steel-blue-rgb), 0.15)';
-                e.currentTarget.style.borderColor = 'rgba(var(--steel-blue-rgb), 0.35)';
-              }}
-            >
-              <ChevronRight size={24} />
-            </button>
-          </div>
-        </div>
-
-        {/* Horizontal Scroll */}
-        <div
-          ref={scrollRef}
-          className="hide-scrollbar"
-          style={{
-            display: 'flex',
-            gap: '1.5rem',
-            overflowX: 'auto',
-            overflowY: 'hidden',
-            paddingBottom: '2rem',
-            paddingTop: '0.5rem',
-            scrollBehavior: isManualOverride ? 'smooth' : 'auto', // only smooth for manual clicks
-            WebkitOverflowScrolling: 'touch',
-            WebkitMaskImage: 'linear-gradient(to right, transparent, black 5%, black 95%, transparent)',
-            maskImage: 'linear-gradient(to right, transparent, black 5%, black 95%, transparent)'
+    <section className="py-20 bg-background text-foreground border-t border-border/50">
+      <div className="container mx-auto px-4">
+        <Carousel
+          plugins={[plugin.current]}
+          opts={{
+            align: "start",
+            loop: true,
           }}
+          className="w-full"
         >
-          {displayLeads.map((lead, index) => (
-            <TeamMemberCard key={index} member={lead} />
-          ))}
-        </div>
+          {/* Section Heading with Nav Buttons */}
+          <div className="mb-10 flex justify-between items-end flex-wrap gap-4">
+            <div>
+              <p className="mb-2 text-primary text-xs tracking-[2px] uppercase font-[Zen Dots]">
+                OUR TEAM
+              </p>
+
+              <h2 className="text-[clamp(2rem,5vw,3.2rem)] m-0 text-foreground font-[Zen Dots]">
+                Club Leads
+              </h2>
+
+              <p className="mt-3 text-muted-foreground text-sm font-[Zen Dots]">
+                Meet the students leading the Robotics Club of GRIET.
+              </p>
+            </div>
+
+            {/* Navigation Arrows */}
+            <div className="flex gap-3 relative mr-12 mt-4 md:mt-0">
+              <CarouselPrevious className="static transform-none bg-secondary/50 border-border hover:bg-primary hover:text-primary-foreground h-12 w-12" />
+              <CarouselNext className="static transform-none bg-secondary/50 border-border hover:bg-primary hover:text-primary-foreground h-12 w-12" />
+            </div>
+          </div>
+
+          {/* Horizontal Scroll Carousel */}
+          <div className="w-full">
+            <CarouselContent className="-ml-4 py-4">
+              {leads.map((lead, index) => (
+                <CarouselItem key={index} className="pl-4 basis-auto">
+                  <TeamMemberCard member={lead} />
+                </CarouselItem>
+              ))}
+            </CarouselContent>
+          </div>
+        </Carousel>
       </div>
     </section>
   );

@@ -1,60 +1,46 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { Link } from 'react-router-dom';
-import { ChevronLeft, ChevronRight, CalendarDays, ArrowRight, X, History } from 'lucide-react';
-import { Button } from './ui/Button';
+import { CalendarDays, ArrowRight, History, Bot } from 'lucide-react';
+import { Button } from './ui/button';
+import { Badge } from './ui/badge';
+import { Card, CardContent, CardFooter, CardHeader, CardTitle, CardDescription } from './ui/card';
+import {
+  Dialog,
+  DialogContent,
+  DialogHeader,
+  DialogTitle,
+  DialogTrigger,
+  DialogDescription
+} from './ui/dialog';
+import { Skeleton } from './ui/skeleton';
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "./ui/tabs";
+import { ScrollArea } from './ui/scroll-area';
+import {
+  Carousel,
+  CarouselContent,
+  CarouselItem,
+  CarouselNext,
+  CarouselPrevious,
+} from './ui/carousel';
 
 export default function EventGallery() {
   return (
-    <section
-      style={{
-        minHeight: '100vh',
-        padding: '5rem 0',
-        background: 'var(--deep-space-blue)',
-        color: 'var(--papaya-whip)'
-      }}
-    >
-      <div className="container">
+    <section className="min-h-screen py-20 bg-background text-foreground font-sans">
+      <div className="container mx-auto px-4">
 
         {/* =========================
             PAGE HEADER
         ========================== */}
-        <div
-          style={{
-            marginBottom: '4rem',
-            maxWidth: '800px'
-          }}
-        >
-          <p
-            style={{
-              fontFamily: "'Zen Dots', sans-serif",
-              color: 'var(--brick-red)',
-              fontSize: '0.8rem',
-              letterSpacing: '2px',
-              marginBottom: '1rem'
-            }}
-          >
+        <div className="mb-16 max-w-[800px]">
+          <p className="font-[Zen Dots] text-muted-foreground text-sm tracking-widest mb-4">
             ROBOTICS CLUB · GRIET
           </p>
 
-          <h1
-            style={{
-              fontFamily: "'Zen Dots', sans-serif",
-              fontSize: 'clamp(2.5rem, 6vw, 5rem)',
-              marginBottom: '1rem',
-              lineHeight: 1.1
-            }}
-          >
+          <h1 className="font-[Zen Dots] text-[clamp(2.5rem,6vw,5rem)] mb-4 leading-tight text-foreground font-bold">
             EVENTS
           </h1>
 
-          <p
-            style={{
-              color: 'var(--steel-blue)',
-              fontSize: '1.05rem',
-              lineHeight: 1.8,
-              maxWidth: '700px'
-            }}
-          >
+          <p className="text-muted-foreground text-lg leading-relaxed max-w-[700px]">
             Discover our upcoming activities and explore the
             events that have shaped the Robotics Club of GRIET.
           </p>
@@ -64,111 +50,36 @@ export default function EventGallery() {
         {/* =========================
             UPCOMING EVENTS
         ========================== */}
-        <div style={{ marginBottom: '5rem' }}>
-
-          <div
-            style={{
-              display: 'flex',
-              alignItems: 'center',
-              gap: '0.8rem',
-              marginBottom: '1.5rem'
-            }}
-          >
-            <CalendarDays
-              size={24}
-              color="var(--steel-blue)"
-            />
-
-            <h2
-              style={{
-                fontFamily: "'Zen Dots', sans-serif",
-                margin: 0,
-                fontSize: '1.5rem'
-              }}
-            >
+        <div className="mb-20">
+          <div className="flex items-center gap-3 mb-6">
+            <CalendarDays size={28} className="text-muted-foreground" />
+            <h2 className="font-[Zen Dots] m-0 text-2xl text-foreground font-semibold">
               Upcoming Event
             </h2>
           </div>
 
-
           {/* Upcoming Event Card */}
-          <div
-            style={{
-              border: '1px solid rgba(var(--steel-blue-rgb), 0.35)',
-              borderRadius: '20px',
-              padding: '2.5rem',
-              background:
-                'linear-gradient(135deg, rgba(var(--deep-space-blue-rgb), 0.95), rgba(var(--molten-lava-rgb), 0.25))',
-              boxShadow: '0 15px 40px rgba(0,0,0,0.2)'
-            }}
-          >
-
-            <div
-              style={{
-                display: 'inline-block',
-                padding: '0.45rem 0.9rem',
-                borderRadius: '999px',
-                background: 'var(--brick-red)',
-                color: 'var(--papaya-whip)',
-                fontFamily: "'Zen Dots', sans-serif",
-                fontSize: '0.65rem',
-                marginBottom: '1.5rem'
-              }}
-            >
-              UPCOMING
+          <Card className="shadow-lg max-w-4xl mx-auto overflow-hidden">
+            <div className="p-8 md:p-10 flex flex-col justify-center text-center items-center">
+              <Badge variant="default" className="w-fit mb-4 font-[Zen Dots] text-[0.65rem] tracking-wider">
+                UPCOMING
+              </Badge>
+              <CardTitle className="font-[Zen Dots] text-[clamp(1.7rem,4vw,3rem)] leading-tight text-foreground mb-4">
+                Next-Gen Robotics
+              </CardTitle>
+              <p className="text-muted-foreground text-base leading-relaxed mb-8 max-w-2xl">
+                Join us for an exciting robotics workshop focused on
+                learning, innovation, technology and hands-on exploration.
+                Discover what the next generation of robotics has to offer.
+              </p>
+              <Button asChild size="lg" className="w-fit">
+                <Link to="/events/next-gen-robotics" className="flex items-center gap-2">
+                  View Event Details
+                  <ArrowRight size={17} />
+                </Link>
+              </Button>
             </div>
-
-
-            <h3
-              style={{
-                fontFamily: "'Zen Dots', sans-serif",
-                fontSize: 'clamp(1.7rem, 4vw, 3rem)',
-                marginBottom: '1rem',
-                lineHeight: 1.2
-              }}
-            >
-              Next-Gen Robotics
-            </h3>
-
-
-            {/* ONLY MAIN DESCRIPTION HERE */}
-            <p
-              style={{
-                color: 'var(--steel-blue)',
-                fontSize: '1.05rem',
-                lineHeight: 1.8,
-                maxWidth: '750px',
-                marginBottom: '2rem'
-              }}
-            >
-              Join us for an exciting robotics workshop focused on
-              learning, innovation, technology and hands-on exploration.
-              Discover what the next generation of robotics has to offer.
-            </p>
-
-
-            {/* Details button */}
-            <Link
-              to="/events/next-gen-robotics"
-              style={{
-                display: 'inline-flex',
-                alignItems: 'center',
-                gap: '0.6rem',
-                padding: '0.9rem 1.4rem',
-                background: 'var(--brick-red)',
-                color: 'var(--papaya-whip)',
-                textDecoration: 'none',
-                borderRadius: '8px',
-                fontFamily: "'Zen Dots', sans-serif",
-                fontSize: '0.75rem',
-                transition: '0.25s ease'
-              }}
-            >
-              View Event Details
-              <ArrowRight size={17} />
-            </Link>
-
-          </div>
+          </Card>
         </div>
 
 
@@ -176,41 +87,54 @@ export default function EventGallery() {
             PAST EVENTS
         ========================== */}
         <div>
-
-          <div
-            style={{
-              display: 'flex',
-              alignItems: 'center',
-              gap: '0.8rem',
-              marginBottom: '1.5rem'
-            }}
-          >
-            <History
-              size={24}
-              color="var(--steel-blue)"
-            />
-
-            <h2
-              style={{
-                fontFamily: "'Zen Dots', sans-serif",
-                margin: 0,
-                fontSize: '1.5rem'
-              }}
-            >
-              Past Events
-            </h2>
+          <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 mb-8">
+            <div className="flex items-center gap-3">
+              <History size={28} className="text-muted-foreground" />
+              <h2 className="font-[Zen Dots] m-0 text-2xl text-foreground font-semibold">
+                Past Events
+              </h2>
+            </div>
           </div>
 
-
-          <PastEventCard 
-            title="Transforming IoT Ideas to Robotics Reality"
-            description="Our first-ever Robotics Club event was a blend of ideas, technology and teamwork — our very first step into the future. A two-day experience of innovation, hands-on learning and creativity with brilliant minds."
-            images={[
-              "/images/gallery1.jpg",
-              "/images/gallery2.jpg",
-              "/images/gallery3.jpg"
-            ]}
-          />
+          <Tabs defaultValue="all" className="w-full">
+            <TabsList className="mb-6 bg-muted/50 w-full sm:w-fit flex flex-wrap h-auto p-1">
+              <TabsTrigger value="all" className="font-[Zen Dots] text-xs">All Events</TabsTrigger>
+              <TabsTrigger value="workshops" className="font-[Zen Dots] text-xs">Workshops</TabsTrigger>
+              <TabsTrigger value="hackathons" className="font-[Zen Dots] text-xs">Hackathons</TabsTrigger>
+            </TabsList>
+            
+            <TabsContent value="all" className="space-y-6 focus-visible:outline-none">
+               <PastEventCard 
+                  title="Transforming IoT Ideas to Robotics Reality"
+                  description="Our first-ever Robotics Club event was a blend of ideas, technology and teamwork — our very first step into the future. A two-day experience of innovation, hands-on learning and creativity with brilliant minds."
+                  images={[
+                    "/images/gallery1.jpg",
+                    "/images/gallery2.jpg",
+                    "/images/gallery3.jpg"
+                  ]}
+                  category="Workshop"
+                />
+            </TabsContent>
+            
+            <TabsContent value="workshops" className="space-y-6 focus-visible:outline-none">
+               <PastEventCard 
+                  title="Transforming IoT Ideas to Robotics Reality"
+                  description="Our first-ever Robotics Club event was a blend of ideas, technology and teamwork — our very first step into the future. A two-day experience of innovation, hands-on learning and creativity with brilliant minds."
+                  images={[
+                    "/images/gallery1.jpg",
+                    "/images/gallery2.jpg",
+                    "/images/gallery3.jpg"
+                  ]}
+                  category="Workshop"
+                />
+            </TabsContent>
+            
+            <TabsContent value="hackathons" className="space-y-6 focus-visible:outline-none">
+              <div className="text-center py-12 border rounded-xl border-dashed">
+                <p className="text-muted-foreground font-[Zen Dots]">No hackathons found yet. Stay tuned!</p>
+              </div>
+            </TabsContent>
+          </Tabs>
 
         </div>
       </div>
@@ -219,263 +143,78 @@ export default function EventGallery() {
 }
 
 function PastEventCard({ title, description, images }) {
-  const [isModalOpen, setIsModalOpen] = useState(false);
   const featuredImage = images[0];
+  const [imgLoaded, setImgLoaded] = React.useState(false);
 
   return (
-    <>
-      <div
-      className="past-event-card"
-      style={{
-        border: '1px solid rgba(var(--steel-blue-rgb), 0.35)',
-        borderRadius: '20px',
-        overflow: 'hidden',
-        background: 'linear-gradient(135deg, rgba(var(--deep-space-blue-rgb), 0.95), rgba(var(--deep-space-blue-rgb), 0.95))',
-        boxShadow: '0 8px 32px rgba(0,0,0,0.2)',
-        transition: 'all 0.4s cubic-bezier(0.4, 0, 0.2, 1)',
-        cursor: 'pointer'
-      }}
-      onMouseEnter={(e) => {
-        e.currentTarget.style.transform = 'translateY(-5px)';
-        e.currentTarget.style.borderColor = 'rgba(var(--steel-blue-rgb), 0.8)';
-        e.currentTarget.style.boxShadow = '0 15px 40px rgba(var(--steel-blue-rgb), 0.25)';
-        const img = e.currentTarget.querySelector('img');
-        if (img) img.style.transform = 'scale(1.05)';
-      }}
-      onMouseLeave={(e) => {
-        e.currentTarget.style.transform = 'translateY(0)';
-        e.currentTarget.style.borderColor = 'rgba(var(--steel-blue-rgb), 0.35)';
-        e.currentTarget.style.boxShadow = '0 8px 32px rgba(0,0,0,0.2)';
-        const img = e.currentTarget.querySelector('img');
-        if (img) img.style.transform = 'scale(1)';
-      }}
-    >
+    <Card className="flex flex-col md:flex-row overflow-hidden hover:shadow-lg transition-shadow duration-300 w-full max-w-5xl mx-auto">
       {/* Featured Image */}
-      <div className="past-event-image-container">
+      <div className="relative w-full md:w-1/3 min-h-[200px] shrink-0">
+        {!imgLoaded && <Skeleton className="absolute inset-0 rounded-none" />}
         <img
           src={featuredImage}
           alt={title}
-          style={{
-            width: '100%',
-            height: '100%',
-            objectFit: 'cover',
-            display: 'block',
-            transition: 'transform 0.6s cubic-bezier(0.4, 0, 0.2, 1)'
-          }}
+          className={`absolute inset-0 w-full h-full object-cover transition-opacity duration-300 ${imgLoaded ? 'opacity-100' : 'opacity-0'}`}
+          onLoad={() => setImgLoaded(true)}
         />
-        
-        {/* Subtle overlay for the image */}
-        <div style={{
-          position: 'absolute',
-          top: 0,
-          left: 0,
-          right: 0,
-          bottom: 0,
-          background: 'linear-gradient(to right, rgba(var(--deep-space-blue-rgb), 0) 0%, rgba(var(--deep-space-blue-rgb), 0.8) 100%)',
-          pointerEvents: 'none'
-        }} />
       </div>
 
-      {/* Past Event Information */}
-      <div style={{ 
-        flex: 1, 
-        padding: '2.5rem', 
-        display: 'flex', 
-        flexDirection: 'column', 
-        justifyContent: 'center' 
-      }}>
-        
-        <div style={{ marginBottom: '1.2rem' }}>
-          <p
-            style={{
-              fontFamily: "'Zen Dots', sans-serif",
-              display: 'inline-block',
-              padding: '0.45rem 0.9rem',
-              borderRadius: '999px',
-              background: 'rgba(var(--steel-blue-rgb), 0.15)',
-              color: 'var(--steel-blue)',
-              fontSize: '0.65rem',
-              letterSpacing: '1px',
-              marginBottom: '1rem',
-              border: '1px solid rgba(var(--steel-blue-rgb), 0.3)'
-            }}
-          >
+      <div className="flex flex-col flex-1 p-6 md:p-8">
+        <div className="flex-1">
+          <Badge variant="secondary" className="w-fit font-[Zen Dots] text-[0.6rem] tracking-wider text-muted-foreground mb-3">
             COMPLETED EVENT
-          </p>
-          
-          <h3
-            style={{
-              fontFamily: "'Zen Dots', sans-serif",
-              fontSize: 'clamp(1.4rem, 4vw, 1.8rem)',
-              color: 'var(--papaya-whip)',
-              margin: 0,
-              lineHeight: 1.3
-            }}
-          >
+          </Badge>
+          <CardTitle className="font-[Zen Dots] text-xl md:text-2xl leading-tight mb-4">
             {title}
-          </h3>
+          </CardTitle>
+          <CardDescription className="text-sm md:text-base leading-relaxed line-clamp-3 md:line-clamp-none mb-6">
+            {description}
+          </CardDescription>
         </div>
 
-        <p
-          style={{
-            color: '#91adbb',
-            lineHeight: 1.8,
-            fontSize: '1rem',
-            maxWidth: '850px',
-            margin: 0
-          }}
-        >
-          {description}
-        </p>
+        <div className="mt-auto">
+          <Dialog>
+            <DialogTrigger asChild>
+              <Button variant="secondary" size="sm" className="flex items-center gap-2 w-fit">
+                View Highlights <ArrowRight size={16} />
+              </Button>
+            </DialogTrigger>
+            <DialogContent className="max-w-[90vw] md:max-w-[800px] p-0 overflow-hidden gap-0">
+              <DialogHeader className="p-6 pb-2">
+                <Badge variant="secondary" className="w-fit font-[Zen Dots] text-[0.6rem] tracking-wider text-muted-foreground mb-2">
+                  EVENT HIGHLIGHTS
+                </Badge>
+                <DialogTitle className="font-[Zen Dots] text-2xl text-foreground mb-2">
+                  {title}
+                </DialogTitle>
+                <ScrollArea className="max-h-[150px] overflow-auto">
+                  <DialogDescription className="text-muted-foreground text-sm md:text-base leading-relaxed pr-4">
+                    {description}
+                  </DialogDescription>
+                </ScrollArea>
+              </DialogHeader>
 
-        <Button 
-          variant="outline"
-          size="sm"
-          style={{
-            marginTop: '1.5rem',
-            width: 'fit-content'
-          }}
-          onClick={(e) => {
-            e.stopPropagation();
-            setIsModalOpen(true);
-          }}
-        >
-          View Highlights <ArrowRight size={16} style={{ marginLeft: '0.4rem' }} />
-        </Button>
-      </div>
-    </div>
-
-    {/* Event Highlights Modal */}
-    {isModalOpen && (
-      <div 
-        onClick={() => setIsModalOpen(false)}
-        style={{
-          position: 'fixed',
-          top: 0, left: 0, right: 0, bottom: 0,
-          background: 'rgba(0,30,45,0.9)',
-          backdropFilter: 'blur(8px)',
-          WebkitBackdropFilter: 'blur(8px)',
-          zIndex: 9999,
-          display: 'flex',
-          alignItems: 'center',
-          justifyContent: 'center',
-          padding: '1.5rem'
-        }}
-      >
-        <div 
-          onClick={(e) => e.stopPropagation()}
-          className="hide-scrollbar"
-          style={{
-            background: 'linear-gradient(135deg, rgba(var(--deep-space-blue-rgb), 0.98), rgba(var(--deep-space-blue-rgb), 0.98))',
-            borderRadius: '20px',
-            maxWidth: '1000px',
-            width: '100%',
-            maxHeight: '90vh',
-            overflowY: 'auto',
-            border: '1px solid rgba(var(--steel-blue-rgb), 0.35)',
-            boxShadow: '0 20px 60px rgba(0,0,0,0.5)',
-            position: 'relative',
-            display: 'flex',
-            flexDirection: 'column'
-          }}
-        >
-          {/* Close Button */}
-          <button
-            onClick={() => setIsModalOpen(false)}
-            style={{
-              position: 'absolute',
-              top: '1.5rem',
-              right: '1.5rem',
-              background: 'rgba(var(--brick-red-rgb), 0.15)',
-              border: '1px solid rgba(var(--brick-red-rgb), 0.4)',
-              color: 'var(--papaya-whip)',
-              width: '45px',
-              height: '45px',
-              borderRadius: '50%',
-              display: 'flex',
-              alignItems: 'center',
-              justifyContent: 'center',
-              cursor: 'pointer',
-              zIndex: 10,
-              transition: 'background 0.3s ease'
-            }}
-            onMouseEnter={(e) => e.currentTarget.style.background = 'var(--brick-red)'}
-            onMouseLeave={(e) => e.currentTarget.style.background = 'rgba(var(--brick-red-rgb), 0.15)'}
-          >
-            <X size={24} />
-          </button>
-          
-          {/* Image Gallery */}
-          <div 
-            className="hide-scrollbar" 
-            style={{ 
-              display: 'flex', 
-              overflowX: 'auto', 
-              gap: '4px', 
-              height: 'clamp(250px, 40vh, 450px)',
-              width: '100%',
-              backgroundColor: '#001a2c'
-            }}
-          >
-            {images.map((img, i) => (
-              <img 
-                key={i} 
-                src={img} 
-                alt={`Event highlight ${i+1}`} 
-                style={{ 
-                  height: '100%', 
-                  width: 'auto', 
-                  objectFit: 'contain',
-                  flexShrink: 0
-                }} 
-              />
-            ))}
-          </div>
-
-          {/* Modal Content */}
-          <div style={{ padding: 'clamp(2rem, 5vw, 3.5rem)' }}>
-            <p
-              style={{
-                fontFamily: "'Zen Dots', sans-serif",
-                display: 'inline-block',
-                padding: '0.45rem 0.9rem',
-                borderRadius: '999px',
-                background: 'rgba(var(--steel-blue-rgb), 0.15)',
-                color: 'var(--steel-blue)',
-                fontSize: '0.65rem',
-                letterSpacing: '1px',
-                marginBottom: '1rem',
-                border: '1px solid rgba(var(--steel-blue-rgb), 0.3)'
-              }}
-            >
-              EVENT HIGHLIGHTS
-            </p>
-            <h3 
-              style={{ 
-                fontFamily: "'Zen Dots', sans-serif", 
-                fontSize: 'clamp(1.8rem, 5vw, 2.5rem)', 
-                color: 'var(--papaya-whip)', 
-                marginBottom: '1.5rem',
-                lineHeight: 1.2
-              }}
-            >
-              {title}
-            </h3>
-            <p 
-              style={{ 
-                color: '#c5d4dc', 
-                lineHeight: 1.8, 
-                fontSize: '1.05rem', 
-                margin: 0,
-                maxWidth: '900px'
-              }}
-            >
-              {description}
-            </p>
-          </div>
+              <div className="bg-muted/50 w-full p-4 md:p-8 mt-4 flex items-center justify-center">
+                <Carousel className="w-full max-w-2xl">
+                  <CarouselContent>
+                    {images.map((img, index) => (
+                      <CarouselItem key={index} className="flex items-center justify-center">
+                         <img 
+                            src={img} 
+                            alt={`Highlight ${index + 1}`} 
+                            className="max-h-[50vh] w-auto object-contain rounded-md"
+                          />
+                      </CarouselItem>
+                    ))}
+                  </CarouselContent>
+                  <CarouselPrevious className="left-2" />
+                  <CarouselNext className="right-2" />
+                </Carousel>
+              </div>
+            </DialogContent>
+          </Dialog>
         </div>
       </div>
-    )}
-    </>
+    </Card>
   );
-}
+}

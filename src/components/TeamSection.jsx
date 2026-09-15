@@ -2,229 +2,173 @@ import React from 'react';
 import {
   Phone,
   Mail,
-  MapPin
+  MapPin,
+  Camera,
+  Briefcase,
+  Video
 } from 'lucide-react';
+import { Card, CardContent, CardHeader, CardTitle } from './ui/card';
+import { Separator } from './ui/separator';
+import {
+  Tooltip,
+  TooltipContent,
+  TooltipProvider,
+  TooltipTrigger,
+} from './ui/tooltip';
 
 export default function TeamSection() {
   return (
-    <section className="section" id="contact">
+    <TooltipProvider>
+      <section className="py-20 bg-background text-foreground min-h-[70vh] flex items-center" id="contact">
+        <div className="container mx-auto px-4 max-w-5xl">
 
-      <div className="container">
+          <p className="font-[Zen Dots] text-muted-foreground text-xs tracking-[2px] mb-4">
+            ROBOTICS CLUB, GRIET
+          </p>
 
-        <p
-          className="text-accent font-mono"
-          style={{
-            marginBottom: '0.7rem'
-          }}
-        >
-          ROBOTICS CLUB, GRIET
-        </p>
+          <h1 className="font-[Zen Dots] text-[clamp(2.5rem,6vw,4.5rem)] mb-6 leading-tight text-foreground">
+            Contact Us
+          </h1>
 
-        <h1
-          style={{
-            fontSize: 'clamp(2.5rem, 6vw, 4.5rem)',
-            marginBottom: '0.7rem'
-          }}
-        >
-          Contact Us
-        </h1>
-
-        <p
-          className="text-secondary"
-          style={{
-            maxWidth: '650px',
-            lineHeight: 1.7,
-            marginBottom: '3rem'
-          }}
-        >
-          Have a question, collaboration idea, or want to know more
-          about the Robotics Club? Get in touch with us.
-        </p>
+          <p className="text-muted-foreground text-lg leading-relaxed max-w-[650px] mb-12">
+            Have a question, collaboration idea, or want to know more
+            about the Robotics Club? Get in touch with us.
+          </p>
 
 
-        <div
-          className="grid grid-cols-2"
-          style={{
-            gap: '2rem'
-          }}
-        >
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+            
+            {/* Contact Information */}
+            <Card className="shadow-lg h-full">
+              <CardHeader>
+                <CardTitle className="font-[Zen Dots] text-2xl text-foreground">Get in Touch</CardTitle>
+              </CardHeader>
+              <CardContent className="flex flex-col h-full">
+                <div className="grid gap-6 flex-1">
+                  <ContactItem
+                    icon={<Phone size={22} />}
+                    title="Pranav"
+                    value="+91 79899 07555"
+                    href="tel:+917989907555"
+                  />
+                  <ContactItem
+                    icon={<Phone size={22} />}
+                    title="Chanakya"
+                    value="+91 7780129208"
+                    href="tel:+917780129208"
+                  />
+                  <ContactItem
+                    icon={<MapPin size={22} />}
+                    title="Location"
+                    value="GRIET Campus, Hyderabad"
+                  />
+                </div>
 
-          {/* Contact Information */}
-          <div className="card">
+                <Separator className="my-6" />
+                
+                <ContactItem
+                  icon={<Mail size={22} />}
+                  title="Email"
+                  value="grietrobotics@gmail.com"
+                  href="mailto:grietrobotics@gmail.com"
+                />
+              </CardContent>
+            </Card>
 
-            <h2
-              style={{
-                fontSize: '1.6rem',
-                marginBottom: '1.8rem'
-              }}
-            >
-              Get in Touch
-            </h2>
+            {/* Connect Online */}
+            <Card className="shadow-lg h-full flex flex-col">
+              <CardHeader>
+                <CardTitle className="font-[Zen Dots] text-2xl text-foreground">Connect Online</CardTitle>
+              </CardHeader>
+              <CardContent className="flex flex-col h-full items-center justify-center space-y-8">
+                
+                <p className="text-muted-foreground text-center mb-4">
+                  Follow us on our social platforms to stay updated with our latest events and innovations!
+                </p>
 
+                <div className="flex gap-6 items-center justify-center">
+                  
+                  <Tooltip>
+                    <TooltipTrigger asChild>
+                      <a href="#" className="flex items-center justify-center w-16 h-16 rounded-full bg-secondary text-primary hover:bg-primary hover:text-primary-foreground transition-all duration-300">
+                        <Camera size={28} />
+                      </a>
+                    </TooltipTrigger>
+                    <TooltipContent>
+                      <p>Follow us on Instagram</p>
+                    </TooltipContent>
+                  </Tooltip>
 
-            {/* Pranav */}
-            <ContactItem
-              icon={<Phone size={22} />}
-              title="Pranav"
-              value="+91 79899 07555"
-              href="tel:+917989907555"
-            />
+                  <Tooltip>
+                    <TooltipTrigger asChild>
+                      <a href="#" className="flex items-center justify-center w-16 h-16 rounded-full bg-secondary text-primary hover:bg-primary hover:text-primary-foreground transition-all duration-300">
+                        <Briefcase size={28} />
+                      </a>
+                    </TooltipTrigger>
+                    <TooltipContent>
+                      <p>Connect on LinkedIn</p>
+                    </TooltipContent>
+                  </Tooltip>
 
+                  <Tooltip>
+                    <TooltipTrigger asChild>
+                      <a href="#" className="flex items-center justify-center w-16 h-16 rounded-full bg-secondary text-primary hover:bg-primary hover:text-primary-foreground transition-all duration-300">
+                        <Video size={28} />
+                      </a>
+                    </TooltipTrigger>
+                    <TooltipContent>
+                      <p>Subscribe to our YouTube</p>
+                    </TooltipContent>
+                  </Tooltip>
 
-            {/* Chanakya */}
-            <ContactItem
-              icon={<Phone size={22} />}
-              title="Chanakya"
-              value="+91 7780129208"
-              href="tel:+917780129208"
-            />
-
-
-            {/* Email */}
-            <ContactItem
-              icon={<Mail size={22} />}
-              title="Email"
-              value="grietrobotics@gmail.com"
-              href="mailto:grietrobotics@gmail.com"
-            />
-
-
-            {/* Location */}
-            <ContactItem
-              icon={<MapPin size={22} />}
-              title="Location"
-              value="GRIET Campus, Hyderabad"
-            />
-
-          </div>
-
-
-          {/* Club Information */}
-          <div className="card">
-
-            <p
-              className="text-accent font-mono"
-              style={{
-                fontSize: '0.8rem',
-                marginBottom: '0.8rem'
-              }}
-            >
-              GRIET
-            </p>
-
-            <h2
-              style={{
-                fontSize: '1.8rem',
-                marginBottom: '1rem'
-              }}
-            >
-              Robotics Club
-            </h2>
-
-            <p
-              className="text-secondary"
-              style={{
-                lineHeight: 1.8,
-                marginBottom: '1.5rem'
-              }}
-            >
-              A student-driven community focused on robotics,
-              artificial intelligence, electronics, automation
-              and innovation.
-            </p>
-
-            <p
-              style={{
-                lineHeight: 1.8,
-                marginBottom: '1.5rem'
-              }}
-            >
-              Imagine · Engineer · Innovate
-            </p>
-
-            <p
-              className="text-secondary font-mono"
-              style={{
-                fontSize: '0.8rem'
-              }}
-            >
-              Robotics Club, Gokaraju Rangaraju Institute of
-              Engineering and Technology
-            </p>
+                </div>
+              </CardContent>
+            </Card>
 
           </div>
-
         </div>
-
-      </div>
-
-    </section>
+      </section>
+    </TooltipProvider>
   );
 }
 
-
-/* Contact Item */
-
-function ContactItem({
-  icon,
-  title,
-  value,
-  href
-}) {
-
+/* =========================
+   CONTACT ITEM
+========================= */
+function ContactItem({ icon, title, value, href }) {
   const content = (
-    <div
-      style={{
-        display: 'flex',
-        alignItems: 'center',
-        gap: '1rem',
-        marginBottom: '1.7rem'
-      }}
-    >
-
-      <div
-        style={{
-          color: 'var(--primary)',
-          display: 'flex'
-        }}
-      >
-        {icon}
-      </div>
+    <>
+      {icon && (
+        <div className="flex items-center justify-center w-12 h-12 rounded-full bg-secondary text-primary">
+          {icon}
+        </div>
+      )}
 
       <div>
-
-        <div
-          className="font-mono text-secondary"
-          style={{
-            fontSize: '0.75rem',
-            marginBottom: '0.25rem'
-          }}
-        >
+        <h3 className="m-0 mb-1 text-sm text-foreground font-[Zen Dots]">
           {title}
-        </div>
-
-        <div>
+        </h3>
+        <p className="m-0 text-muted-foreground text-sm">
           {value}
-        </div>
-
+        </p>
       </div>
-
-    </div>
+    </>
   );
 
   if (href) {
     return (
       <a
         href={href}
-        style={{
-          color: 'inherit',
-          textDecoration: 'none'
-        }}
+        className="flex items-center gap-5 rounded-xl border-transparent hover:opacity-80 transition-all duration-300 no-underline"
       >
         {content}
       </a>
     );
   }
 
-  return content;
+  return (
+    <div className="flex items-center gap-5 rounded-xl border-transparent">
+      {content}
+    </div>
+  );
 }

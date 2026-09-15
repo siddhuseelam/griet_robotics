@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import teamData from '../assets/teamData.json';
 import TeamMemberCard from './TeamMemberCard';
+import { Tabs, TabsContent, TabsList, TabsTrigger } from './ui/tabs';
 
 export default function Members() {
   const [filter, setFilter] = useState('All');
@@ -8,8 +9,6 @@ export default function Members() {
   // Ensure no empty members
   const validMembers = teamData.filter(m => m.Name && m.Domain);
   
-  // Extract unique domains for the filter
-  const allDomains = Array.from(new Set(validMembers.map(m => m.Domain.trim().toLowerCase())));
   const groupedDomains = {
     'All': validMembers,
     'Creative & Design': validMembers.filter(m => m.Domain.toLowerCase().includes('design') || m.Domain.toLowerCase().includes('creative')),
@@ -21,82 +20,44 @@ export default function Members() {
     'Core': validMembers.filter(m => m.Domain.toLowerCase().includes('president') || m.Domain.toLowerCase().includes('secretary') || m.Domain.toLowerCase().includes('treasury') || m.Domain.toLowerCase().includes('all rounder'))
   };
 
-  const currentMembers = groupedDomains[filter] || validMembers;
-
   return (
-    <div style={{ backgroundColor: 'var(--deep-space-blue)', minHeight: '100vh', paddingTop: '3rem', paddingBottom: '5rem' }}>
-      <div className="container">
+    <div className="bg-background min-h-screen pt-12 pb-20 font-sans text-foreground">
+      <div className="container mx-auto px-4">
         
-        <div style={{ textAlign: 'center', marginBottom: '4rem' }}>
-          <h1
-            style={{
-              fontSize: 'clamp(2.5rem, 6vw, 4.5rem)',
-              marginBottom: '1rem',
-              color: 'var(--papaya-whip)',
-              fontFamily: "'Zen Dots', sans-serif"
-            }}
-          >
+        <div className="text-center mb-16">
+          <h1 className="text-[clamp(2.5rem,6vw,4.5rem)] mb-4 text-foreground font-[Zen Dots] font-bold">
             Meet the Team
           </h1>
-          <p
-            style={{
-              color: 'var(--steel-blue)',
-              fontSize: '1rem',
-              maxWidth: '600px',
-              margin: '0 auto',
-              lineHeight: 1.6,
-              fontFamily: "'Zen Dots', sans-serif"
-            }}
-          >
+          <p className="text-muted-foreground text-base max-w-[600px] mx-auto leading-relaxed">
             The passionate individuals who drive the Robotics Club of GRIET.
           </p>
         </div>
 
-        {/* Filter Navigation */}
-        <div 
-          style={{ 
-            display: 'flex', 
-            flexWrap: 'wrap', 
-            justifyContent: 'center', 
-            gap: '0.8rem', 
-            marginBottom: '3rem' 
-          }}
-        >
-          {Object.keys(groupedDomains).map(key => (
-            <button
-              key={key}
-              onClick={() => setFilter(key)}
-              style={{
-                background: filter === key ? 'linear-gradient(135deg, var(--brick-red), var(--molten-lava))' : 'transparent',
-                color: 'var(--papaya-whip)',
-                border: filter === key ? '1px solid var(--brick-red)' : '1px solid var(--steel-blue)',
-                padding: '0.6rem 1.2rem',
-                borderRadius: '8px',
-                fontFamily: "'Zen Dots', sans-serif",
-                fontSize: '0.75rem',
-                cursor: 'pointer',
-                transition: 'all 0.3s ease',
-                boxShadow: filter === key ? '0 6px 20px rgba(var(--brick-red-rgb), 0.25)' : 'none'
-              }}
-            >
-              {key}
-            </button>
-          ))}
-        </div>
+        {/* Filter Navigation using shadcn Tabs */}
+        <Tabs defaultValue="All" onValueChange={(val) => setFilter(val)} className="w-full flex flex-col items-center">
+          <TabsList className="flex flex-wrap justify-center gap-2 bg-transparent h-auto mb-12 max-w-4xl mx-auto">
+            {Object.keys(groupedDomains).map(key => (
+              <TabsTrigger 
+                key={key} 
+                value={key}
+                className="font-[Zen Dots] text-xs py-2 px-4 rounded-full border border-border/50 data-[state=active]:bg-primary data-[state=active]:text-primary-foreground data-[state=active]:border-primary shadow-sm hover:bg-secondary/80 transition-all"
+              >
+                {key}
+              </TabsTrigger>
+            ))}
+          </TabsList>
 
-        {/* Grid of members */}
-        <div
-          style={{
-            display: 'grid',
-            gridTemplateColumns: 'repeat(auto-fill, minmax(245px, 1fr))',
-            gap: '2rem',
-            justifyItems: 'center'
-          }}
-        >
-          {currentMembers.map((member, index) => (
-            <TeamMemberCard key={index} member={member} />
+          {/* We map all tabs content */}
+          {Object.entries(groupedDomains).map(([key, membersList]) => (
+            <TabsContent key={key} value={key} className="w-full mt-0 focus-visible:outline-none focus-visible:ring-0">
+              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8 justify-items-center">
+                {membersList.map((member, index) => (
+                  <TeamMemberCard key={index} member={member} />
+                ))}
+              </div>
+            </TabsContent>
           ))}
-        </div>
+        </Tabs>
 
       </div>
     </div>
