@@ -1,6 +1,10 @@
 # shadcn/ui — Developer Context & Build Rules
 
 > Every lesson learned building the GRIET Robotics Club site with shadcn/ui. Read this before touching any component.
+>
+> This file covers **how the library behaves** — API, install, theme, deploy.
+> For **which component to reach for and how to compose it**, read `AI context/component-guide.md`.
+> For **what files exist and where**, read `AI context/components.md`.
 
 ---
 

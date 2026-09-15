@@ -2,7 +2,11 @@
 
 How the GRIET Robotics Club site is put together. This project uses **shadcn/ui exclusively** for UI primitives.
 
-> For the shadcn patterns, the Base UI API differences and the build rules, read `AI context/shadcn-context.md` first. It is not optional — this install is Base UI flavoured and behaves differently from the Radix docs you may remember.
+> **Read first:**
+> - `AI context/component-guide.md` — which component to use for what, and how to compose it. Start here when building anything new.
+> - `AI context/shadcn-context.md` — Base UI API differences, install and deploy rules. Not optional: this install is Base UI flavoured and behaves differently from the Radix docs you may remember.
+>
+> This file is the map of what exists and where it lives.
 
 ---
 
