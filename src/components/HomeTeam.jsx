@@ -1,76 +1,69 @@
-import React, { useRef } from 'react';
-import teamData from '../assets/teamData.json';
-import TeamMemberCard from './TeamMemberCard';
-import Autoplay from 'embla-carousel-autoplay';
+import * as React from "react"
+import { Link } from "react-router-dom"
+import Autoplay from "embla-carousel-autoplay"
+import { ArrowRightIcon } from "@phosphor-icons/react"
+
+import { Button } from "./ui/button"
 import {
   Carousel,
   CarouselContent,
   CarouselItem,
   CarouselNext,
   CarouselPrevious,
-} from './ui/carousel';
+} from "./ui/carousel"
+import { routes } from "@/lib/site-data"
+import { leads } from "@/lib/team"
+import { SectionHeading } from "./section-heading"
+import TeamMemberCard from "./TeamMemberCard"
 
 export default function HomeTeam() {
-  // Filter leads based on domain keywords
-  const leads = teamData.filter(member => {
-    if (!member.Domain) return false;
-    const domain = member.Domain.toLowerCase();
-    return domain.includes('lead') || 
-           domain.includes('head') || 
-           domain.includes('president') || 
-           domain.includes('secretary');
-  });
+  const autoplay = React.useRef(
+    Autoplay({ delay: 3200, stopOnInteraction: false, stopOnMouseEnter: true })
+  )
 
-  const plugin = useRef(
-    Autoplay({ delay: 3000, stopOnInteraction: false, stopOnMouseEnter: true })
-  );
+  if (leads.length === 0) return null
 
   return (
-    <section className="py-20 bg-background text-foreground border-t border-border/50">
+    <section className="border-b py-16 md:py-24">
       <div className="container mx-auto px-4">
         <Carousel
-          plugins={[plugin.current]}
-          opts={{
-            align: "start",
-            loop: true,
-          }}
+          plugins={[autoplay.current]}
+          opts={{ align: "start", loop: true }}
           className="w-full"
         >
-          {/* Section Heading with Nav Buttons */}
-          <div className="mb-10 flex justify-between items-end flex-wrap gap-4">
-            <div>
-              <p className="mb-2 text-primary text-xs tracking-[2px] uppercase font-[Zen Dots]">
-                OUR TEAM
-              </p>
+          <div className="mb-8 flex flex-wrap items-end justify-between gap-4">
+            <SectionHeading
+              eyebrow="Our team"
+              title="Club leads"
+              description="The students running the Robotics Club of GRIET."
+            />
 
-              <h2 className="text-[clamp(2rem,5vw,3.2rem)] m-0 text-foreground font-[Zen Dots]">
-                Club Leads
-              </h2>
-
-              <p className="mt-3 text-muted-foreground text-sm font-[Zen Dots]">
-                Meet the students leading the Robotics Club of GRIET.
-              </p>
-            </div>
-
-            {/* Navigation Arrows */}
-            <div className="flex gap-3 relative mr-12 mt-4 md:mt-0">
-              <CarouselPrevious className="static transform-none bg-secondary/50 border-border hover:bg-primary hover:text-primary-foreground h-12 w-12" />
-              <CarouselNext className="static transform-none bg-secondary/50 border-border hover:bg-primary hover:text-primary-foreground h-12 w-12" />
+            {/* Arrows sit inline on desktop; on a phone people just swipe. */}
+            <div className="hidden gap-2 sm:flex">
+              <CarouselPrevious className="static size-9 translate-y-0" />
+              <CarouselNext className="static size-9 translate-y-0" />
             </div>
           </div>
 
-          {/* Horizontal Scroll Carousel */}
-          <div className="w-full">
-            <CarouselContent className="-ml-4 py-4">
-              {leads.map((lead, index) => (
-                <CarouselItem key={index} className="pl-4 basis-auto">
-                  <TeamMemberCard member={lead} />
-                </CarouselItem>
-              ))}
-            </CarouselContent>
+          <CarouselContent className="-ml-4 py-1">
+            {leads.map((lead) => (
+              <CarouselItem
+                key={lead.id}
+                className="basis-[62%] pl-4 sm:basis-1/2 md:basis-1/3 lg:basis-1/4 xl:basis-1/5"
+              >
+                <TeamMemberCard member={lead} />
+              </CarouselItem>
+            ))}
+          </CarouselContent>
+
+          <div className="mt-8 flex justify-center">
+            <Button variant="outline" render={<Link to={routes.team} />}>
+              See all members
+              <ArrowRightIcon data-icon="inline-end" className="size-4" />
+            </Button>
           </div>
         </Carousel>
       </div>
     </section>
-  );
+  )
 }

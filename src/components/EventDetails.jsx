@@ -1,19 +1,34 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
+import * as React from "react"
+import { Link } from "react-router-dom"
 import {
-  CalendarDays,
-  Clock,
-  MapPin,
-  Users,
-  IndianRupee,
-  Award,
-  ClipboardList,
-  Phone,
-  Mail
-} from 'lucide-react';
-import { Button } from './ui/button';
-import { Badge } from './ui/badge';
-import { Card, CardContent, CardHeader, CardTitle } from './ui/card';
+  ArrowUpRightIcon,
+  CalendarDotsIcon,
+  CertificateIcon,
+  ClipboardTextIcon,
+  ClockIcon,
+  CopyIcon,
+  CurrencyInrIcon,
+  EnvelopeSimpleIcon,
+  InfoIcon,
+  MapPinIcon,
+  PhoneIcon,
+  QuestionIcon,
+  ShareNetworkIcon,
+  UsersIcon,
+} from "@phosphor-icons/react"
+import { toast } from "sonner"
+
+import {
+  Accordion,
+  AccordionContent,
+  AccordionItem,
+  AccordionTrigger,
+} from "./ui/accordion"
+import { Alert, AlertDescription, AlertTitle } from "./ui/alert"
+import { Avatar, AvatarFallback } from "./ui/avatar"
+import { Badge } from "./ui/badge"
+import { Button } from "./ui/button"
+import { ButtonGroup } from "./ui/button-group"
 import {
   Breadcrumb,
   BreadcrumbItem,
@@ -21,8 +36,18 @@ import {
   BreadcrumbList,
   BreadcrumbPage,
   BreadcrumbSeparator,
-} from './ui/breadcrumb';
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "./ui/tabs";
+} from "./ui/breadcrumb"
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "./ui/card"
+import {
+  Item,
+  ItemActions,
+  ItemContent,
+  ItemDescription,
+  ItemMedia,
+  ItemTitle,
+} from "./ui/item"
+import { Progress, ProgressLabel } from "./ui/progress"
+import { Separator } from "./ui/separator"
 import {
   Table,
   TableBody,
@@ -30,154 +55,227 @@ import {
   TableHead,
   TableHeader,
   TableRow,
-} from "./ui/table";
-import { toast } from "sonner";
+} from "./ui/table"
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "./ui/tabs"
+import { Tooltip, TooltipContent, TooltipTrigger } from "./ui/tooltip"
+import { contactEmail, contacts, routes, upcomingEvent } from "@/lib/site-data"
+import { initialsOf } from "@/lib/team"
+import { cn } from "cn"
+
+const facts = [
+  { icon: CalendarDotsIcon, label: "Date", value: upcomingEvent.date },
+  { icon: ClockIcon, label: "Time", value: upcomingEvent.time },
+  { icon: MapPinIcon, label: "Venue", value: upcomingEvent.venue },
+  { icon: UsersIcon, label: "Team size", value: upcomingEvent.teamSize },
+  { icon: CurrencyInrIcon, label: "Registration fee", value: upcomingEvent.fee },
+  { icon: CertificateIcon, label: "Certificates", value: upcomingEvent.certificates },
+]
+
+function FactCard({ icon: FactIcon, label, value }) {
+  return (
+    <Card size="sm">
+      <CardContent className="gap-1.5">
+        <FactIcon className="size-5 text-muted-foreground" />
+        <p className="font-heading text-[0.65rem] tracking-[0.14em] text-muted-foreground uppercase">
+          {label}
+        </p>
+        <p className="text-sm leading-snug font-medium">{value}</p>
+      </CardContent>
+    </Card>
+  )
+}
+
+function copy(value, label) {
+  navigator.clipboard.writeText(value)
+  toast.success(`${label} copied`, { description: value })
+}
+
+async function shareEvent() {
+  const url = window.location.href
+  if (navigator.share) {
+    try {
+      await navigator.share({ title: upcomingEvent.title, url })
+      return
+    } catch {
+      // User dismissed the share sheet — fall through to copying instead.
+    }
+  }
+  copy(url, "Link")
+}
 
 export default function EventDetails() {
-  return (
-    <section className="min-h-screen py-20 bg-background text-foreground font-sans">
-      <div className="container max-w-4xl mx-auto px-4">
+  const filled = Math.round(
+    (upcomingEvent.seatsFilled / upcomingEvent.seatsTotal) * 100
+  )
+  const seatsLeft = upcomingEvent.seatsTotal - upcomingEvent.seatsFilled
 
-        {/* BREADCRUMBS */}
-        <Breadcrumb className="mb-12">
+  return (
+    <div className="pb-28 pt-8 md:pb-20 md:pt-12">
+      <div className="container mx-auto max-w-4xl px-4">
+        {/* ---------- Breadcrumb ---------- */}
+        <Breadcrumb className="mb-8">
           <BreadcrumbList>
             <BreadcrumbItem>
-              <BreadcrumbLink asChild>
-                <Link to="/" className="font-[Zen Dots] text-xs">Home</Link>
-              </BreadcrumbLink>
+              <BreadcrumbLink render={<Link to={routes.home} />}>Home</BreadcrumbLink>
             </BreadcrumbItem>
             <BreadcrumbSeparator />
             <BreadcrumbItem>
-              <BreadcrumbLink asChild>
-                <Link to="/events" className="font-[Zen Dots] text-xs">Events</Link>
-              </BreadcrumbLink>
+              <BreadcrumbLink render={<Link to={routes.events} />}>Events</BreadcrumbLink>
             </BreadcrumbItem>
             <BreadcrumbSeparator />
             <BreadcrumbItem>
-              <BreadcrumbPage className="font-[Zen Dots] text-xs text-primary">Next-Gen Robotics</BreadcrumbPage>
+              <BreadcrumbPage>{upcomingEvent.title}</BreadcrumbPage>
             </BreadcrumbItem>
           </BreadcrumbList>
         </Breadcrumb>
 
+        {/* ---------- Header ---------- */}
+        <div className="flex flex-col gap-4">
+          <div className="flex flex-wrap items-center gap-2">
+            <Badge>Registrations open</Badge>
+            <Badge variant="outline">{upcomingEvent.category}</Badge>
+          </div>
 
-        {/* EVENT HEADER */}
-        <div className="mb-12">
-          <Badge className="mb-6 font-[Zen Dots] text-[0.65rem] tracking-wider">
-            UPCOMING EVENT
-          </Badge>
-
-          <h1 className="font-[Zen Dots] text-[clamp(2.3rem,6vw,5rem)] leading-tight mb-6 text-foreground">
-            Next-Gen Robotics
+          <h1 className="font-heading text-[clamp(2rem,7vw,3.5rem)] leading-[1.05] font-semibold tracking-tight text-balance">
+            {upcomingEvent.title}
           </h1>
 
-          <p className="text-muted-foreground text-lg leading-relaxed max-w-[850px] m-0">
-            A 2-day robotics workshop designed to bring students
-            together for hands-on learning, innovation, creativity
-            and practical exploration of next-generation robotics.
+          <p className="max-w-2xl text-base leading-relaxed text-muted-foreground">
+            A 2-day robotics workshop designed to bring students together for
+            hands-on learning, innovation, creativity and practical exploration
+            of next-generation robotics.
           </p>
+
+          {/* Desktop actions — the mobile equivalent is the sticky bar below. */}
+          <div className="hidden flex-wrap items-center gap-2 md:flex">
+            <Button
+              size="lg"
+              render={
+                <a
+                  href={upcomingEvent.registerUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                />
+              }
+            >
+              Register your team
+              <ArrowUpRightIcon data-icon="inline-end" className="size-4" />
+            </Button>
+            <ButtonGroup>
+              <Tooltip>
+                <TooltipTrigger
+                  render={
+                    <Button variant="outline" size="icon-lg" onClick={shareEvent} aria-label="Share event" />
+                  }
+                >
+                  <ShareNetworkIcon className="size-4" />
+                </TooltipTrigger>
+                <TooltipContent>Share this event</TooltipContent>
+              </Tooltip>
+              <Tooltip>
+                <TooltipTrigger
+                  render={
+                    <Button
+                      variant="outline"
+                      size="icon-lg"
+                      aria-label="Copy email"
+                      onClick={() => copy(contactEmail, "Email")}
+                    />
+                  }
+                >
+                  <EnvelopeSimpleIcon className="size-4" />
+                </TooltipTrigger>
+                <TooltipContent>Copy club email</TooltipContent>
+              </Tooltip>
+            </ButtonGroup>
+          </div>
         </div>
 
+        {/* ---------- Seats ---------- */}
+        <Alert className="mt-8">
+          <InfoIcon className="size-4" />
+          <AlertTitle className="font-heading text-sm">
+            {seatsLeft} team {seatsLeft === 1 ? "slot" : "slots"} left
+          </AlertTitle>
+          <AlertDescription>
+            <Progress value={filled} className="mt-2 gap-1.5">
+              <ProgressLabel className="text-xs font-normal text-muted-foreground">
+                {upcomingEvent.seatsFilled} of {upcomingEvent.seatsTotal} filled
+              </ProgressLabel>
+              <span className="ml-auto text-xs tabular-nums text-muted-foreground">
+                {filled}%
+              </span>
+            </Progress>
+          </AlertDescription>
+        </Alert>
 
-        {/* =========================
-            EVENT INFORMATION
-        ========================== */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 mb-12">
-          <InfoCard
-            icon={<CalendarDays size={22} />}
-            title="DATE"
-            value="18th – 19th September 2026"
-          />
-          <InfoCard
-            icon={<Clock size={22} />}
-            title="TIME"
-            value="9:00 AM – 3:30 PM"
-          />
-          <InfoCard
-            icon={<MapPin size={22} />}
-            title="VENUE"
-            value="Hall 1, GRIET Campus"
-          />
-          <InfoCard
-            icon={<Users size={22} />}
-            title="TEAM SIZE"
-            value="4 – 6 Members"
-          />
-          <InfoCard
-            icon={<IndianRupee size={22} />}
-            title="REGISTRATION FEE"
-            value="₹1200 per team"
-          />
-          <InfoCard
-            icon={<Award size={22} />}
-            title="CERTIFICATES"
-            value="For all participants"
-          />
+        {/* ---------- Facts ---------- */}
+        <div className="mt-8 grid grid-cols-2 gap-3 sm:grid-cols-3">
+          {facts.map((fact) => (
+            <FactCard key={fact.label} {...fact} />
+          ))}
         </div>
 
+        {/* ---------- Tabs ---------- */}
+        <Tabs defaultValue="about" className="mt-12 gap-6">
+          <div className="-mx-4 overflow-x-auto px-4">
+            <TabsList className="w-max min-w-full sm:w-full">
+              <TabsTrigger value="about">About</TabsTrigger>
+              <TabsTrigger value="schedule">Schedule</TabsTrigger>
+              <TabsTrigger value="faq">FAQ</TabsTrigger>
+              <TabsTrigger value="contact">Contact</TabsTrigger>
+            </TabsList>
+          </div>
 
-        <Tabs defaultValue="about" className="w-full">
-          <TabsList className="grid w-full grid-cols-2 md:grid-cols-4 mb-8">
-            <TabsTrigger value="about">About</TabsTrigger>
-            <TabsTrigger value="schedule">Schedule</TabsTrigger>
-            <TabsTrigger value="registration">Registration</TabsTrigger>
-            <TabsTrigger value="contact">Contact</TabsTrigger>
-          </TabsList>
-          
           <TabsContent value="about">
-            <Card className="shadow-sm">
+            <Card>
               <CardHeader>
-                <CardTitle className="font-[Zen Dots] text-2xl text-foreground">
-                  About the Event
-                </CardTitle>
+                <CardTitle className="font-heading text-lg">About the event</CardTitle>
+                <CardDescription>
+                  Organised with the AI/ML Department at GRIET.
+                </CardDescription>
               </CardHeader>
-              <CardContent className="text-muted-foreground leading-relaxed space-y-4">
-                <p>
-                  Next-Gen Robotics is a 2-day workshop organized by the
-                  Robotics Club, GRIET in association with the AI/ML
-                  Department.
-                </p>
-                <p>
-                  The workshop focuses on robotics, technology,
-                  hands-on learning and innovation. Participants will
-                  get an opportunity to learn, experiment and work
-                  together while exploring the possibilities of
-                  next-generation robotics.
-                </p>
-                <p>
-                  Gather your squad, bring your ideas and get ready to
-                  experience an exciting journey into robotics.
-                </p>
+              <CardContent className="gap-4">
+                {upcomingEvent.about.map((paragraph) => (
+                  <p
+                    key={paragraph.slice(0, 24)}
+                    className="text-sm leading-relaxed text-muted-foreground"
+                  >
+                    {paragraph}
+                  </p>
+                ))}
               </CardContent>
             </Card>
           </TabsContent>
 
           <TabsContent value="schedule">
-            <Card className="shadow-sm">
-              <CardHeader className="flex flex-row items-center gap-3">
-                <Clock size={24} className="text-primary" />
-                <CardTitle className="font-[Zen Dots] text-2xl m-0">Event Timing</CardTitle>
+            <Card className="overflow-hidden">
+              <CardHeader>
+                <CardTitle className="font-heading text-lg">Event timing</CardTitle>
+                <CardDescription>Both days run to the same hours.</CardDescription>
               </CardHeader>
-              <CardContent>
-                <div className="border rounded-md overflow-hidden">
+              <CardContent className="px-0">
+                <div className="overflow-x-auto">
                   <Table>
-                    <TableHeader className="bg-secondary/20">
+                    <TableHeader>
                       <TableRow>
-                        <TableHead className="font-[Zen Dots] text-xs">DAY</TableHead>
-                        <TableHead className="font-[Zen Dots] text-xs">DATE</TableHead>
-                        <TableHead className="font-[Zen Dots] text-xs">TIME</TableHead>
+                        <TableHead className="pl-6">Day</TableHead>
+                        <TableHead>Date</TableHead>
+                        <TableHead>Time</TableHead>
+                        <TableHead className="pr-6">Focus</TableHead>
                       </TableRow>
                     </TableHeader>
                     <TableBody>
-                      <TableRow>
-                        <TableCell className="font-medium text-primary">DAY 01</TableCell>
-                        <TableCell>18th September 2026</TableCell>
-                        <TableCell>9:00 AM – 3:30 PM</TableCell>
-                      </TableRow>
-                      <TableRow>
-                        <TableCell className="font-medium text-primary">DAY 02</TableCell>
-                        <TableCell>19th September 2026</TableCell>
-                        <TableCell>9:00 AM – 3:30 PM</TableCell>
-                      </TableRow>
+                      {upcomingEvent.schedule.map((row) => (
+                        <TableRow key={row.day}>
+                          <TableCell className="pl-6 font-medium">{row.day}</TableCell>
+                          <TableCell className="whitespace-nowrap">{row.date}</TableCell>
+                          <TableCell className="whitespace-nowrap">{row.time}</TableCell>
+                          <TableCell className="pr-6 text-muted-foreground">
+                            {row.focus}
+                          </TableCell>
+                        </TableRow>
+                      ))}
                     </TableBody>
                   </Table>
                 </div>
@@ -185,134 +283,202 @@ export default function EventDetails() {
             </Card>
           </TabsContent>
 
-          <TabsContent value="registration">
-            <Card className="shadow-sm">
-              <CardHeader className="flex flex-row items-center gap-3">
-                <ClipboardList size={24} className="text-primary" />
-                <CardTitle className="font-[Zen Dots] text-2xl m-0">Registration Details</CardTitle>
+          <TabsContent value="faq">
+            <Card>
+              <CardHeader>
+                <CardTitle className="font-heading text-lg">Before you register</CardTitle>
               </CardHeader>
-              <CardContent className="grid gap-3 text-muted-foreground leading-relaxed">
-                <p className="m-0"><strong className="text-foreground">Team Size:</strong> 4 – 6 members</p>
-                <p className="m-0"><strong className="text-foreground">Registration Fee:</strong> ₹1200 per team</p>
-                <p className="m-0"><strong className="text-foreground">Certificates:</strong> Certificates will be provided to all participants.</p>
-                
-                <Button asChild size="lg" className="mt-8 w-fit font-[Zen Dots]">
-                  <a href="https://forms.gle/oZ1LaBSqneapcQAf6" target="_blank" rel="noopener noreferrer">
-                    Register Now
-                  </a>
-                </Button>
+              <CardContent>
+                <Accordion className="w-full">
+                  {upcomingEvent.faqs.map((faq, index) => (
+                    <AccordionItem key={faq.q} value={`event-faq-${index}`}>
+                      <AccordionTrigger className="text-left text-sm font-medium">
+                        <span className="flex items-start gap-3">
+                          <QuestionIcon className="mt-0.5 size-4 shrink-0 text-muted-foreground" />
+                          {faq.q}
+                        </span>
+                      </AccordionTrigger>
+                      <AccordionContent className="text-sm leading-relaxed text-muted-foreground">
+                        {faq.a}
+                      </AccordionContent>
+                    </AccordionItem>
+                  ))}
+                </Accordion>
               </CardContent>
             </Card>
           </TabsContent>
 
           <TabsContent value="contact">
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-              <Card className="shadow-sm">
-                <CardHeader className="flex flex-row items-center gap-3">
-                  <MapPin size={24} className="text-primary" />
-                  <CardTitle className="font-[Zen Dots] text-2xl m-0">Location</CardTitle>
+            <div className="grid gap-4 md:grid-cols-2">
+              <Card>
+                <CardHeader>
+                  <CardTitle className="font-heading text-lg">For queries</CardTitle>
+                  <CardDescription>Tap to call, or copy the number.</CardDescription>
                 </CardHeader>
-                <CardContent>
-                  <p className="text-muted-foreground leading-relaxed m-0">
-                    Hall 1, Gokaraju Rangaraju Institute of Engineering
-                    and Technology (GRIET) Campus.
-                  </p>
+                <CardContent className="gap-2">
+                  {contacts.map((person) => (
+                    <Item key={person.name} variant="outline">
+                      <ItemMedia>
+                        <Avatar>
+                          <AvatarFallback className="text-xs">
+                            {initialsOf(person.name)}
+                          </AvatarFallback>
+                        </Avatar>
+                      </ItemMedia>
+                      <ItemContent className="gap-0.5">
+                        <ItemTitle>{person.name}</ItemTitle>
+                        <ItemDescription>{person.phone}</ItemDescription>
+                      </ItemContent>
+                      <ItemActions>
+                        <ButtonGroup>
+                          <Button
+                            variant="outline"
+                            size="icon-sm"
+                            aria-label={`Call ${person.name}`}
+                            render={<a href={`tel:${person.tel}`} />}
+                          >
+                            <PhoneIcon className="size-4" />
+                          </Button>
+                          <Button
+                            variant="outline"
+                            size="icon-sm"
+                            aria-label={`Copy ${person.name}'s number`}
+                            onClick={() => copy(person.phone, "Number")}
+                          >
+                            <CopyIcon className="size-4" />
+                          </Button>
+                        </ButtonGroup>
+                      </ItemActions>
+                    </Item>
+                  ))}
+
+                  <Separator className="my-1" />
+
+                  <Item variant="outline">
+                    <ItemMedia variant="icon" className="size-9 rounded-md border bg-muted/50">
+                      <EnvelopeSimpleIcon className="size-4" />
+                    </ItemMedia>
+                    <ItemContent className="min-w-0 gap-0.5">
+                      <ItemTitle>Email</ItemTitle>
+                      <ItemDescription className="truncate">{contactEmail}</ItemDescription>
+                    </ItemContent>
+                    <ItemActions>
+                      <Button
+                        variant="ghost"
+                        size="icon-sm"
+                        aria-label="Copy email"
+                        onClick={() => copy(contactEmail, "Email")}
+                      >
+                        <CopyIcon className="size-4" />
+                      </Button>
+                    </ItemActions>
+                  </Item>
                 </CardContent>
               </Card>
-              <Card className="shadow-sm">
+
+              <Card>
                 <CardHeader>
-                  <CardTitle className="font-[Zen Dots] text-2xl m-0">For Queries</CardTitle>
+                  <CardTitle className="font-heading text-lg">Location</CardTitle>
+                  <CardDescription>Get there ten minutes early.</CardDescription>
                 </CardHeader>
-                <CardContent>
-                  <div className="grid gap-4">
-                    <ContactPerson name="Pranav" phone="+91 79899 07555" />
-                    <ContactPerson name="Chanakya" phone="+91 77801 29208" />
-                  </div>
-                  <div className="mt-6 pt-6 border-t flex items-center gap-3 cursor-pointer group" onClick={() => {
-                    navigator.clipboard.writeText("grietrobotics@gmail.com");
-                    toast("Email copied to clipboard!", { description: "grietrobotics@gmail.com" });
-                  }}>
-                    <Mail size={19} className="text-primary group-hover:scale-110 transition-transform" />
-                    <span className="text-muted-foreground group-hover:text-foreground font-[Zen Dots] text-xs transition-colors">
-                      grietrobotics@gmail.com
-                    </span>
-                  </div>
+                <CardContent className="gap-3">
+                  <p className="text-sm leading-relaxed text-muted-foreground">
+                    {upcomingEvent.venue} — Gokaraju Rangaraju Institute of
+                    Engineering and Technology, Bachupally, Hyderabad.
+                  </p>
+                  <Button
+                    variant="outline"
+                    className="w-fit"
+                    render={
+                      <a
+                        href="https://maps.google.com/?q=Gokaraju+Rangaraju+Institute+of+Engineering+and+Technology"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                      />
+                    }
+                  >
+                    <MapPinIcon className="size-4" />
+                    Open in Maps
+                  </Button>
                 </CardContent>
               </Card>
             </div>
           </TabsContent>
         </Tabs>
 
+        {/* ---------- Registration summary ---------- */}
+        <Card className="mt-10">
+          <CardHeader>
+            <ClipboardTextIcon className="size-5 text-muted-foreground" />
+            <CardTitle className="mt-2 font-heading text-lg">
+              Registration at a glance
+            </CardTitle>
+          </CardHeader>
+          <CardContent className="gap-2">
+            <Item variant="muted" size="sm">
+              <ItemContent>
+                <ItemTitle className="font-normal text-muted-foreground">
+                  Team size
+                </ItemTitle>
+              </ItemContent>
+              <ItemActions className="font-medium">{upcomingEvent.teamSize}</ItemActions>
+            </Item>
+            <Item variant="muted" size="sm">
+              <ItemContent>
+                <ItemTitle className="font-normal text-muted-foreground">Fee</ItemTitle>
+              </ItemContent>
+              <ItemActions className="font-medium">{upcomingEvent.fee}</ItemActions>
+            </Item>
+            <Item variant="muted" size="sm">
+              <ItemContent>
+                <ItemTitle className="font-normal text-muted-foreground">
+                  Certificates
+                </ItemTitle>
+              </ItemContent>
+              <ItemActions className="font-medium">
+                {upcomingEvent.certificates}
+              </ItemActions>
+            </Item>
+          </CardContent>
+        </Card>
       </div>
-    </section>
-  );
-}
 
-/* =========================
-   INFO CARD
-========================= */
-function InfoCard({ icon, title, value }) {
-  return (
-    <Card className="shadow-sm">
-      <CardHeader className="pb-3">
-        <div className="text-primary mb-1">
-          {icon}
+      {/* ---------- Sticky mobile CTA ---------- */}
+      <div
+        className={cn(
+          "fixed inset-x-0 bottom-0 z-40 border-t bg-background/95 p-3 backdrop-blur md:hidden",
+          "supports-[backdrop-filter]:bg-background/80"
+        )}
+      >
+        <div className="flex items-center gap-2">
+          <div className="min-w-0 flex-1">
+            <p className="truncate text-xs text-muted-foreground">
+              {upcomingEvent.shortDate} · {upcomingEvent.fee}
+            </p>
+            <p className="truncate text-sm font-medium">{seatsLeft} slots left</p>
+          </div>
+          <Button
+            variant="outline"
+            size="icon"
+            aria-label="Share event"
+            onClick={shareEvent}
+          >
+            <ShareNetworkIcon className="size-4" />
+          </Button>
+          <Button
+            render={
+              <a
+                href={upcomingEvent.registerUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+              />
+            }
+          >
+            Register
+            <ArrowUpRightIcon data-icon="inline-end" className="size-3.5" />
+          </Button>
         </div>
-        <CardTitle className="font-[Zen Dots] text-[0.62rem] text-muted-foreground tracking-wider">
-          {title}
-        </CardTitle>
-      </CardHeader>
-      <CardContent>
-        <p className="font-[Zen Dots] text-sm leading-relaxed m-0 text-foreground">
-          {value}
-        </p>
-      </CardContent>
-    </Card>
-  );
-}
-
-/* =========================
-   SCHEDULE ITEM
-========================= */
-function ScheduleItem({ day, date, time }) {
-  return (
-    <div className="flex justify-between items-center gap-4 flex-wrap p-5 rounded-xl bg-secondary/20 border">
-      <div>
-        <Badge variant="outline" className="mb-2 text-primary border-primary/20 font-[Zen Dots] text-[0.65rem] bg-primary/5">
-          {day}
-        </Badge>
-        <p className="m-0 text-foreground font-[Zen Dots] text-sm">
-          {date}
-        </p>
       </div>
-      <p className="m-0 text-muted-foreground font-[Zen Dots] text-sm">
-        {time}
-      </p>
     </div>
-  );
-}
-
-/* =========================
-   CONTACT PERSON
-========================= */
-function ContactPerson({ name, phone }) {
-  return (
-    <div 
-      className="flex items-center justify-between p-3 rounded-md border bg-muted/30 cursor-pointer hover:bg-muted/60 transition-colors"
-      onClick={() => {
-        navigator.clipboard.writeText(phone);
-        toast(`Phone number for ${name} copied!`, { description: phone });
-      }}
-    >
-      <div className="flex items-center gap-3">
-        <div className="w-10 h-10 rounded-full bg-secondary flex items-center justify-center text-primary">
-          <Phone size={18} />
-        </div>
-        <div>
-          <p className="font-[Zen Dots] text-foreground text-sm m-0 leading-none mb-1">{name}</p>
-          <p className="text-xs text-muted-foreground m-0">{phone}</p>
-        </div>
-      </div>
-    </div>
-  );
+  )
 }

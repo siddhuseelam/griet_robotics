@@ -237,9 +237,9 @@ export default function Contact() {
           description="Have a question, a collaboration idea, or want to know more about the club? Get in touch."
         />
 
-        <div className="mt-10 grid gap-6 lg:grid-cols-[1fr_1.1fr]">
+        <div className="mt-10 grid gap-6 lg:grid-cols-[minmax(0,1fr)_minmax(0,1.1fr)]">
           {/* ---------- Details ---------- */}
-          <div className="flex flex-col gap-6">
+          <div className="flex min-w-0 flex-col gap-6">
             <Card>
               <CardHeader>
                 <CardTitle className="font-heading text-lg">Reach a person</CardTitle>
