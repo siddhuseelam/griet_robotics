@@ -317,8 +317,8 @@ export default function ClubMembers() {
       <section
         style={{
           minHeight: '100vh',
-          backgroundColor: '#003049',
-          color: '#FDF0D5',
+          backgroundColor: 'var(--deep-space-blue)',
+          color: 'var(--papaya-whip)',
           padding: '5rem 0'
         }}
       >
@@ -347,8 +347,8 @@ export default function ClubMembers() {
                 height: '70px',
                 margin: '0 auto 1.5rem',
                 borderRadius: '50%',
-                backgroundColor: '#FDF0D5',
-                color: '#003049',
+                backgroundColor: 'var(--papaya-whip)',
+                color: 'var(--deep-space-blue)',
                 display: 'flex',
                 alignItems: 'center',
                 justifyContent: 'center'
@@ -363,7 +363,7 @@ export default function ClubMembers() {
                 fontFamily: "'Zen Dots', sans-serif",
                 fontSize: '0.7rem',
                 letterSpacing: '2px',
-                color: '#C1121F',
+                color: 'var(--brick-red)',
                 marginBottom: '1rem'
               }}
             >
@@ -376,7 +376,7 @@ export default function ClubMembers() {
                 fontFamily: "'Zen Dots', sans-serif",
                 fontSize: 'clamp(2rem, 6vw, 4rem)',
                 margin: 0,
-                color: '#FDF0D5'
+                color: 'var(--papaya-whip)'
               }}
             >
               CLUB MEMBERS
@@ -387,7 +387,7 @@ export default function ClubMembers() {
               style={{
                 maxWidth: '650px',
                 margin: '1.2rem auto 0',
-                color: '#669BBC',
+                color: 'var(--steel-blue)',
                 lineHeight: 1.8,
                 fontSize: '0.9rem'
               }}
@@ -424,10 +424,10 @@ export default function ClubMembers() {
                     minHeight: '220px',
                     borderRadius: '18px',
                     border:
-                      '1px solid rgba(102, 155, 188, 0.35)',
+                      '1px solid rgba(var(--steel-blue-rgb), 0.35)',
                     backgroundColor:
-                      'rgba(253, 240, 213, 0.06)',
-                    color: '#FDF0D5',
+                      'rgba(var(--papaya-whip-rgb), 0.06)',
+                    color: 'var(--papaya-whip)',
                     cursor: 'pointer',
                     fontFamily: "'Zen Dots', sans-serif",
                     transition:
@@ -440,10 +440,10 @@ export default function ClubMembers() {
                       'translateY(-7px)';
 
                     e.currentTarget.style.borderColor =
-                      '#C1121F';
+                      'var(--brick-red)';
 
                     e.currentTarget.style.backgroundColor =
-                      'rgba(193, 18, 31, 0.08)';
+                      'rgba(var(--brick-red-rgb), 0.08)';
 
                   }}
 
@@ -453,10 +453,10 @@ export default function ClubMembers() {
                       'translateY(0)';
 
                     e.currentTarget.style.borderColor =
-                      'rgba(102, 155, 188, 0.35)';
+                      'rgba(var(--steel-blue-rgb), 0.35)';
 
                     e.currentTarget.style.backgroundColor =
-                      'rgba(253, 240, 213, 0.06)';
+                      'rgba(var(--papaya-whip-rgb), 0.06)';
 
                   }}
                 >
@@ -465,7 +465,7 @@ export default function ClubMembers() {
 
                   <div
                     style={{
-                      color: '#C1121F',
+                      color: 'var(--brick-red)',
                       fontSize: '0.65rem',
                       letterSpacing: '2px',
                       marginBottom: '2rem'
@@ -482,7 +482,7 @@ export default function ClubMembers() {
                       margin: 0,
                       fontSize: '1.15rem',
                       lineHeight: 1.5,
-                      color: '#FDF0D5'
+                      color: 'var(--papaya-whip)'
                     }}
                   >
                     {domain}
@@ -497,7 +497,7 @@ export default function ClubMembers() {
                       alignItems: 'center',
                       gap: '0.6rem',
                       marginTop: '1.2rem',
-                      color: '#669BBC',
+                      color: 'var(--steel-blue)',
                       fontSize: '0.7rem'
                     }}
                   >
@@ -522,7 +522,7 @@ export default function ClubMembers() {
                       display: 'flex',
                       alignItems: 'center',
                       gap: '0.4rem',
-                      color: '#C1121F',
+                      color: 'var(--brick-red)',
                       fontSize: '0.65rem'
                     }}
                   >
@@ -546,14 +546,14 @@ export default function ClubMembers() {
               marginTop: '4rem',
               paddingTop: '2rem',
               borderTop:
-                '1px solid rgba(102, 155, 188, 0.2)'
+                '1px solid rgba(var(--steel-blue-rgb), 0.2)'
             }}
           >
 
             <p
               style={{
                 fontFamily: "'Zen Dots', sans-serif",
-                color: '#669BBC',
+                color: 'var(--steel-blue)',
                 fontSize: '0.7rem'
               }}
             >
@@ -580,8 +580,8 @@ export default function ClubMembers() {
     <section
       style={{
         minHeight: '100vh',
-        backgroundColor: '#003049',
-        color: '#FDF0D5',
+        backgroundColor: 'var(--deep-space-blue)',
+        color: 'var(--papaya-whip)',
         padding: '5rem 0'
       }}
     >
@@ -603,9 +603,9 @@ export default function ClubMembers() {
             display: 'inline-flex',
             alignItems: 'center',
             gap: '0.6rem',
-            border: '1px solid rgba(102, 155, 188, 0.4)',
+            border: '1px solid rgba(var(--steel-blue-rgb), 0.4)',
             backgroundColor: 'transparent',
-            color: '#FDF0D5',
+            color: 'var(--papaya-whip)',
             padding: '0.75rem 1rem',
             borderRadius: '8px',
             cursor: 'pointer',
@@ -633,7 +633,7 @@ export default function ClubMembers() {
           <p
             style={{
               fontFamily: "'Zen Dots', sans-serif",
-              color: '#C1121F',
+              color: 'var(--brick-red)',
               fontSize: '0.7rem',
               letterSpacing: '2px',
               marginBottom: '1rem'
@@ -647,7 +647,7 @@ export default function ClubMembers() {
             style={{
               fontFamily: "'Zen Dots', sans-serif",
               fontSize: 'clamp(2rem, 5vw, 3.5rem)',
-              color: '#FDF0D5',
+              color: 'var(--papaya-whip)',
               margin: 0
             }}
           >
@@ -661,7 +661,7 @@ export default function ClubMembers() {
               alignItems: 'center',
               gap: '0.6rem',
               marginTop: '1rem',
-              color: '#669BBC',
+              color: 'var(--steel-blue)',
               fontFamily: "'Zen Dots', sans-serif",
               fontSize: '0.7rem'
             }}
@@ -696,9 +696,9 @@ export default function ClubMembers() {
               key={`${member.name}-${index}`}
               style={{
                 backgroundColor:
-                  'rgba(253, 240, 213, 0.06)',
+                  'rgba(var(--papaya-whip-rgb), 0.06)',
                 border:
-                  '1px solid rgba(102, 155, 188, 0.3)',
+                  '1px solid rgba(var(--steel-blue-rgb), 0.3)',
                 borderRadius: '16px',
                 overflow: 'hidden',
                 transition:
@@ -711,7 +711,7 @@ export default function ClubMembers() {
                   'translateY(-6px)';
 
                 e.currentTarget.style.borderColor =
-                  '#C1121F';
+                  'var(--brick-red)';
 
               }}
 
@@ -721,7 +721,7 @@ export default function ClubMembers() {
                   'translateY(0)';
 
                 e.currentTarget.style.borderColor =
-                  'rgba(102, 155, 188, 0.3)';
+                  'rgba(var(--steel-blue-rgb), 0.3)';
 
               }}
             >
@@ -731,7 +731,7 @@ export default function ClubMembers() {
               <div
                 style={{
                   height: '250px',
-                  backgroundColor: '#FDF0D5',
+                  backgroundColor: 'var(--papaya-whip)',
                   display: 'flex',
                   alignItems: 'center',
                   justifyContent: 'center',
@@ -745,11 +745,11 @@ export default function ClubMembers() {
                     height: '90px',
                     borderRadius: '50%',
                     border:
-                      '2px solid rgba(0, 48, 73, 0.25)',
+                      '2px solid rgba(var(--deep-space-blue-rgb), 0.25)',
                     display: 'flex',
                     alignItems: 'center',
                     justifyContent: 'center',
-                    color: '#669BBC'
+                    color: 'var(--steel-blue)'
                   }}
                 >
 
@@ -774,7 +774,7 @@ export default function ClubMembers() {
                   style={{
                     fontFamily: "'Zen Dots', sans-serif",
                     fontSize: '0.6rem',
-                    color: '#C1121F',
+                    color: 'var(--brick-red)',
                     letterSpacing: '1px',
                     marginBottom: '0.7rem'
                   }}
@@ -788,7 +788,7 @@ export default function ClubMembers() {
                 <h3
                   style={{
                     fontFamily: "'Zen Dots', sans-serif",
-                    color: '#FDF0D5',
+                    color: 'var(--papaya-whip)',
                     fontSize: '0.95rem',
                     lineHeight: 1.5,
                     margin: 0
@@ -803,7 +803,7 @@ export default function ClubMembers() {
                 <p
                   style={{
                     fontFamily: "'Zen Dots', sans-serif",
-                    color: '#669BBC',
+                    color: 'var(--steel-blue)',
                     fontSize: '0.65rem',
                     margin:
                       '0.7rem 0 0',
@@ -838,9 +838,9 @@ export default function ClubMembers() {
               alignItems: 'center',
               gap: '0.6rem',
               padding: '0.9rem 1.3rem',
-              border: '1px solid #C1121F',
+              border: '1px solid var(--brick-red)',
               backgroundColor: 'transparent',
-              color: '#FDF0D5',
+              color: 'var(--papaya-whip)',
               borderRadius: '8px',
               cursor: 'pointer',
               fontFamily: "'Zen Dots', sans-serif",

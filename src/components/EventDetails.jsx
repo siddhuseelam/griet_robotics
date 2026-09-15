@@ -19,8 +19,8 @@ export default function EventDetails() {
       style={{
         minHeight: '100vh',
         padding: '5rem 0',
-        background: '#003049',
-        color: '#FDF0D5'
+        background: 'var(--deep-space-blue)',
+        color: 'var(--papaya-whip)'
       }}
     >
       <div
@@ -31,22 +31,14 @@ export default function EventDetails() {
       >
 
         {/* BACK TO EVENTS */}
-        <Link
+        <Button
           to="/events"
-          style={{
-            display: 'inline-flex',
-            alignItems: 'center',
-            gap: '0.5rem',
-            color: '#669BBC',
-            textDecoration: 'none',
-            fontFamily: "'Zen Dots', sans-serif",
-            fontSize: '0.7rem',
-            marginBottom: '3rem'
-          }}
+          variant="link"
+          style={{ marginBottom: '3rem' }}
         >
           <ArrowLeft size={16} />
           Back to Events
-        </Link>
+        </Button>
 
 
         {/* EVENT HEADER */}
@@ -61,8 +53,8 @@ export default function EventDetails() {
               display: 'inline-block',
               padding: '0.5rem 1rem',
               borderRadius: '999px',
-              backgroundColor: '#C1121F',
-              color: '#FDF0D5',
+              backgroundColor: 'var(--brick-red)',
+              color: 'var(--papaya-whip)',
               fontFamily: "'Zen Dots', sans-serif",
               fontSize: '0.65rem',
               letterSpacing: '1px',
@@ -87,7 +79,7 @@ export default function EventDetails() {
 
           <p
             style={{
-              color: '#669BBC',
+              color: 'var(--steel-blue)',
               fontSize: '1.1rem',
               lineHeight: 1.8,
               maxWidth: '850px',
@@ -161,10 +153,10 @@ export default function EventDetails() {
 
         <div
           style={{
-            border: '1px solid rgba(102,155,188,0.35)',
+            border: '1px solid rgba(var(--steel-blue-rgb), 0.35)',
             borderRadius: '20px',
             padding: '2.5rem',
-            backgroundColor: 'rgba(0,48,73,0.7)',
+            backgroundColor: 'rgba(var(--deep-space-blue-rgb), 0.7)',
             marginBottom: '2rem'
           }}
         >
@@ -182,7 +174,7 @@ export default function EventDetails() {
 
           <p
             style={{
-              color: '#669BBC',
+              color: 'var(--steel-blue)',
               lineHeight: 1.9,
               marginBottom: '1.2rem'
             }}
@@ -195,7 +187,7 @@ export default function EventDetails() {
 
           <p
             style={{
-              color: '#669BBC',
+              color: 'var(--steel-blue)',
               lineHeight: 1.9,
               marginBottom: '1.2rem'
             }}
@@ -210,7 +202,7 @@ export default function EventDetails() {
 
           <p
             style={{
-              color: '#669BBC',
+              color: 'var(--steel-blue)',
               lineHeight: 1.9,
               margin: 0
             }}
@@ -228,10 +220,10 @@ export default function EventDetails() {
 
         <div
           style={{
-            border: '1px solid rgba(102,155,188,0.35)',
+            border: '1px solid rgba(var(--steel-blue-rgb), 0.35)',
             borderRadius: '20px',
             padding: '2.5rem',
-            backgroundColor: 'rgba(0,48,73,0.7)',
+            backgroundColor: 'rgba(var(--deep-space-blue-rgb), 0.7)',
             marginBottom: '2rem'
           }}
         >
@@ -246,7 +238,7 @@ export default function EventDetails() {
           >
             <Clock
               size={24}
-              color="#C1121F"
+              color="var(--brick-red)"
             />
 
             <h2
@@ -291,10 +283,10 @@ export default function EventDetails() {
 
         <div
           style={{
-            border: '1px solid rgba(102,155,188,0.35)',
+            border: '1px solid rgba(var(--steel-blue-rgb), 0.35)',
             borderRadius: '20px',
             padding: '2.5rem',
-            backgroundColor: 'rgba(0,48,73,0.7)',
+            backgroundColor: 'rgba(var(--deep-space-blue-rgb), 0.7)',
             marginBottom: '2rem'
           }}
         >
@@ -309,7 +301,7 @@ export default function EventDetails() {
           >
             <ClipboardList
               size={24}
-              color="#C1121F"
+              color="var(--brick-red)"
             />
 
             <h2
@@ -328,27 +320,27 @@ export default function EventDetails() {
             style={{
               display: 'grid',
               gap: '0.8rem',
-              color: '#669BBC',
+              color: 'var(--steel-blue)',
               lineHeight: 1.8
             }}
           >
 
             <p style={{ margin: 0 }}>
-              <strong style={{ color: '#FDF0D5' }}>
+              <strong style={{ color: 'var(--papaya-whip)' }}>
                 Team Size:
               </strong>{' '}
               4 – 6 members
             </p>
 
             <p style={{ margin: 0 }}>
-              <strong style={{ color: '#FDF0D5' }}>
+              <strong style={{ color: 'var(--papaya-whip)' }}>
                 Registration Fee:
               </strong>{' '}
               ₹1200 per team
             </p>
 
             <p style={{ margin: 0 }}>
-              <strong style={{ color: '#FDF0D5' }}>
+              <strong style={{ color: 'var(--papaya-whip)' }}>
                 Certificates:
               </strong>{' '}
               Certificates will be provided to all participants.
@@ -358,26 +350,16 @@ export default function EventDetails() {
 
 
           {/* REGISTER BUTTON */}
-          <a
+          <Button
             href="https://forms.gle/oZ1LaBSqneapcQAf6"
             target="_blank"
             rel="noopener noreferrer"
-            style={{
-              display: 'inline-flex',
-              alignItems: 'center',
-              justifyContent: 'center',
-              marginTop: '2rem',
-              padding: '1rem 1.5rem',
-              backgroundColor: '#C1121F',
-              color: '#FDF0D5',
-              textDecoration: 'none',
-              borderRadius: '8px',
-              fontFamily: "'Zen Dots', sans-serif",
-              fontSize: '0.75rem'
-            }}
+            variant="default"
+            size="lg"
+            style={{ marginTop: '2rem' }}
           >
             Register Now
-          </a>
+          </Button>
 
         </div>
 
@@ -388,10 +370,10 @@ export default function EventDetails() {
 
         <div
           style={{
-            border: '1px solid rgba(102,155,188,0.35)',
+            border: '1px solid rgba(var(--steel-blue-rgb), 0.35)',
             borderRadius: '20px',
             padding: '2.5rem',
-            backgroundColor: 'rgba(0,48,73,0.7)',
+            backgroundColor: 'rgba(var(--deep-space-blue-rgb), 0.7)',
             marginBottom: '2rem'
           }}
         >
@@ -406,7 +388,7 @@ export default function EventDetails() {
           >
             <MapPin
               size={24}
-              color="#C1121F"
+              color="var(--brick-red)"
             />
 
             <h2
@@ -423,7 +405,7 @@ export default function EventDetails() {
 
           <p
             style={{
-              color: '#669BBC',
+              color: 'var(--steel-blue)',
               lineHeight: 1.8,
               margin: 0
             }}
@@ -441,10 +423,10 @@ export default function EventDetails() {
 
         <div
           style={{
-            border: '1px solid rgba(102,155,188,0.35)',
+            border: '1px solid rgba(var(--steel-blue-rgb), 0.35)',
             borderRadius: '20px',
             padding: '2.5rem',
-            backgroundColor: 'rgba(0,48,73,0.7)'
+            backgroundColor: 'rgba(var(--deep-space-blue-rgb), 0.7)'
           }}
         >
 
@@ -483,7 +465,7 @@ export default function EventDetails() {
             style={{
               marginTop: '1.5rem',
               paddingTop: '1.5rem',
-              borderTop: '1px solid rgba(102,155,188,0.2)',
+              borderTop: '1px solid rgba(var(--steel-blue-rgb), 0.2)',
               display: 'flex',
               alignItems: 'center',
               gap: '0.7rem'
@@ -492,13 +474,13 @@ export default function EventDetails() {
 
             <Mail
               size={19}
-              color="#C1121F"
+              color="var(--brick-red)"
             />
 
             <a
               href="mailto:grietrobotics@gmail.com"
               style={{
-                color: '#669BBC',
+                color: 'var(--steel-blue)',
                 textDecoration: 'none',
                 fontFamily: "'Zen Dots', sans-serif",
                 fontSize: '0.75rem'
@@ -525,16 +507,16 @@ function InfoCard({ icon, title, value }) {
   return (
     <div
       style={{
-        border: '1px solid rgba(102,155,188,0.3)',
+        border: '1px solid rgba(var(--steel-blue-rgb), 0.3)',
         borderRadius: '14px',
         padding: '1.4rem',
-        backgroundColor: 'rgba(0,48,73,0.65)'
+        backgroundColor: 'rgba(var(--deep-space-blue-rgb), 0.65)'
       }}
     >
 
       <div
         style={{
-          color: '#C1121F',
+          color: 'var(--brick-red)',
           marginBottom: '0.8rem'
         }}
       >
@@ -545,7 +527,7 @@ function InfoCard({ icon, title, value }) {
         style={{
           fontFamily: "'Zen Dots', sans-serif",
           fontSize: '0.62rem',
-          color: '#669BBC',
+          color: 'var(--steel-blue)',
           marginBottom: '0.5rem',
           letterSpacing: '0.5px'
         }}
@@ -559,7 +541,7 @@ function InfoCard({ icon, title, value }) {
           fontSize: '0.78rem',
           lineHeight: 1.6,
           margin: 0,
-          color: '#FDF0D5'
+          color: 'var(--papaya-whip)'
         }}
       >
         {value}
@@ -585,8 +567,8 @@ function ScheduleItem({ day, date, time }) {
         flexWrap: 'wrap',
         padding: '1.2rem',
         borderRadius: '12px',
-        backgroundColor: 'rgba(102,155,188,0.08)',
-        border: '1px solid rgba(102,155,188,0.15)'
+        backgroundColor: 'rgba(var(--steel-blue-rgb), 0.08)',
+        border: '1px solid rgba(var(--steel-blue-rgb), 0.15)'
       }}
     >
 
@@ -595,7 +577,7 @@ function ScheduleItem({ day, date, time }) {
         <p
           style={{
             fontFamily: "'Zen Dots', sans-serif",
-            color: '#C1121F',
+            color: 'var(--brick-red)',
             fontSize: '0.65rem',
             marginBottom: '0.4rem'
           }}
@@ -606,7 +588,7 @@ function ScheduleItem({ day, date, time }) {
         <p
           style={{
             margin: 0,
-            color: '#FDF0D5',
+            color: 'var(--papaya-whip)',
             fontFamily: "'Zen Dots', sans-serif",
             fontSize: '0.8rem'
           }}
@@ -620,7 +602,7 @@ function ScheduleItem({ day, date, time }) {
       <p
         style={{
           margin: 0,
-          color: '#669BBC',
+          color: 'var(--steel-blue)',
           fontFamily: "'Zen Dots', sans-serif",
           fontSize: '0.75rem'
         }}
@@ -649,7 +631,7 @@ function ContactPerson({ name, phone }) {
 
       <Phone
         size={19}
-        color="#C1121F"
+        color="var(--brick-red)"
       />
 
       <div>
@@ -657,7 +639,7 @@ function ContactPerson({ name, phone }) {
         <p
           style={{
             margin: 0,
-            color: '#FDF0D5',
+            color: 'var(--papaya-whip)',
             fontFamily: "'Zen Dots', sans-serif",
             fontSize: '0.8rem'
           }}
@@ -668,7 +650,7 @@ function ContactPerson({ name, phone }) {
         <a
           href={`tel:${phone.replace(/\s/g, '')}`}
           style={{
-            color: '#669BBC',
+            color: 'var(--steel-blue)',
             textDecoration: 'none',
             fontSize: '0.8rem'
           }}

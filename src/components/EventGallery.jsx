@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
-import { ArrowRight, CalendarDays, History, X } from 'lucide-react';
+import { ChevronLeft, ChevronRight, CalendarDays, ArrowRight, X, History } from 'lucide-react';
+import { Button } from './ui/Button';
 
 export default function EventGallery() {
   return (
@@ -8,8 +9,8 @@ export default function EventGallery() {
       style={{
         minHeight: '100vh',
         padding: '5rem 0',
-        background: '#003049',
-        color: '#FDF0D5'
+        background: 'var(--deep-space-blue)',
+        color: 'var(--papaya-whip)'
       }}
     >
       <div className="container">
@@ -26,7 +27,7 @@ export default function EventGallery() {
           <p
             style={{
               fontFamily: "'Zen Dots', sans-serif",
-              color: '#C1121F',
+              color: 'var(--brick-red)',
               fontSize: '0.8rem',
               letterSpacing: '2px',
               marginBottom: '1rem'
@@ -48,7 +49,7 @@ export default function EventGallery() {
 
           <p
             style={{
-              color: '#669BBC',
+              color: 'var(--steel-blue)',
               fontSize: '1.05rem',
               lineHeight: 1.8,
               maxWidth: '700px'
@@ -75,7 +76,7 @@ export default function EventGallery() {
           >
             <CalendarDays
               size={24}
-              color="#C1121F"
+              color="var(--steel-blue)"
             />
 
             <h2
@@ -93,11 +94,11 @@ export default function EventGallery() {
           {/* Upcoming Event Card */}
           <div
             style={{
-              border: '1px solid rgba(102,155,188,0.35)',
+              border: '1px solid rgba(var(--steel-blue-rgb), 0.35)',
               borderRadius: '20px',
               padding: '2.5rem',
               background:
-                'linear-gradient(135deg, rgba(0,48,73,0.95), rgba(120,0,0,0.25))',
+                'linear-gradient(135deg, rgba(var(--deep-space-blue-rgb), 0.95), rgba(var(--molten-lava-rgb), 0.25))',
               boxShadow: '0 15px 40px rgba(0,0,0,0.2)'
             }}
           >
@@ -107,8 +108,8 @@ export default function EventGallery() {
                 display: 'inline-block',
                 padding: '0.45rem 0.9rem',
                 borderRadius: '999px',
-                background: '#C1121F',
-                color: '#FDF0D5',
+                background: 'var(--brick-red)',
+                color: 'var(--papaya-whip)',
                 fontFamily: "'Zen Dots', sans-serif",
                 fontSize: '0.65rem',
                 marginBottom: '1.5rem'
@@ -133,7 +134,7 @@ export default function EventGallery() {
             {/* ONLY MAIN DESCRIPTION HERE */}
             <p
               style={{
-                color: '#669BBC',
+                color: 'var(--steel-blue)',
                 fontSize: '1.05rem',
                 lineHeight: 1.8,
                 maxWidth: '750px',
@@ -154,8 +155,8 @@ export default function EventGallery() {
                 alignItems: 'center',
                 gap: '0.6rem',
                 padding: '0.9rem 1.4rem',
-                background: '#C1121F',
-                color: '#FDF0D5',
+                background: 'var(--brick-red)',
+                color: 'var(--papaya-whip)',
                 textDecoration: 'none',
                 borderRadius: '8px',
                 fontFamily: "'Zen Dots', sans-serif",
@@ -186,7 +187,7 @@ export default function EventGallery() {
           >
             <History
               size={24}
-              color="#C1121F"
+              color="var(--steel-blue)"
             />
 
             <h2
@@ -226,24 +227,24 @@ function PastEventCard({ title, description, images }) {
       <div
       className="past-event-card"
       style={{
-        border: '1px solid rgba(102,155,188,0.35)',
+        border: '1px solid rgba(var(--steel-blue-rgb), 0.35)',
         borderRadius: '20px',
         overflow: 'hidden',
-        background: 'linear-gradient(135deg, rgba(7,59,85,0.95), rgba(0,48,73,0.95))',
+        background: 'linear-gradient(135deg, rgba(var(--deep-space-blue-rgb), 0.95), rgba(var(--deep-space-blue-rgb), 0.95))',
         boxShadow: '0 8px 32px rgba(0,0,0,0.2)',
         transition: 'all 0.4s cubic-bezier(0.4, 0, 0.2, 1)',
         cursor: 'pointer'
       }}
       onMouseEnter={(e) => {
         e.currentTarget.style.transform = 'translateY(-5px)';
-        e.currentTarget.style.borderColor = 'rgba(102,155,188,0.8)';
-        e.currentTarget.style.boxShadow = '0 15px 40px rgba(102,155,188,0.25)';
+        e.currentTarget.style.borderColor = 'rgba(var(--steel-blue-rgb), 0.8)';
+        e.currentTarget.style.boxShadow = '0 15px 40px rgba(var(--steel-blue-rgb), 0.25)';
         const img = e.currentTarget.querySelector('img');
         if (img) img.style.transform = 'scale(1.05)';
       }}
       onMouseLeave={(e) => {
         e.currentTarget.style.transform = 'translateY(0)';
-        e.currentTarget.style.borderColor = 'rgba(102,155,188,0.35)';
+        e.currentTarget.style.borderColor = 'rgba(var(--steel-blue-rgb), 0.35)';
         e.currentTarget.style.boxShadow = '0 8px 32px rgba(0,0,0,0.2)';
         const img = e.currentTarget.querySelector('img');
         if (img) img.style.transform = 'scale(1)';
@@ -270,7 +271,7 @@ function PastEventCard({ title, description, images }) {
           left: 0,
           right: 0,
           bottom: 0,
-          background: 'linear-gradient(to right, rgba(0,48,73,0) 0%, rgba(0,48,73,0.8) 100%)',
+          background: 'linear-gradient(to right, rgba(var(--deep-space-blue-rgb), 0) 0%, rgba(var(--deep-space-blue-rgb), 0.8) 100%)',
           pointerEvents: 'none'
         }} />
       </div>
@@ -291,12 +292,12 @@ function PastEventCard({ title, description, images }) {
               display: 'inline-block',
               padding: '0.45rem 0.9rem',
               borderRadius: '999px',
-              background: 'rgba(102,155,188,0.15)',
-              color: '#669BBC',
+              background: 'rgba(var(--steel-blue-rgb), 0.15)',
+              color: 'var(--steel-blue)',
               fontSize: '0.65rem',
               letterSpacing: '1px',
               marginBottom: '1rem',
-              border: '1px solid rgba(102,155,188,0.3)'
+              border: '1px solid rgba(var(--steel-blue-rgb), 0.3)'
             }}
           >
             COMPLETED EVENT
@@ -306,7 +307,7 @@ function PastEventCard({ title, description, images }) {
             style={{
               fontFamily: "'Zen Dots', sans-serif",
               fontSize: 'clamp(1.4rem, 4vw, 1.8rem)',
-              color: '#FDF0D5',
+              color: 'var(--papaya-whip)',
               margin: 0,
               lineHeight: 1.3
             }}
@@ -327,30 +328,20 @@ function PastEventCard({ title, description, images }) {
           {description}
         </p>
 
-        <div style={{
-          marginTop: '1.5rem',
-          color: '#C1121F',
-          fontFamily: "'Zen Dots', sans-serif",
-          fontSize: '0.75rem',
-          display: 'flex',
-          alignItems: 'center',
-          gap: '0.5rem',
-          width: 'fit-content',
-          padding: '0.6rem 1.2rem',
-          borderRadius: '8px',
-          background: 'rgba(193,18,31,0.1)',
-          transition: 'background 0.3s ease',
-          cursor: 'pointer'
-        }}
-        onClick={(e) => {
-          e.stopPropagation();
-          setIsModalOpen(true);
-        }}
-        onMouseEnter={(e) => e.currentTarget.style.background = 'rgba(193,18,31,0.2)'}
-        onMouseLeave={(e) => e.currentTarget.style.background = 'rgba(193,18,31,0.1)'}
+        <Button 
+          variant="outline"
+          size="sm"
+          style={{
+            marginTop: '1.5rem',
+            width: 'fit-content'
+          }}
+          onClick={(e) => {
+            e.stopPropagation();
+            setIsModalOpen(true);
+          }}
         >
-          View Highlights <ArrowRight size={16} />
-        </div>
+          View Highlights <ArrowRight size={16} style={{ marginLeft: '0.4rem' }} />
+        </Button>
       </div>
     </div>
 
@@ -375,13 +366,13 @@ function PastEventCard({ title, description, images }) {
           onClick={(e) => e.stopPropagation()}
           className="hide-scrollbar"
           style={{
-            background: 'linear-gradient(135deg, rgba(7,59,85,0.98), rgba(0,48,73,0.98))',
+            background: 'linear-gradient(135deg, rgba(var(--deep-space-blue-rgb), 0.98), rgba(var(--deep-space-blue-rgb), 0.98))',
             borderRadius: '20px',
             maxWidth: '1000px',
             width: '100%',
             maxHeight: '90vh',
             overflowY: 'auto',
-            border: '1px solid rgba(102,155,188,0.35)',
+            border: '1px solid rgba(var(--steel-blue-rgb), 0.35)',
             boxShadow: '0 20px 60px rgba(0,0,0,0.5)',
             position: 'relative',
             display: 'flex',
@@ -395,9 +386,9 @@ function PastEventCard({ title, description, images }) {
               position: 'absolute',
               top: '1.5rem',
               right: '1.5rem',
-              background: 'rgba(193,18,31,0.15)',
-              border: '1px solid rgba(193,18,31,0.4)',
-              color: '#FDF0D5',
+              background: 'rgba(var(--brick-red-rgb), 0.15)',
+              border: '1px solid rgba(var(--brick-red-rgb), 0.4)',
+              color: 'var(--papaya-whip)',
               width: '45px',
               height: '45px',
               borderRadius: '50%',
@@ -408,8 +399,8 @@ function PastEventCard({ title, description, images }) {
               zIndex: 10,
               transition: 'background 0.3s ease'
             }}
-            onMouseEnter={(e) => e.currentTarget.style.background = '#c1121f'}
-            onMouseLeave={(e) => e.currentTarget.style.background = 'rgba(193,18,31,0.15)'}
+            onMouseEnter={(e) => e.currentTarget.style.background = 'var(--brick-red)'}
+            onMouseLeave={(e) => e.currentTarget.style.background = 'rgba(var(--brick-red-rgb), 0.15)'}
           >
             <X size={24} />
           </button>
@@ -449,12 +440,12 @@ function PastEventCard({ title, description, images }) {
                 display: 'inline-block',
                 padding: '0.45rem 0.9rem',
                 borderRadius: '999px',
-                background: 'rgba(102,155,188,0.15)',
-                color: '#669BBC',
+                background: 'rgba(var(--steel-blue-rgb), 0.15)',
+                color: 'var(--steel-blue)',
                 fontSize: '0.65rem',
                 letterSpacing: '1px',
                 marginBottom: '1rem',
-                border: '1px solid rgba(102,155,188,0.3)'
+                border: '1px solid rgba(var(--steel-blue-rgb), 0.3)'
               }}
             >
               EVENT HIGHLIGHTS
@@ -463,7 +454,7 @@ function PastEventCard({ title, description, images }) {
               style={{ 
                 fontFamily: "'Zen Dots', sans-serif", 
                 fontSize: 'clamp(1.8rem, 5vw, 2.5rem)', 
-                color: '#FDF0D5', 
+                color: 'var(--papaya-whip)', 
                 marginBottom: '1.5rem',
                 lineHeight: 1.2
               }}

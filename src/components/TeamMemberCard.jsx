@@ -22,8 +22,8 @@ export default function TeamMemberCard({ member }) {
         minWidth: '245px',
         width: '245px',
         flexShrink: 0,
-        background: 'linear-gradient(145deg, rgba(7, 59, 85, 0.95), rgba(0, 48, 73, 0.95))',
-        border: '1px solid rgba(102, 155, 188, 0.35)',
+        background: 'linear-gradient(145deg, rgba(var(--deep-space-blue-rgb), 0.95), rgba(var(--deep-space-blue-rgb), 0.95))',
+        border: '1px solid rgba(var(--steel-blue-rgb), 0.35)',
         borderRadius: '16px',
         overflow: 'hidden',
         boxShadow: '0 4px 12px rgba(0, 0, 0, 0.20)',
@@ -32,7 +32,7 @@ export default function TeamMemberCard({ member }) {
       }}
       onMouseEnter={(e) => {
         e.currentTarget.style.transform = 'translateY(-5px)';
-        e.currentTarget.style.boxShadow = '0 8px 30px rgba(102, 155, 188, 0.4)';
+        e.currentTarget.style.boxShadow = '0 8px 30px rgba(var(--steel-blue-rgb), 0.4)';
       }}
       onMouseLeave={(e) => {
         e.currentTarget.style.transform = 'translateY(0)';
@@ -46,8 +46,8 @@ export default function TeamMemberCard({ member }) {
           display: 'flex',
           alignItems: 'center',
           justifyContent: 'center',
-          background: 'linear-gradient(135deg, #003049, #669BBC)',
-          color: '#FDF0D5',
+          background: 'linear-gradient(135deg, var(--deep-space-blue), var(--steel-blue))',
+          color: 'var(--papaya-whip)',
           position: 'relative'
         }}
       >
@@ -75,7 +75,7 @@ export default function TeamMemberCard({ member }) {
             width: '85px',
             height: '85px',
             borderRadius: '50%',
-            border: '2px solid rgba(253,240,213,0.5)',
+            border: '2px solid rgba(var(--papaya-whip-rgb), 0.5)',
             alignItems: 'center',
             justifyContent: 'center'
           }}
@@ -92,7 +92,7 @@ export default function TeamMemberCard({ member }) {
             marginBottom: '0.7rem',
             fontSize: '0.9rem',
             lineHeight: 1.5,
-            color: '#FDF0D5',
+            color: 'var(--papaya-whip)',
             fontFamily: "'Zen Dots', sans-serif",
             textTransform: 'capitalize'
           }}
@@ -105,9 +105,9 @@ export default function TeamMemberCard({ member }) {
             display: 'inline-block',
             padding: '0.45rem 0.7rem',
             borderRadius: '20px',
-            backgroundColor: 'rgba(102,155,188,0.15)',
-            border: '1px solid rgba(102,155,188,0.3)',
-            color: '#669BBC',
+            backgroundColor: 'rgba(var(--steel-blue-rgb), 0.15)',
+            border: '1px solid rgba(var(--steel-blue-rgb), 0.3)',
+            color: 'var(--steel-blue)',
             fontSize: '0.65rem',
             lineHeight: 1.4,
             fontFamily: "'Zen Dots', sans-serif",

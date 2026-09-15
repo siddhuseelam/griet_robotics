@@ -78,8 +78,8 @@ export default function HomeTeam() {
       style={{
         padding: '5rem 0',
         backgroundColor: '#073b55', // Updated to match the premium surface dark aesthetic instead of the previous bright color
-        color: '#FDF0D5',
-        borderTop: '1px solid rgba(102, 155, 188, 0.25)'
+        color: 'var(--papaya-whip)',
+        borderTop: '1px solid rgba(var(--steel-blue-rgb), 0.25)'
       }}
     >
       <div className="container">
@@ -89,7 +89,7 @@ export default function HomeTeam() {
             <p
               style={{
                 marginBottom: '0.6rem',
-                color: '#C1121F',
+                color: 'var(--brick-red)',
                 fontSize: '0.75rem',
                 letterSpacing: '2px',
                 textTransform: 'uppercase',
@@ -103,7 +103,7 @@ export default function HomeTeam() {
               style={{
                 fontSize: 'clamp(2rem, 5vw, 3.2rem)',
                 margin: 0,
-                color: '#FDF0D5',
+                color: 'var(--papaya-whip)',
                 fontFamily: "'Zen Dots', sans-serif"
               }}
             >
@@ -113,7 +113,7 @@ export default function HomeTeam() {
             <p
               style={{
                 marginTop: '0.8rem',
-                color: '#669BBC',
+                color: 'var(--steel-blue)',
                 fontSize: '0.9rem',
                 fontFamily: "'Zen Dots', sans-serif"
               }}
@@ -127,25 +127,25 @@ export default function HomeTeam() {
             <button
               onClick={() => handleManualScroll('left')}
               style={{
-                background: 'rgba(102, 155, 188, 0.15)',
-                border: '1px solid rgba(102, 155, 188, 0.35)',
+                background: 'rgba(var(--steel-blue-rgb), 0.15)',
+                border: '1px solid rgba(var(--steel-blue-rgb), 0.35)',
                 borderRadius: '50%',
                 width: '45px',
                 height: '45px',
                 display: 'flex',
                 alignItems: 'center',
                 justifyContent: 'center',
-                color: '#FDF0D5',
+                color: 'var(--papaya-whip)',
                 cursor: 'pointer',
                 transition: 'all 0.3s ease'
               }}
               onMouseEnter={(e) => {
-                e.currentTarget.style.background = '#c1121f';
-                e.currentTarget.style.borderColor = '#c1121f';
+                e.currentTarget.style.background = 'var(--brick-red)';
+                e.currentTarget.style.borderColor = 'var(--brick-red)';
               }}
               onMouseLeave={(e) => {
-                e.currentTarget.style.background = 'rgba(102, 155, 188, 0.15)';
-                e.currentTarget.style.borderColor = 'rgba(102, 155, 188, 0.35)';
+                e.currentTarget.style.background = 'rgba(var(--steel-blue-rgb), 0.15)';
+                e.currentTarget.style.borderColor = 'rgba(var(--steel-blue-rgb), 0.35)';
               }}
             >
               <ChevronLeft size={24} />
@@ -153,25 +153,25 @@ export default function HomeTeam() {
             <button
               onClick={() => handleManualScroll('right')}
               style={{
-                background: 'rgba(102, 155, 188, 0.15)',
-                border: '1px solid rgba(102, 155, 188, 0.35)',
+                background: 'rgba(var(--steel-blue-rgb), 0.15)',
+                border: '1px solid rgba(var(--steel-blue-rgb), 0.35)',
                 borderRadius: '50%',
                 width: '45px',
                 height: '45px',
                 display: 'flex',
                 alignItems: 'center',
                 justifyContent: 'center',
-                color: '#FDF0D5',
+                color: 'var(--papaya-whip)',
                 cursor: 'pointer',
                 transition: 'all 0.3s ease'
               }}
               onMouseEnter={(e) => {
-                e.currentTarget.style.background = '#c1121f';
-                e.currentTarget.style.borderColor = '#c1121f';
+                e.currentTarget.style.background = 'var(--brick-red)';
+                e.currentTarget.style.borderColor = 'var(--brick-red)';
               }}
               onMouseLeave={(e) => {
-                e.currentTarget.style.background = 'rgba(102, 155, 188, 0.15)';
-                e.currentTarget.style.borderColor = 'rgba(102, 155, 188, 0.35)';
+                e.currentTarget.style.background = 'rgba(var(--steel-blue-rgb), 0.15)';
+                e.currentTarget.style.borderColor = 'rgba(var(--steel-blue-rgb), 0.35)';
               }}
             >
               <ChevronRight size={24} />

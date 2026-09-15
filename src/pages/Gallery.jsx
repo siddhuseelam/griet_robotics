@@ -27,7 +27,7 @@ export default function Gallery() {
       style={{
         minHeight: '85vh',
         padding: '4rem 0 6rem',
-        backgroundColor: '#003049'
+        backgroundColor: 'var(--deep-space-blue)'
       }}
     >
       <div
@@ -49,7 +49,7 @@ export default function Gallery() {
           <p
             style={{
               fontFamily: "'Zen Dots', sans-serif",
-              color: '#C1121F',
+              color: 'var(--brick-red)',
               fontSize: '0.85rem',
               letterSpacing: '2px',
               marginBottom: '0.8rem',
@@ -62,7 +62,7 @@ export default function Gallery() {
           <h1
             style={{
               fontFamily: "'Zen Dots', sans-serif",
-              color: '#FDF0D5',
+              color: 'var(--papaya-whip)',
               fontSize: 'clamp(2rem, 5vw, 3.5rem)',
               margin: 0
             }}
@@ -72,7 +72,7 @@ export default function Gallery() {
 
           <p
             style={{
-              color: '#669BBC',
+              color: 'var(--steel-blue)',
               fontFamily: "'Zen Dots', sans-serif",
               fontSize: '0.9rem',
               marginTop: '1rem',
@@ -98,8 +98,8 @@ export default function Gallery() {
             <div
               key={image.src}
               style={{
-                backgroundColor: '#003049',
-                border: '1px solid rgba(102, 155, 188, 0.35)',
+                backgroundColor: 'var(--deep-space-blue)',
+                border: '1px solid rgba(var(--steel-blue-rgb), 0.35)',
                 borderRadius: '18px',
                 overflow: 'hidden',
                 boxShadow: '0 10px 30px rgba(0, 0, 0, 0.25)',
@@ -123,7 +123,7 @@ export default function Gallery() {
                   width: '100%',
                   height: '260px',
                   overflow: 'hidden',
-                  backgroundColor: '#669BBC'
+                  backgroundColor: 'var(--steel-blue)'
                 }}
               >
                 <img
@@ -156,14 +156,14 @@ export default function Gallery() {
                     width: '50px',
                     height: '50px',
                     borderRadius: '50%',
-                    backgroundColor: '#C1121F',
-                    color: '#FDF0D5',
+                    backgroundColor: 'var(--brick-red)',
+                    color: 'var(--papaya-whip)',
                     display: 'flex',
                     alignItems: 'center',
                     justifyContent: 'center',
                     fontFamily: "'Zen Dots', sans-serif",
                     fontSize: '0.75rem',
-                    border: '4px solid #003049'
+                    border: '4px solid var(--deep-space-blue)'
                   }}
                 >
                   0{index + 1}
@@ -172,7 +172,7 @@ export default function Gallery() {
 
                 <h2
                   style={{
-                    color: '#FDF0D5',
+                    color: 'var(--papaya-whip)',
                     fontFamily: "'Zen Dots', sans-serif",
                     fontSize: '1.15rem',
                     marginBottom: '0.8rem',
@@ -184,7 +184,7 @@ export default function Gallery() {
 
                 <p
                   style={{
-                    color: '#669BBC',
+                    color: 'var(--steel-blue)',
                     fontFamily: "'Zen Dots', sans-serif",
                     fontSize: '0.75rem',
                     lineHeight: 1.7,

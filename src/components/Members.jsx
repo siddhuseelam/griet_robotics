@@ -24,7 +24,7 @@ export default function Members() {
   const currentMembers = groupedDomains[filter] || validMembers;
 
   return (
-    <div style={{ backgroundColor: '#003049', minHeight: '100vh', paddingTop: '3rem', paddingBottom: '5rem' }}>
+    <div style={{ backgroundColor: 'var(--deep-space-blue)', minHeight: '100vh', paddingTop: '3rem', paddingBottom: '5rem' }}>
       <div className="container">
         
         <div style={{ textAlign: 'center', marginBottom: '4rem' }}>
@@ -32,7 +32,7 @@ export default function Members() {
             style={{
               fontSize: 'clamp(2.5rem, 6vw, 4.5rem)',
               marginBottom: '1rem',
-              color: '#FDF0D5',
+              color: 'var(--papaya-whip)',
               fontFamily: "'Zen Dots', sans-serif"
             }}
           >
@@ -40,7 +40,7 @@ export default function Members() {
           </h1>
           <p
             style={{
-              color: '#669BBC',
+              color: 'var(--steel-blue)',
               fontSize: '1rem',
               maxWidth: '600px',
               margin: '0 auto',
@@ -67,16 +67,16 @@ export default function Members() {
               key={key}
               onClick={() => setFilter(key)}
               style={{
-                background: filter === key ? 'linear-gradient(135deg, #c1121f, #780000)' : 'transparent',
-                color: '#FDF0D5',
-                border: filter === key ? '1px solid #c1121f' : '1px solid #669BBC',
+                background: filter === key ? 'linear-gradient(135deg, var(--brick-red), var(--molten-lava))' : 'transparent',
+                color: 'var(--papaya-whip)',
+                border: filter === key ? '1px solid var(--brick-red)' : '1px solid var(--steel-blue)',
                 padding: '0.6rem 1.2rem',
                 borderRadius: '8px',
                 fontFamily: "'Zen Dots', sans-serif",
                 fontSize: '0.75rem',
                 cursor: 'pointer',
                 transition: 'all 0.3s ease',
-                boxShadow: filter === key ? '0 6px 20px rgba(193, 18, 31, 0.25)' : 'none'
+                boxShadow: filter === key ? '0 6px 20px rgba(var(--brick-red-rgb), 0.25)' : 'none'
               }}
             >
               {key}

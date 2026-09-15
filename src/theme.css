@@ -1,0 +1,93 @@
+/* =========================================================
+   GRIET ROBOTICS CLUB
+   Central Theme & Design Variables
+   ========================================================= */
+
+@import url('https://fonts.googleapis.com/css2?family=Zen+Dots&display=swap');
+
+:root {
+
+  /* =========================================================
+     CORE COLOR PALETTE (HEX)
+     ========================================================= */
+  
+  /* --- ORIGINAL THEME (Active) --- */
+  --molten-lava: #780000;
+  --brick-red: #c1121f;
+  --papaya-whip: #fdf0d5;
+  --deep-space-blue: #003049;
+  --steel-blue: #669bbc;
+
+  /* --- NEW THEME (Disabled) --- 
+  --molten-lava: #1a659e; 
+  --brick-red: #ff6b35;   
+  --papaya-whip: #efefd0; 
+  --deep-space-blue: #004e89; 
+  --steel-blue: #f7c59f;  
+  */
+
+  /* =========================================================
+     CORE COLOR PALETTE (RGB COMPONENTS)
+     Used for RGBA opacity backgrounds in components
+     ========================================================= */
+     
+  /* --- ORIGINAL THEME (Active) --- */
+  --molten-lava-rgb: 120, 0, 0;
+  --brick-red-rgb: 193, 18, 31;
+  --papaya-whip-rgb: 253, 240, 213;
+  --deep-space-blue-rgb: 0, 48, 73;
+  --steel-blue-rgb: 102, 155, 188;
+
+  /* --- NEW THEME (Disabled) --- 
+  --molten-lava-rgb: 26, 101, 158;
+  --brick-red-rgb: 255, 107, 53;
+  --papaya-whip-rgb: 239, 239, 208;
+  --deep-space-blue-rgb: 0, 78, 137;
+  --steel-blue-rgb: 247, 197, 159;
+  */
+
+  /* =========================================================
+     TYPOGRAPHY
+     ========================================================= */
+     
+  --font-primary: 'Zen Dots', sans-serif;
+  --font-secondary: Arial, sans-serif;
+
+  /* =========================================================
+     SEMANTIC TOKENS
+     ========================================================= */
+     
+  --bg-color: var(--deep-space-blue);
+  --surface: rgba(7, 59, 85, 1);
+  --surface-light: rgba(11, 70, 99, 1);
+  --surface-border: rgba(var(--steel-blue-rgb), 0.35);
+
+  --text-primary: var(--papaya-whip);
+  --text-secondary: rgba(var(--papaya-whip-rgb), 0.77);
+  --text-muted: rgba(var(--steel-blue-rgb), 0.85);
+  
+  --primary: var(--brick-red);
+  --primary-dark: var(--molten-lava);
+
+  /* =========================================================
+     RADII & SHADOWS
+     ========================================================= */
+     
+  --radius-sm: 6px;
+  --radius-md: 12px;
+  --radius-lg: 20px;
+
+  --shadow-sm: 0 4px 12px rgba(0, 0, 0, 0.20);
+  --shadow-md: 0 10px 30px rgba(0, 0, 0, 0.30);
+  --shadow-red: 0 8px 30px rgba(var(--brick-red-rgb), 0.30);
+  --shadow-blue: 0 8px 30px rgba(var(--steel-blue-rgb), 0.20);
+
+  /* =========================================================
+     TRANSITIONS
+     ========================================================= */
+     
+  --transition-fast: 0.2s ease;
+  --transition-normal: 0.3s ease;
+  --transition-smooth: 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+
+}

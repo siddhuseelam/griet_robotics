@@ -7,7 +7,7 @@ import {
   ArrowRight,
   User
 } from 'lucide-react';
-import { Link } from 'react-router-dom';
+import { Button } from './ui/Button';
 
 import HomeTeam from './HomeTeam';
 
@@ -15,8 +15,8 @@ export default function Hero() {
   return (
     <div
       style={{
-        backgroundColor: '#003049',
-        color: '#FDF0D5',
+        backgroundColor: 'var(--deep-space-blue)',
+        color: 'var(--papaya-whip)',
         fontFamily: "'Zen Dots', sans-serif"
       }}
     >
@@ -35,7 +35,7 @@ export default function Hero() {
           position: 'relative',
           overflow: 'hidden',
           background:
-            'linear-gradient(135deg, #003049 0%, #003049 55%, #780000 100%)'
+            'linear-gradient(135deg, var(--deep-space-blue) 0%, var(--deep-space-blue) 55%, var(--molten-lava) 100%)'
         }}
       >
 
@@ -49,7 +49,7 @@ export default function Hero() {
             width: '650px',
             height: '650px',
             background:
-              'radial-gradient(circle, rgba(102,155,188,0.25) 0%, rgba(0,48,73,0) 70%)',
+              'radial-gradient(circle, rgba(var(--steel-blue-rgb), 0.25) 0%, rgba(var(--deep-space-blue-rgb), 0) 70%)',
             zIndex: 0
           }}
         />
@@ -62,7 +62,7 @@ export default function Hero() {
             width: '600px',
             height: '600px',
             background:
-              'radial-gradient(circle, rgba(193,18,31,0.18) 0%, rgba(0,48,73,0) 70%)',
+              'radial-gradient(circle, rgba(var(--brick-red-rgb), 0.18) 0%, rgba(var(--deep-space-blue-rgb), 0) 70%)',
             zIndex: 0
           }}
         />
@@ -87,7 +87,7 @@ export default function Hero() {
               alignItems: 'center',
               gap: '0.6rem',
               marginBottom: '1.5rem',
-              color: '#669BBC',
+              color: 'var(--steel-blue)',
               fontSize: '0.8rem',
               letterSpacing: '1px',
               textTransform: 'uppercase'
@@ -111,7 +111,7 @@ export default function Hero() {
               lineHeight: 0.95,
               letterSpacing: '-0.04em',
               marginBottom: '1.5rem',
-              color: '#FDF0D5'
+              color: 'var(--papaya-whip)'
             }}
           >
 
@@ -121,7 +121,7 @@ export default function Hero() {
 
             <span
               style={{
-                color: '#C1121F'
+                color: 'var(--steel-blue)'
               }}
             >
               CLUB
@@ -138,7 +138,7 @@ export default function Hero() {
               maxWidth: '750px',
               lineHeight: 1.5,
               marginBottom: '1rem',
-              color: '#FDF0D5'
+              color: 'var(--papaya-whip)'
             }}
           >
             Imagine. Engineer. Innovate.
@@ -153,7 +153,7 @@ export default function Hero() {
               maxWidth: '700px',
               lineHeight: 1.8,
               marginBottom: '2rem',
-              color: '#669BBC'
+              color: 'var(--steel-blue)'
             }}
           >
             Welcome to the Robotics Club of GRIET — a community
@@ -207,22 +207,7 @@ export default function Hero() {
             }}
           >
 
-            <Link
-              to="/events"
-              style={{
-                display: 'inline-flex',
-                alignItems: 'center',
-                textDecoration: 'none',
-                padding: '0.9rem 1.4rem',
-                borderRadius: '8px',
-                backgroundColor: '#C1121F',
-                color: '#FDF0D5',
-                fontFamily: "'Zen Dots', sans-serif",
-                fontSize: '0.8rem',
-                border: '1px solid #C1121F',
-                transition: '0.25s ease'
-              }}
-            >
+            <Button to="/events" variant="default" size="lg">
 
               Explore Events
 
@@ -233,27 +218,12 @@ export default function Hero() {
                 }}
               />
 
-            </Link>
+            </Button>
 
 
-            <Link
-              to="/about"
-              style={{
-                display: 'inline-flex',
-                alignItems: 'center',
-                textDecoration: 'none',
-                padding: '0.9rem 1.4rem',
-                borderRadius: '8px',
-                backgroundColor: 'transparent',
-                color: '#FDF0D5',
-                fontFamily: "'Zen Dots', sans-serif",
-                fontSize: '0.8rem',
-                border: '1px solid #669BBC',
-                transition: '0.25s ease'
-              }}
-            >
+            <Button to="/about" variant="outline" size="lg">
               About Our Club
-            </Link>
+            </Button>
 
           </div>
 
@@ -287,17 +257,17 @@ function Skill({ icon, text }) {
         alignItems: 'center',
         gap: '0.5rem',
         padding: '0.65rem 1rem',
-        border: '1px solid rgba(102,155,188,0.45)',
+        border: '1px solid rgba(var(--steel-blue-rgb), 0.45)',
         borderRadius: '999px',
-        backgroundColor: 'rgba(102,155,188,0.08)',
-        color: '#FDF0D5',
+        backgroundColor: 'rgba(var(--steel-blue-rgb), 0.08)',
+        color: 'var(--papaya-whip)',
         fontSize: '0.7rem'
       }}
     >
 
       <span
         style={{
-          color: '#669BBC',
+          color: 'var(--steel-blue)',
           display: 'flex'
         }}
       >

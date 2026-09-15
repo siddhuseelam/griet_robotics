@@ -24,10 +24,10 @@ function App() {
         <header
           style={{
             padding: '0.9rem 0',
-            borderBottom: '1px solid rgba(102, 155, 188, 0.25)',
+            borderBottom: '1px solid rgba(var(--steel-blue-rgb), 0.25)',
             position: 'sticky',
             top: 0,
-            backgroundColor: 'rgba(0, 48, 73, 0.96)',
+            backgroundColor: 'rgba(var(--deep-space-blue-rgb), 0.96)',
             backdropFilter: 'blur(14px)',
             WebkitBackdropFilter: 'blur(14px)',
             zIndex: 1000
@@ -49,7 +49,7 @@ function App() {
             <NavLink
               to="/"
               style={{
-                color: '#FDF0D5',
+                color: 'var(--papaya-whip)',
                 textDecoration: 'none'
               }}
             >
@@ -72,7 +72,7 @@ function App() {
                     height: '50px',
                     objectFit: 'contain',
                     borderRadius: '50%',
-                    backgroundColor: '#FDF0D5'
+                    backgroundColor: 'var(--papaya-whip)'
                   }}
                 />
 
@@ -192,12 +192,12 @@ function App() {
         ========================== */}
         <footer
           style={{
-            borderTop: '1px solid rgba(102, 155, 188, 0.25)',
+            borderTop: '1px solid rgba(var(--steel-blue-rgb), 0.25)',
             padding: '3rem 0',
             marginTop: '4rem',
             textAlign: 'center',
-            color: '#669BBC',
-            backgroundColor: '#003049'
+            color: 'var(--steel-blue)',
+            backgroundColor: 'var(--deep-space-blue)'
           }}
         >
           <div className="container">
@@ -205,7 +205,7 @@ function App() {
             <h3
               style={{
                 marginBottom: '0.5rem',
-                color: '#FDF0D5',
+                color: 'var(--papaya-whip)',
                 fontFamily: "'Zen Dots', sans-serif"
               }}
             >
@@ -215,7 +215,7 @@ function App() {
             <p
               style={{
                 fontFamily: "'Zen Dots', sans-serif",
-                color: '#C1121F'
+                color: 'var(--brick-red)'
               }}
             >
               Imagine · Engineer · Innovate
@@ -226,7 +226,7 @@ function App() {
                 fontFamily: "'Zen Dots', sans-serif",
                 marginTop: '1rem',
                 fontSize: '0.7rem',
-                color: '#669BBC'
+                color: 'var(--steel-blue)'
               }}
             >
               © {new Date().getFullYear()} Robotics Club, GRIET.
@@ -248,8 +248,8 @@ function App() {
 
 const navStyle = ({ isActive }) => ({
   color: isActive
-    ? '#C1121F'
-    : '#FDF0D5',
+    ? 'var(--brick-red)'
+    : 'var(--papaya-whip)',
 
   textDecoration: 'none',
 
@@ -260,7 +260,7 @@ const navStyle = ({ isActive }) => ({
   fontWeight: 500,
 
   borderBottom: isActive
-    ? '2px solid #C1121F'
+    ? '2px solid var(--brick-red)'
     : '2px solid transparent',
 
   paddingBottom: '5px'
