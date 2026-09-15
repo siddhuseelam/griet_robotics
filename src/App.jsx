@@ -11,26 +11,28 @@ import EventGallery from './components/EventGallery';
 import InventoryList from './components/InventoryList';
 import TeamSection from './components/TeamSection';
 import EventDetails from './components/EventDetails';
+import Gallery from './pages/Gallery';
 
 function App() {
   return (
     <BrowserRouter>
-
       <div className="App">
 
-        {/* Navigation */}
+        {/* =========================
+            NAVIGATION BAR
+        ========================== */}
         <header
           style={{
-            padding: '1rem 0',
-            borderBottom: '1px solid var(--surface-border)',
+            padding: '0.9rem 0',
+            borderBottom: '1px solid rgba(102, 155, 188, 0.25)',
             position: 'sticky',
             top: 0,
-            backgroundColor: 'rgba(13, 17, 23, 0.95)',
-            backdropFilter: 'blur(12px)',
-            zIndex: 100
+            backgroundColor: 'rgba(0, 48, 73, 0.96)',
+            backdropFilter: 'blur(14px)',
+            WebkitBackdropFilter: 'blur(14px)',
+            zIndex: 1000
           }}
         >
-
           <div
             className="container"
             style={{
@@ -41,57 +43,57 @@ function App() {
             }}
           >
 
-            {/* Logo / Club name */}
+            {/* =========================
+                LOGO + CLUB NAME
+            ========================== */}
             <NavLink
               to="/"
               style={{
-                color: 'inherit',
+                color: '#FDF0D5',
                 textDecoration: 'none'
               }}
             >
-
               <div
                 style={{
                   display: 'flex',
                   alignItems: 'center',
                   gap: '0.7rem',
                   fontWeight: 700,
-                  fontSize: '1.1rem'
+                  fontSize: '1.05rem',
+                  fontFamily: "'Zen Dots', sans-serif"
                 }}
               >
-
-                <div
+                <img
+                  src="/griet-robotics-logo.jpeg"
+                  alt="GRIET Robotics Club Logo"
                   style={{
-                    width: '36px',
-                    height: '36px',
+                    width: '50px',
+                    height: '50px',
+                    objectFit: 'contain',
                     borderRadius: '50%',
-                    background:
-                      'linear-gradient(135deg, #00ffcc, #008cff)',
-                    display: 'flex',
-                    alignItems: 'center',
-                    justifyContent: 'center',
-                    fontSize: '1.1rem'
+                    backgroundColor: '#FDF0D5'
                   }}
-                >
-                  🤖
-                </div>
+                />
 
                 <span>
                   GRIET Robotics Club
                 </span>
-
               </div>
-
             </NavLink>
 
 
-            {/* Navigation */}
+            {/* =========================
+                NAVIGATION LINKS
+            ========================== */}
             <nav
               style={{
                 display: 'flex',
-                gap: '1.5rem',
-                fontFamily: 'var(--font-mono)',
-                fontSize: '0.85rem'
+                alignItems: 'center',
+                gap: '1.4rem',
+                fontFamily: "'Zen Dots', sans-serif",
+                fontSize: '0.75rem',
+                flexWrap: 'wrap',
+                justifyContent: 'center'
               }}
             >
 
@@ -117,6 +119,13 @@ function App() {
               </NavLink>
 
               <NavLink
+                to="/gallery"
+                style={navStyle}
+              >
+                Gallery
+              </NavLink>
+
+              <NavLink
                 to="/contact"
                 style={navStyle}
               >
@@ -126,40 +135,47 @@ function App() {
             </nav>
 
           </div>
-
         </header>
 
 
-        {/* Pages */}
+        {/* =========================
+            PAGES
+        ========================== */}
         <main>
 
           <Routes>
 
-            {/* Home */}
+            {/* HOME */}
             <Route
               path="/"
               element={<Hero />}
             />
 
-            {/* Events */}
+            {/* EVENTS */}
             <Route
               path="/events"
               element={<EventGallery />}
             />
 
-            {/* Individual event */}
+            {/* NEXT-GEN ROBOTICS EVENT DETAILS */}
             <Route
               path="/events/next-gen-robotics"
               element={<EventDetails />}
             />
 
-            {/* About */}
+            {/* ABOUT */}
             <Route
               path="/about"
               element={<InventoryList />}
             />
 
-            {/* Contact */}
+            {/* GALLERY */}
+            <Route
+              path="/gallery"
+              element={<Gallery />}
+            />
+
+            {/* CONTACT */}
             <Route
               path="/contact"
               element={<TeamSection />}
@@ -170,36 +186,46 @@ function App() {
         </main>
 
 
-        {/* Footer */}
+        {/* =========================
+            FOOTER
+        ========================== */}
         <footer
           style={{
-            borderTop: '1px solid var(--surface-border)',
+            borderTop: '1px solid rgba(102, 155, 188, 0.25)',
             padding: '3rem 0',
             marginTop: '4rem',
             textAlign: 'center',
-            color: 'var(--text-secondary)'
+            color: '#669BBC',
+            backgroundColor: '#003049'
           }}
         >
-
           <div className="container">
 
             <h3
               style={{
-                marginBottom: '0.5rem'
+                marginBottom: '0.5rem',
+                color: '#FDF0D5',
+                fontFamily: "'Zen Dots', sans-serif"
               }}
             >
               ROBOTICS CLUB, GRIET
             </h3>
 
-            <p className="font-mono">
+            <p
+              style={{
+                fontFamily: "'Zen Dots', sans-serif",
+                color: '#C1121F'
+              }}
+            >
               Imagine · Engineer · Innovate
             </p>
 
             <p
-              className="font-mono"
               style={{
+                fontFamily: "'Zen Dots', sans-serif",
                 marginTop: '1rem',
-                fontSize: '0.8rem'
+                fontSize: '0.7rem',
+                color: '#669BBC'
               }}
             >
               © {new Date().getFullYear()} Robotics Club, GRIET.
@@ -207,24 +233,36 @@ function App() {
             </p>
 
           </div>
-
         </footer>
 
       </div>
-
     </BrowserRouter>
   );
 }
 
 
+/* =========================
+   NAVIGATION LINK STYLE
+========================== */
+
 const navStyle = ({ isActive }) => ({
   color: isActive
-    ? 'var(--primary)'
-    : 'var(--text-secondary)',
+    ? '#C1121F'
+    : '#FDF0D5',
 
   textDecoration: 'none',
 
-  transition: '0.2s ease'
+  transition: 'all 0.25s ease',
+
+  fontFamily: "'Zen Dots', sans-serif",
+
+  fontWeight: 500,
+
+  borderBottom: isActive
+    ? '2px solid #C1121F'
+    : '2px solid transparent',
+
+  paddingBottom: '5px'
 });
 
 

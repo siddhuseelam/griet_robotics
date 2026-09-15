@@ -22,19 +22,32 @@ export default function Hero() {
       }}
     >
 
-      {/* Background glow */}
+      {/* =====================================================
+          Background decoration
+          ===================================================== */}
+
       <div
+        className="hero-glow"
         style={{
-          position: 'absolute',
           top: '-25%',
           right: '-10%',
-          width: '700px',
-          height: '700px',
-          background:
-            'radial-gradient(circle, rgba(0,255,204,0.14) 0%, rgba(13,17,23,0) 70%)',
           zIndex: 0
         }}
       />
+
+      <div
+        className="hero-blue-glow"
+        style={{
+          bottom: '-35%',
+          left: '-15%',
+          zIndex: 0
+        }}
+      />
+
+
+      {/* =====================================================
+          Main Hero Content
+          ===================================================== */}
 
       <div
         className="container"
@@ -44,29 +57,35 @@ export default function Hero() {
         }}
       >
 
-        {/* Club label */}
+        {/* Club Label */}
+
         <div
           style={{
             display: 'inline-flex',
             alignItems: 'center',
             gap: '0.6rem',
             marginBottom: '1.5rem',
-            color: 'var(--primary)',
+            color: 'var(--steel-blue)',
             fontFamily: 'var(--font-mono)',
             fontSize: '0.9rem',
             letterSpacing: '1px',
             textTransform: 'uppercase'
           }}
         >
+
           <Bot size={20} />
 
           <span>
             Gokaraju Rangaraju Institute of Engineering and Technology
           </span>
+
         </div>
 
 
-        {/* Main heading */}
+        {/* =====================================================
+            Main Heading
+            ===================================================== */}
+
         <h1
           style={{
             fontSize: 'clamp(3.2rem, 8vw, 6.5rem)',
@@ -75,26 +94,39 @@ export default function Hero() {
             marginBottom: '1.5rem'
           }}
         >
+
           ROBOTICS
+
           <br />
 
           <span className="text-accent">
             CLUB
           </span>
+
         </h1>
 
 
-        {/* Club description */}
+        {/* =====================================================
+            Tagline
+            ===================================================== */}
+
         <p
           style={{
             fontSize: '1.4rem',
             maxWidth: '750px',
             lineHeight: 1.5,
-            marginBottom: '1rem'
+            marginBottom: '1rem',
+            color: 'var(--papaya-whip)',
+            fontWeight: 600
           }}
         >
           Imagine. Engineer. Innovate.
         </p>
+
+
+        {/* =====================================================
+            Description
+            ===================================================== */}
 
         <p
           className="text-secondary"
@@ -112,7 +144,10 @@ export default function Hero() {
         </p>
 
 
-        {/* Areas */}
+        {/* =====================================================
+            Areas
+            ===================================================== */}
+
         <div
           style={{
             display: 'flex',
@@ -122,7 +157,10 @@ export default function Hero() {
           }}
         >
 
-          <Skill icon={<Bot size={17} />} text="Robotics" />
+          <Skill
+            icon={<Bot size={17} />}
+            text="Robotics"
+          />
 
           <Skill
             icon={<BrainCircuit size={17} />}
@@ -142,46 +180,55 @@ export default function Hero() {
         </div>
 
 
-        {/* Buttons */}
+        {/* =====================================================
+            Navigation Buttons
+            ===================================================== */}
+
         <div
-  style={{
-    display: 'flex',
-    gap: '1rem',
-    flexWrap: 'wrap'
-  }}
->
+          style={{
+            display: 'flex',
+            gap: '1rem',
+            flexWrap: 'wrap'
+          }}
+        >
 
-  <Link
-    to="/events"
-    className="btn btn-primary"
-    style={{
-      display: 'inline-flex',
-      alignItems: 'center',
-      textDecoration: 'none'
-    }}
-  >
-    Explore Events
+          {/* Explore Events */}
 
-    <ArrowRight
-      size={18}
-      style={{
-        marginLeft: '0.5rem'
-      }}
-    />
-  </Link>
+          <Link
+            to="/events"
+            className="btn btn-primary"
+            style={{
+              display: 'inline-flex',
+              alignItems: 'center',
+              textDecoration: 'none'
+            }}
+          >
+
+            Explore Events
+
+            <ArrowRight
+              size={18}
+              style={{
+                marginLeft: '0.5rem'
+              }}
+            />
+
+          </Link>
 
 
-  <Link
-    to="/about"
-    className="btn btn-outline"
-    style={{
-      textDecoration: 'none'
-    }}
-  >
-    About Our Club
-  </Link>
+          {/* About Our Club */}
 
-</div>
+          <Link
+            to="/about"
+            className="btn btn-outline"
+            style={{
+              textDecoration: 'none'
+            }}
+          >
+            About Our Club
+          </Link>
+
+        </div>
 
       </div>
 
@@ -190,25 +237,43 @@ export default function Hero() {
 }
 
 
+/* =========================================================
+   Skill Component
+   ========================================================= */
+
 function Skill({ icon, text }) {
+
   return (
     <div
       style={{
         display: 'inline-flex',
         alignItems: 'center',
         gap: '0.5rem',
+
         padding: '0.65rem 1rem',
-        border: '1px solid var(--surface-border)',
+
+        border:
+          '1px solid rgba(102, 155, 188, 0.35)',
+
         borderRadius: '999px',
-        background: 'rgba(255,255,255,0.03)',
+
+        background:
+          'rgba(0, 48, 73, 0.55)',
+
+        color: 'var(--papaya-whip)',
+
         fontFamily: 'var(--font-mono)',
-        fontSize: '0.8rem'
+
+        fontSize: '0.8rem',
+
+        transition:
+          'all 0.2s ease'
       }}
     >
 
       <span
         style={{
-          color: 'var(--primary)',
+          color: 'var(--brick-red)',
           display: 'flex'
         }}
       >
