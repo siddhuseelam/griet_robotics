@@ -13,7 +13,6 @@ import TeamSection from './components/TeamSection';
 import EventDetails from './components/EventDetails';
 import Members from './components/Members';
 
-
 function App() {
   return (
     <BrowserRouter>
@@ -126,8 +125,6 @@ function App() {
                 Team
               </NavLink>
 
-              
-
               <NavLink
                 to="/contact"
                 style={navStyle}
@@ -177,8 +174,6 @@ function App() {
               path="/team"
               element={<Members />}
             />
-
-            
 
             {/* CONTACT */}
             <Route
