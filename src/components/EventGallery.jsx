@@ -38,7 +38,6 @@ import {
   InputGroupInput,
 } from "./ui/input-group"
 import { Item, ItemContent, ItemMedia, ItemTitle } from "./ui/item"
-import { Progress, ProgressLabel } from "./ui/progress"
 import { Separator } from "./ui/separator"
 import { ToggleGroup, ToggleGroupItem } from "./ui/toggle-group"
 import { eventCategories, pastEvents, upcomingEvent } from "@/lib/site-data"
@@ -47,10 +46,6 @@ import { SectionHeading } from "./section-heading"
 import { SmartImage } from "./smart-image"
 
 function UpcomingEventCard() {
-  const filled = Math.round(
-    (upcomingEvent.seatsFilled / upcomingEvent.seatsTotal) * 100
-  )
-
   return (
     <Card className="overflow-hidden p-0 md:flex-row">
       <div className="md:w-2/5 md:shrink-0">
@@ -90,15 +85,6 @@ function UpcomingEventCard() {
             {upcomingEvent.teamSize}
           </span>
         </div>
-
-        <Progress value={filled} className="gap-1.5">
-          <ProgressLabel className="text-xs font-normal text-muted-foreground">
-            {upcomingEvent.seatsFilled} of {upcomingEvent.seatsTotal} team slots taken
-          </ProgressLabel>
-          <span className="ml-auto text-xs tabular-nums text-muted-foreground">
-            {filled}%
-          </span>
-        </Progress>
 
         <div className="mt-1 flex flex-col gap-2 sm:flex-row">
           <Button render={<Link to={upcomingEvent.to} />}>
