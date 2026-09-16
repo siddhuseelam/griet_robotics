@@ -1,6 +1,5 @@
 import * as React from "react"
 import { Link } from "react-router-dom"
-import Autoplay from "embla-carousel-autoplay"
 import {
   ArrowRightIcon,
   ArrowUpRightIcon,
@@ -13,7 +12,6 @@ import {
 import { Badge } from "./ui/badge"
 import { Button } from "./ui/button"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "./ui/card"
-import { Carousel, CarouselContent, CarouselItem } from "./ui/carousel"
 import { HoverCard, HoverCardContent, HoverCardTrigger } from "./ui/hover-card"
 import { Item, ItemContent, ItemMedia, ItemTitle } from "./ui/item"
 import { Progress, ProgressLabel } from "./ui/progress"
@@ -35,33 +33,27 @@ const stack = [
 ]
 
 export function TechStrip() {
-  const autoplay = React.useRef(
-    Autoplay({ delay: 1800, stopOnInteraction: false, stopOnMouseEnter: true })
-  )
-
   return (
-    <section className="border-b bg-muted/20 py-5">
-      <div className="container mx-auto flex flex-col gap-4 px-4 sm:flex-row sm:items-center sm:gap-6">
+    <section className="overflow-hidden border-b bg-muted/20 py-4">
+      <div className="container mx-auto flex flex-col gap-3 px-4 sm:flex-row sm:items-center sm:gap-6">
         <p className="shrink-0 font-heading text-[0.65rem] tracking-[0.18em] text-muted-foreground uppercase">
           We work with
         </p>
         <Separator orientation="vertical" className="hidden h-5 sm:block" />
-        <Carousel
-          plugins={[autoplay.current]}
-          opts={{ loop: true, align: "start", dragFree: true }}
-          className="min-w-0 flex-1"
-        >
-          <CarouselContent className="-ml-2">
-            {stack.map((tool) => (
-              <CarouselItem key={tool} className="basis-auto pl-2">
-                <Badge variant="secondary" className="gap-1.5 py-1 font-mono">
-                  <LightningIcon className="size-3" weight="fill" />
-                  {tool}
-                </Badge>
-              </CarouselItem>
+        <div className="relative min-w-0 flex-1 overflow-hidden [mask-image:linear-gradient(to_right,transparent,black_4%,black_96%,transparent)]">
+          <div className="flex w-max gap-2.5 animate-marquee">
+            {[...stack, ...stack].map((tool, index) => (
+              <Badge
+                key={`${tool}-${index}`}
+                variant="secondary"
+                className="shrink-0 gap-1.5 py-1 font-mono text-xs shadow-2xs"
+              >
+                <LightningIcon className="size-3 text-primary" weight="fill" />
+                {tool}
+              </Badge>
             ))}
-          </CarouselContent>
-        </Carousel>
+          </div>
+        </div>
       </div>
     </section>
   )
