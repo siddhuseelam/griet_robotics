@@ -7,7 +7,7 @@ import teamData from "../assets/teamData.json"
  */
 
 export const domains = [
-  { id: "core", label: "Core", icon: "CrownIcon", match: ["president", "secretary", "treasury", "all rounder"] },
+  { id: "core", label: "Core", icon: "CrownIcon", match: ["president", "secretary", "treasury", "all rounder", "core", "vice"] },
   { id: "technical", label: "Technical", icon: "CpuIcon", match: ["tech"] },
   { id: "creative", label: "Creative & Design", icon: "PaletteIcon", match: ["design", "creative"] },
   { id: "documentation", label: "Documentation", icon: "FileTextIcon", match: ["document", "documention"] },
@@ -16,7 +16,7 @@ export const domains = [
   { id: "outreach", label: "PR & Publicity", icon: "MegaphoneIcon", match: ["pr", "publicity", "cr"] },
 ]
 
-const LEAD_WORDS = ["lead", "head", "president", "secretary", "treasury"]
+const LEAD_WORDS = ["lead", "head", "president", "secretary", "treasury", "vice", "founder"]
 const JUNIOR_WORDS = ["jr", "junior"]
 
 function domainIdFor(raw) {
@@ -37,8 +37,11 @@ function rankFor(raw) {
 /** Google Drive share links are not directly embeddable — rewrite to a thumbnail URL. */
 function directImageUrl(url) {
   if (!url) return null
+  if (url.startsWith("/") || url.startsWith("data:") || (url.startsWith("http") && !url.includes("drive.google.com"))) {
+    return url
+  }
   const match = url.match(/id=([a-zA-Z0-9_-]+)/)
-  if (!match) return null
+  if (!match) return url
   return `https://drive.google.com/thumbnail?id=${match[1]}&sz=w400`
 }
 
