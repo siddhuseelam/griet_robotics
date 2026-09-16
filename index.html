@@ -6,12 +6,22 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>GRIET Robotics</title>
     <script>
-      if ('scrollRestoration' in history) {
-        history.scrollRestoration = 'manual';
-      }
+      try {
+        if ('scrollRestoration' in history) {
+          history.scrollRestoration = 'manual';
+        }
+      } catch (e) {}
       window.scrollTo(0, 0);
       if (document.documentElement) document.documentElement.scrollTop = 0;
       if (document.body) document.body.scrollTop = 0;
+      window.addEventListener('DOMContentLoaded', function() {
+        window.scrollTo(0, 0);
+      });
+      window.addEventListener('load', function() {
+        setTimeout(function() {
+          window.scrollTo(0, 0);
+        }, 10);
+      });
     </script>
   </head>
   <body>
