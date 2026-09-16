@@ -18,13 +18,24 @@ const About = React.lazy(() => import("./components/About"))
 const Members = React.lazy(() => import("./components/Members"))
 const Contact = React.lazy(() => import("./components/Contact"))
 
-/** Router keeps the old scroll offset between pages — reset it on navigation. */
+/** Router keeps the old scroll offset between pages — reset it on navigation and reloads. */
 function ScrollToTop() {
   const { pathname } = useLocation()
 
-  React.useEffect(() => {
-    window.scrollTo({ top: 0, behavior: "instant" })
+  React.useLayoutEffect(() => {
+    if (typeof window !== "undefined" && "scrollRestoration" in window.history) {
+      window.history.scrollRestoration = "manual"
+    }
+    window.scrollTo({ top: 0, left: 0, behavior: "instant" })
   }, [pathname])
+
+  React.useEffect(() => {
+    const handleBeforeUnload = () => {
+      window.scrollTo(0, 0)
+    }
+    window.addEventListener("beforeunload", handleBeforeUnload)
+    return () => window.removeEventListener("beforeunload", handleBeforeUnload)
+  }, [])
 
   return null
 }
