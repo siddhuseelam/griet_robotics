@@ -102,7 +102,7 @@ export const upcomingEvent = {
   date: "18 – 19 September 2026",
   shortDate: "18 Sep 2026",
   time: "9:00 AM – 3:30 PM",
-  venue: "Hall 1, GRIET Campus",
+  venue: "GRIET Campus",
   teamSize: "4 – 6 members",
   fee: "₹1200 per team",
   certificates: "For all participants",
