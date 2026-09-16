@@ -69,10 +69,10 @@ function MemberProfile({ member, onOpenChange }) {
     >
       {member && (
         <div className="flex flex-col items-center gap-4 p-6 pt-2 text-center">
-          <Avatar size="lg" className="size-24">
+          <Avatar className="size-40 sm:size-48 ring-4 ring-primary/20 shadow-md">
             <AvatarImage src={member.photo ?? undefined} alt={member.name} />
-            <AvatarFallback className="text-lg font-medium">
-              {member.initials}
+            <AvatarFallback className="text-3xl font-medium">
+              {member.initials || <UserIcon className="size-16 text-muted-foreground" />}
             </AvatarFallback>
           </Avatar>
 

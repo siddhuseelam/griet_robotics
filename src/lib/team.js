@@ -42,7 +42,7 @@ function directImageUrl(url) {
   }
   const match = url.match(/id=([a-zA-Z0-9_-]+)/)
   if (!match) return url
-  return `https://drive.google.com/thumbnail?id=${match[1]}&sz=w400`
+  return `https://drive.google.com/thumbnail?id=${match[1]}&sz=w800`
 }
 
 function titleCase(value) {
