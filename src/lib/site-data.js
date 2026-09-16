@@ -109,7 +109,7 @@ export const upcomingEvent = {
   registerUrl: "https://forms.gle/oZ1LaBSqneapcQAf6",
   seatsTotal: 40,
   seatsFilled: 27,
-  cover: "/images/gallery1.jpg",
+  cover: "/images/next-gen-robotics-banner.jpeg",
   description:
     "Join us for an exciting robotics workshop focused on learning, innovation, technology and hands-on exploration. Discover what the next generation of robotics has to offer.",
   about: [

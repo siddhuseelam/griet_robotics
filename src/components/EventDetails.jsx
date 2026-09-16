@@ -58,6 +58,7 @@ import {
 } from "./ui/table"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "./ui/tabs"
 import { Tooltip, TooltipContent, TooltipTrigger } from "./ui/tooltip"
+import { SmartImage } from "./smart-image"
 import { contactEmail, contacts, routes, upcomingEvent } from "@/lib/site-data"
 import { initialsOf } from "@/lib/team"
 import { cn } from "cn"
@@ -128,6 +129,17 @@ export default function EventDetails() {
             </BreadcrumbItem>
           </BreadcrumbList>
         </Breadcrumb>
+
+        {/* ---------- Banner Image ---------- */}
+        <div className="mb-8 overflow-hidden rounded-xl border bg-card shadow-sm">
+          <SmartImage
+            src={upcomingEvent.cover}
+            alt={upcomingEvent.title}
+            ratio={16 / 9}
+            className="w-full"
+            imgClassName="object-cover"
+          />
+        </div>
 
         {/* ---------- Header ---------- */}
         <div className="flex flex-col gap-4">
