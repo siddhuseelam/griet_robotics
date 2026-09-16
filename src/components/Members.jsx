@@ -4,7 +4,6 @@ import {
   GridFourIcon,
   MagnifyingGlassIcon,
   RowsIcon,
-  SealCheckIcon,
   UserIcon,
   UsersThreeIcon,
   XIcon,
@@ -114,9 +113,6 @@ function MemberRow({ member, onSelect }) {
       <ItemContent className="gap-0.5">
         <ItemTitle className="flex items-center gap-1.5">
           {member.name}
-          {member.isLead && (
-            <SealCheckIcon className="size-3.5 text-primary" weight="fill" />
-          )}
         </ItemTitle>
         <ItemDescription>{member.role}</ItemDescription>
       </ItemContent>

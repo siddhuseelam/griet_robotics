@@ -1,6 +1,6 @@
-import { SealCheckIcon, UserIcon } from "@phosphor-icons/react"
+import { UserIcon } from "@phosphor-icons/react"
 
-import { Avatar, AvatarBadge, AvatarFallback, AvatarImage } from "./ui/avatar"
+import { Avatar, AvatarFallback, AvatarImage } from "./ui/avatar"
 import { Badge } from "./ui/badge"
 import { Card, CardContent } from "./ui/card"
 import { cn } from "cn"
@@ -33,11 +33,6 @@ export default function TeamMemberCard({ member, className, onSelect }) {
           <AvatarFallback className="text-base font-medium">
             {member.initials || <UserIcon className="size-7" />}
           </AvatarFallback>
-          {member.isLead && (
-            <AvatarBadge className="size-5 ring-card">
-              <SealCheckIcon className="size-3!" weight="fill" />
-            </AvatarBadge>
-          )}
         </Avatar>
 
         <h3 className="mt-1 line-clamp-2 font-heading text-sm leading-snug font-medium text-balance">
