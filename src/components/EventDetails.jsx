@@ -9,7 +9,6 @@ import {
   CopyIcon,
   CurrencyInrIcon,
   EnvelopeSimpleIcon,
-  InfoIcon,
   MapPinIcon,
   PhoneIcon,
   QuestionIcon,
@@ -24,7 +23,6 @@ import {
   AccordionItem,
   AccordionTrigger,
 } from "./ui/accordion"
-import { Alert, AlertDescription, AlertTitle } from "./ui/alert"
 import { Avatar, AvatarFallback } from "./ui/avatar"
 import { Badge } from "./ui/badge"
 import { Button } from "./ui/button"
@@ -46,7 +44,6 @@ import {
   ItemMedia,
   ItemTitle,
 } from "./ui/item"
-import { Progress, ProgressLabel } from "./ui/progress"
 import { Separator } from "./ui/separator"
 import {
   Table,
@@ -105,9 +102,6 @@ async function shareEvent() {
 }
 
 export default function EventDetails() {
-  const filled = Math.round(
-    (upcomingEvent.seatsFilled / upcomingEvent.seatsTotal) * 100
-  )
   const seatsLeft = upcomingEvent.seatsTotal - upcomingEvent.seatsFilled
 
   return (
@@ -202,24 +196,6 @@ export default function EventDetails() {
             </ButtonGroup>
           </div>
         </div>
-
-        {/* ---------- Seats ---------- */}
-        <Alert className="mt-8">
-          <InfoIcon className="size-4" />
-          <AlertTitle className="font-heading text-sm">
-            {seatsLeft} team {seatsLeft === 1 ? "slot" : "slots"} left
-          </AlertTitle>
-          <AlertDescription>
-            <Progress value={filled} className="mt-2 gap-1.5">
-              <ProgressLabel className="text-xs font-normal text-muted-foreground">
-                {upcomingEvent.seatsFilled} of {upcomingEvent.seatsTotal} filled
-              </ProgressLabel>
-              <span className="ml-auto text-xs tabular-nums text-muted-foreground">
-                {filled}%
-              </span>
-            </Progress>
-          </AlertDescription>
-        </Alert>
 
         {/* ---------- Facts ---------- */}
         <div className="mt-8 grid grid-cols-2 gap-3 sm:grid-cols-3">
