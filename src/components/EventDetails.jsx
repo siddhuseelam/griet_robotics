@@ -104,6 +104,12 @@ async function shareEvent() {
 export default function EventDetails() {
   const seatsLeft = upcomingEvent.seatsTotal - upcomingEvent.seatsFilled
 
+  React.useLayoutEffect(() => {
+    window.scrollTo(0, 0)
+    if (document.documentElement) document.documentElement.scrollTop = 0
+    if (document.body) document.body.scrollTop = 0
+  }, [])
+
   return (
     <div className="pb-28 pt-8 md:pb-20 md:pt-12">
       <div className="container mx-auto max-w-4xl px-4">

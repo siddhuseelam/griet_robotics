@@ -239,6 +239,12 @@ export default function EventGallery() {
   const [query, setQuery] = React.useState("")
   const [galleryEvent, setGalleryEvent] = React.useState(null)
 
+  React.useLayoutEffect(() => {
+    window.scrollTo(0, 0)
+    if (document.documentElement) document.documentElement.scrollTop = 0
+    if (document.body) document.body.scrollTop = 0
+  }, [])
+
   const visible = React.useMemo(() => {
     const needle = query.trim().toLowerCase()
     return pastEvents.filter((event) => {

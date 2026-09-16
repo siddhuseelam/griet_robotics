@@ -2,6 +2,11 @@ import * as React from "react"
 import { BrowserRouter, Route, Routes, useLocation } from "react-router-dom"
 
 import Hero from "./components/Hero"
+import EventGallery from "./components/EventGallery"
+import EventDetails from "./components/EventDetails"
+import About from "./components/About"
+import Members from "./components/Members"
+import Contact from "./components/Contact"
 import { SiteFooter } from "./components/site-footer"
 import { SiteHeader } from "./components/site-header"
 import { ThemeProvider } from "./components/theme-provider"
@@ -9,14 +14,6 @@ import { Spinner } from "./components/ui/spinner"
 import { Toaster } from "./components/ui/sonner"
 import { TooltipProvider } from "./components/ui/tooltip"
 import { routes } from "./lib/site-data"
-
-// The home page ships in the main bundle; every other route is fetched on
-// demand so the first paint stays small.
-const EventGallery = React.lazy(() => import("./components/EventGallery"))
-const EventDetails = React.lazy(() => import("./components/EventDetails"))
-const About = React.lazy(() => import("./components/About"))
-const Members = React.lazy(() => import("./components/Members"))
-const Contact = React.lazy(() => import("./components/Contact"))
 
 /** Router keeps the old scroll offset between pages — reset it on navigation and reloads. */
 function ScrollToTop() {
@@ -26,15 +23,39 @@ function ScrollToTop() {
     if (typeof window !== "undefined" && "scrollRestoration" in window.history) {
       window.history.scrollRestoration = "manual"
     }
-    window.scrollTo({ top: 0, left: 0, behavior: "instant" })
+
+    const reset = () => {
+      window.scrollTo(0, 0)
+      if (document.documentElement) document.documentElement.scrollTop = 0
+      if (document.body) document.body.scrollTop = 0
+    }
+
+    reset()
+    const rafId = requestAnimationFrame(reset)
+    const t1 = setTimeout(reset, 50)
+    const t2 = setTimeout(reset, 150)
+
+    return () => {
+      cancelAnimationFrame(rafId)
+      clearTimeout(t1)
+      clearTimeout(t2)
+    }
   }, [pathname])
 
   React.useEffect(() => {
-    const handleBeforeUnload = () => {
+    const reset = () => {
       window.scrollTo(0, 0)
+      if (document.documentElement) document.documentElement.scrollTop = 0
+      if (document.body) document.body.scrollTop = 0
     }
-    window.addEventListener("beforeunload", handleBeforeUnload)
-    return () => window.removeEventListener("beforeunload", handleBeforeUnload)
+    window.addEventListener("beforeunload", reset)
+    window.addEventListener("pagehide", reset)
+    window.addEventListener("load", reset)
+    return () => {
+      window.removeEventListener("beforeunload", reset)
+      window.removeEventListener("pagehide", reset)
+      window.removeEventListener("load", reset)
+    }
   }, [])
 
   return null
