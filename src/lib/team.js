@@ -62,12 +62,28 @@ export function initialsOf(name) {
     .toUpperCase()
 }
 
+const CORE_MEMBERS = [
+  "maloth varshini",
+  "vedanaparthi tanusri",
+  "akshitha dyavanapelly",
+  "manogna nallavelli",
+  "ravithreni vasam",
+  "aaryan arjun p",
+  "vaishnavi gondala",
+]
+
 export const members = teamData
   .filter((row) => row.Name && row.Domain)
   .map((row, index) => {
     const rawDomain = row.Domain.trim()
+    const rawName = row.Name.trim().toLowerCase()
     const domainId = domainIdFor(rawDomain)
     const rank = rankFor(rawDomain)
+    const isCore =
+      domainId === "core" ||
+      CORE_MEMBERS.some(
+        (target) => rawName.includes(target) || target.includes(rawName)
+      )
 
     return {
       id: `${index}-${row.Name.trim().toLowerCase().replace(/\s+/g, "-")}`,
@@ -78,6 +94,7 @@ export const members = teamData
       domainLabel: domains.find((d) => d.id === domainId)?.label ?? "Core",
       rank,
       isLead: rank === "Lead",
+      isCore,
       photo: directImageUrl(row.Photo),
     }
   })
@@ -94,7 +111,9 @@ export const leads = members.filter((member) => member.isLead)
 export const domainStats = domains
   .map((domain) => ({
     ...domain,
-    count: members.filter((member) => member.domainId === domain.id).length,
+    count: members.filter((member) =>
+      domain.id === "core" ? member.isCore : member.domainId === domain.id
+    ).length,
   }))
   .filter((domain) => domain.count > 0)
 

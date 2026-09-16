@@ -144,7 +144,12 @@ export default function Members() {
     const needle = query.trim().toLowerCase()
 
     const filtered = members.filter((member) => {
-      const matchesDomain = domain === "all" || member.domainId === domain
+      const matchesDomain =
+        domain === "all"
+          ? true
+          : domain === "core"
+            ? member.isCore
+            : member.domainId === domain
       const matchesQuery =
         !needle ||
         member.name.toLowerCase().includes(needle) ||
