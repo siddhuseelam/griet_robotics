@@ -207,7 +207,17 @@ const members = [
   },
 
   {
-    name: 'Pruthvi Girijala',
+    name: 'Prithvi Girijala',
+    domain: 'Technical'
+  },
+
+  {
+    name: 'Abhinav',
+    domain: 'Technical'
+  },
+
+  {
+    name: 'Vatsal Surya Kumar',
     domain: 'Technical'
   },
 
