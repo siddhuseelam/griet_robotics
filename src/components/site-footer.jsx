@@ -129,13 +129,8 @@ export function SiteFooter() {
           </FooterColumn>
 
           <FooterColumn title="Events">
-            {navigation
-              .find((item) => item.title === "Events")
-              ?.children.map((child) => (
-                <FooterLink key={child.to + child.title} to={child.to}>
-                  {child.title}
-                </FooterLink>
-              ))}
+            <FooterLink to={routes.events}>All events</FooterLink>
+            <FooterLink to={routes.nextGenRobotics}>Next-Gen Robotics</FooterLink>
             <a
               href={`mailto:${contactEmail}`}
               className="flex w-fit items-center gap-1.5 text-sm text-muted-foreground transition-colors hover:text-foreground"
