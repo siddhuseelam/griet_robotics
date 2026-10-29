@@ -1,11 +1,9 @@
 import * as React from "react"
 import { useNavigate } from "react-router-dom"
 import {
-  ArrowSquareOutIcon,
   CopyIcon,
   MoonIcon,
   SunIcon,
-  TicketIcon,
 } from "@phosphor-icons/react"
 import { toast } from "sonner"
 
@@ -21,7 +19,7 @@ import {
   CommandShortcut,
 } from "./ui/command"
 import { Icon } from "@/lib/icons"
-import { allNavLinks, contactEmail, upcomingEvent } from "@/lib/site-data"
+import { allNavLinks, contactEmail } from "@/lib/site-data"
 import { domainStats } from "@/lib/team"
 import { routes } from "@/lib/site-data"
 import { useTheme } from "./theme-provider"
@@ -96,18 +94,6 @@ export function CommandMenu({ open, onOpenChange }) {
           <CommandSeparator />
 
           <CommandGroup heading="Actions">
-            <CommandItem
-              value="register next-gen robotics"
-              onSelect={() =>
-                run(() => window.open(upcomingEvent.registerUrl, "_blank", "noopener"))
-              }
-            >
-              <TicketIcon />
-              Register for {upcomingEvent.title}
-              <CommandShortcut>
-                <ArrowSquareOutIcon className="size-3.5" />
-              </CommandShortcut>
-            </CommandItem>
             <CommandItem
               value="copy email address contact"
               onSelect={() =>

@@ -2,7 +2,6 @@ import * as React from "react"
 import { Link } from "react-router-dom"
 import {
   ArrowRightIcon,
-  ArrowUpRightIcon,
   CalendarDotsIcon,
   QuestionIcon,
 } from "@phosphor-icons/react"
@@ -31,7 +30,6 @@ import {
   clubPillars,
   clubTimeline,
   routes,
-  upcomingEvent,
 } from "@/lib/site-data"
 import { domainStats, memberCount } from "@/lib/team"
 import { SectionHeading } from "./section-heading"
@@ -185,23 +183,17 @@ export default function About() {
         {/* ---------- Join CTA ---------- */}
         <Alert className="items-center">
           <CalendarDotsIcon className="size-4" />
-          <AlertTitle className="font-heading">Ready to join in?</AlertTitle>
+          <AlertTitle className="font-heading">Ready to build with us?</AlertTitle>
           <AlertDescription>
-            {upcomingEvent.title} runs on {upcomingEvent.date}. Registrations are open now.
+            Explore our events and project showcase, or connect with our domains to get involved.
           </AlertDescription>
           <AlertAction>
             <Button
               size="sm"
-              render={
-                <a
-                  href={upcomingEvent.registerUrl}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                />
-              }
+              render={<Link to={routes.events} />}
             >
-              Register
-              <ArrowUpRightIcon data-icon="inline-end" className="size-3.5" />
+              Explore events
+              <ArrowRightIcon data-icon="inline-end" className="size-3.5" />
             </Button>
           </AlertAction>
         </Alert>

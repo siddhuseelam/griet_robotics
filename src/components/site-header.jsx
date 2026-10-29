@@ -1,6 +1,6 @@
 import * as React from "react"
 import { Link, useLocation } from "react-router-dom"
-import { ArrowUpRightIcon, MagnifyingGlassIcon } from "@phosphor-icons/react"
+import { MagnifyingGlassIcon } from "@phosphor-icons/react"
 
 import { Badge } from "./ui/badge"
 import { Button } from "./ui/button"
@@ -18,7 +18,7 @@ import { Progress } from "./ui/progress"
 import { Tooltip, TooltipContent, TooltipTrigger } from "./ui/tooltip"
 import { Icon } from "@/lib/icons"
 import { cn } from "cn"
-import { navigation, upcomingEvent } from "@/lib/site-data"
+import { navigation } from "@/lib/site-data"
 import { CommandMenu } from "./command-menu"
 import { isActivePath } from "@/lib/nav"
 import { MobileNav } from "./mobile-nav"
@@ -174,21 +174,6 @@ export function SiteHeader() {
           <div className="hidden md:flex">
             <ModeToggle />
           </div>
-
-          <Button
-            size="sm"
-            className="hidden lg:inline-flex"
-            render={
-              <a
-                href={upcomingEvent.registerUrl}
-                target="_blank"
-                rel="noopener noreferrer"
-              />
-            }
-          >
-            Register
-            <ArrowUpRightIcon data-icon="inline-end" className="size-3.5" />
-          </Button>
 
           <MobileNav />
         </div>

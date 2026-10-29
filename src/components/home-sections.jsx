@@ -2,7 +2,6 @@ import * as React from "react"
 import { Link } from "react-router-dom"
 import {
   ArrowRightIcon,
-  ArrowUpRightIcon,
   CheckCircleIcon,
   CpuIcon,
   LightningIcon,
@@ -11,14 +10,13 @@ import {
 
 import { Badge } from "./ui/badge"
 import { Button } from "./ui/button"
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "./ui/card"
 import { HoverCard, HoverCardContent, HoverCardTrigger } from "./ui/hover-card"
 import { Item, ItemContent, ItemMedia, ItemTitle } from "./ui/item"
 import { Progress, ProgressLabel } from "./ui/progress"
 import { Separator } from "./ui/separator"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "./ui/tabs"
 import { Icon } from "@/lib/icons"
-import { routes, upcomingEvent } from "@/lib/site-data"
+import { routes } from "@/lib/site-data"
 import { domainStats, memberCount } from "@/lib/team"
 import { SectionHeading } from "./section-heading"
 import { SmartImage } from "./smart-image"
@@ -241,65 +239,6 @@ export function HomeDomains() {
             ))}
           </div>
         </div>
-      </div>
-    </section>
-  )
-}
-
-/* =========================================================
-   CTA
-   ========================================================= */
-
-export function HomeCta() {
-  return (
-    <section className="py-16 md:py-24">
-      <div className="container mx-auto px-4">
-        <Card className="relative overflow-hidden">
-          <div
-            aria-hidden
-            className="pointer-events-none absolute inset-0 bg-[radial-gradient(40rem_20rem_at_80%_0%,var(--color-primary)/15%,transparent)]"
-          />
-          <CardHeader className="relative items-center text-center">
-            <Badge variant="secondary" className="mx-auto mb-2 gap-1.5">
-              <Icon name="TicketIcon" className="size-3" />
-              Registrations open
-            </Badge>
-            <CardTitle className="font-heading text-[clamp(1.5rem,4vw,2.25rem)] leading-tight font-semibold text-balance">
-              {upcomingEvent.title}
-            </CardTitle>
-            <CardDescription className="mx-auto max-w-xl text-balance">
-              {upcomingEvent.description}
-            </CardDescription>
-          </CardHeader>
-          <CardContent className="relative items-center gap-4">
-            <div className="flex flex-wrap items-center justify-center gap-x-5 gap-y-2 text-xs text-muted-foreground">
-              <span>{upcomingEvent.date}</span>
-              <Separator orientation="vertical" className="hidden h-3 sm:block" />
-              <span>{upcomingEvent.venue}</span>
-              <Separator orientation="vertical" className="hidden h-3 sm:block" />
-              <span>{upcomingEvent.fee}</span>
-            </div>
-
-            <div className="flex w-full flex-col gap-3 sm:w-auto sm:flex-row">
-              <Button
-                size="lg"
-                render={
-                  <a
-                    href={upcomingEvent.registerUrl}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                  />
-                }
-              >
-                Register your team
-                <ArrowUpRightIcon data-icon="inline-end" className="size-4" />
-              </Button>
-              <Button size="lg" variant="outline" render={<Link to={upcomingEvent.to} />}>
-                Read the details
-              </Button>
-            </div>
-          </CardContent>
-        </Card>
       </div>
     </section>
   )

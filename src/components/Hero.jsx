@@ -2,12 +2,8 @@ import * as React from "react"
 import { Link } from "react-router-dom"
 import {
   ArrowRightIcon,
-  ArrowUpRightIcon,
-  CalendarDotsIcon,
   RobotIcon,
 } from "@phosphor-icons/react"
-
-import { Alert, AlertAction, AlertDescription, AlertTitle } from "./ui/alert"
 import { Avatar, AvatarFallback, AvatarGroup, AvatarGroupCount, AvatarImage } from "./ui/avatar"
 import { Badge } from "./ui/badge"
 import { Button } from "./ui/button"
@@ -17,9 +13,9 @@ import {
   HoverCardContent,
   HoverCardTrigger,
 } from "./ui/hover-card"
-import { routes, upcomingEvent } from "@/lib/site-data"
+import { routes } from "@/lib/site-data"
 import { leads, memberCount } from "@/lib/team"
-import { HomeCta, HomeDomains, HomeHighlights, TechStrip } from "./home-sections"
+import { HomeDomains, HomeHighlights, TechStrip } from "./home-sections"
 import HomeTeam from "./HomeTeam"
 
 const bootLines = [
@@ -149,25 +145,6 @@ export default function Hero() {
               and emerging technologies through hands-on learning.
             </p>
 
-            <Alert className="mt-7 w-full max-w-md">
-              <CalendarDotsIcon className="size-4" />
-              <AlertTitle className="font-heading text-sm">
-                {upcomingEvent.title}
-              </AlertTitle>
-              <AlertDescription className="text-xs">
-                {upcomingEvent.date} · registrations are open.
-              </AlertDescription>
-              <AlertAction>
-                <Button
-                  size="xs"
-                  variant="outline"
-                  render={<Link to={upcomingEvent.to} />}
-                >
-                  Details
-                </Button>
-              </AlertAction>
-            </Alert>
-
             <div className="mt-7 flex flex-col gap-3 sm:flex-row sm:flex-wrap">
               <Button size="lg" render={<Link to={routes.events} />}>
                 Explore events
@@ -176,16 +153,9 @@ export default function Hero() {
               <Button
                 size="lg"
                 variant="outline"
-                render={
-                  <a
-                    href={upcomingEvent.registerUrl}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                  />
-                }
+                render={<Link to={routes.about} />}
               >
-                Register now
-                <ArrowUpRightIcon data-icon="inline-end" className="size-4" />
+                About our club
               </Button>
             </div>
 
@@ -203,7 +173,6 @@ export default function Hero() {
       <HomeHighlights />
       <HomeDomains />
       <HomeTeam />
-      <HomeCta />
     </div>
   )
 }

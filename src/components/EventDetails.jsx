@@ -1,7 +1,6 @@
 import * as React from "react"
 import { Link } from "react-router-dom"
 import {
-  ArrowUpRightIcon,
   CalendarDotsIcon,
   CertificateIcon,
   ClipboardTextIcon,
@@ -56,17 +55,17 @@ import {
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "./ui/tabs"
 import { Tooltip, TooltipContent, TooltipTrigger } from "./ui/tooltip"
 import { SmartImage } from "./smart-image"
-import { contactEmail, contacts, routes, upcomingEvent } from "@/lib/site-data"
+import { contactEmail, contacts, routes, nextGenRoboticsEvent as event } from "@/lib/site-data"
 import { initialsOf } from "@/lib/team"
 import { cn } from "cn"
 
 const facts = [
-  { icon: CalendarDotsIcon, label: "Date", value: upcomingEvent.date },
-  { icon: ClockIcon, label: "Time", value: upcomingEvent.time },
-  { icon: MapPinIcon, label: "Venue", value: upcomingEvent.venue },
-  { icon: UsersIcon, label: "Team size", value: upcomingEvent.teamSize },
-  { icon: CurrencyInrIcon, label: "Registration fee", value: upcomingEvent.fee },
-  { icon: CertificateIcon, label: "Certificates", value: upcomingEvent.certificates },
+  { icon: CalendarDotsIcon, label: "Date", value: event.date },
+  { icon: ClockIcon, label: "Time", value: event.time },
+  { icon: MapPinIcon, label: "Venue", value: event.venue },
+  { icon: UsersIcon, label: "Team size", value: event.teamSize },
+  { icon: CurrencyInrIcon, label: "Registration fee", value: event.fee },
+  { icon: CertificateIcon, label: "Certificates", value: event.certificates },
 ]
 
 function FactCard({ icon: FactIcon, label, value }) {
@@ -92,7 +91,7 @@ async function shareEvent() {
   const url = window.location.href
   if (navigator.share) {
     try {
-      await navigator.share({ title: upcomingEvent.title, url })
+      await navigator.share({ title: event.title, url })
       return
     } catch {
       // User dismissed the share sheet — fall through to copying instead.
@@ -102,8 +101,6 @@ async function shareEvent() {
 }
 
 export default function EventDetails() {
-  const seatsLeft = upcomingEvent.seatsTotal - upcomingEvent.seatsFilled
-
   React.useLayoutEffect(() => {
     window.scrollTo(0, 0)
     if (document.documentElement) document.documentElement.scrollTop = 0
@@ -125,7 +122,7 @@ export default function EventDetails() {
             </BreadcrumbItem>
             <BreadcrumbSeparator />
             <BreadcrumbItem>
-              <BreadcrumbPage>{upcomingEvent.title}</BreadcrumbPage>
+              <BreadcrumbPage>{event.title}</BreadcrumbPage>
             </BreadcrumbItem>
           </BreadcrumbList>
         </Breadcrumb>
@@ -133,8 +130,8 @@ export default function EventDetails() {
         {/* ---------- Banner Image ---------- */}
         <div className="mb-8 overflow-hidden rounded-xl border bg-card shadow-sm">
           <SmartImage
-            src={upcomingEvent.cover}
-            alt={upcomingEvent.title}
+            src={event.cover}
+            alt={event.title}
             ratio={16 / 9}
             className="w-full"
             imgClassName="object-cover"
@@ -144,12 +141,12 @@ export default function EventDetails() {
         {/* ---------- Header ---------- */}
         <div className="flex flex-col gap-4">
           <div className="flex flex-wrap items-center gap-2">
-            <Badge>Registrations open</Badge>
-            <Badge variant="outline">{upcomingEvent.category}</Badge>
+            <Badge variant="secondary">Event concluded</Badge>
+            <Badge variant="outline">{event.category}</Badge>
           </div>
 
           <h1 className="font-heading text-[clamp(2rem,7vw,3.5rem)] leading-[1.05] font-semibold tracking-tight text-balance">
-            {upcomingEvent.title}
+            {event.title}
           </h1>
 
           <p className="max-w-2xl text-base leading-relaxed text-muted-foreground">
@@ -158,20 +155,10 @@ export default function EventDetails() {
             of next-generation robotics.
           </p>
 
-          {/* Desktop actions — the mobile equivalent is the sticky bar below. */}
-          <div className="hidden flex-wrap items-center gap-2 md:flex">
-            <Button
-              size="lg"
-              render={
-                <a
-                  href={upcomingEvent.registerUrl}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                />
-              }
-            >
-              Register your team
-              <ArrowUpRightIcon data-icon="inline-end" className="size-4" />
+          {/* Actions */}
+          <div className="flex flex-wrap items-center gap-2">
+            <Button size="lg" variant="secondary" disabled>
+              Event concluded · Registrations closed
             </Button>
             <ButtonGroup>
               <Tooltip>
@@ -230,7 +217,7 @@ export default function EventDetails() {
                 </CardDescription>
               </CardHeader>
               <CardContent className="gap-4">
-                {upcomingEvent.about.map((paragraph) => (
+                {event.about.map((paragraph) => (
                   <p
                     key={paragraph.slice(0, 24)}
                     className="text-sm leading-relaxed text-muted-foreground"
@@ -260,7 +247,7 @@ export default function EventDetails() {
                       </TableRow>
                     </TableHeader>
                     <TableBody>
-                      {upcomingEvent.schedule.map((row) => (
+                      {event.schedule.map((row) => (
                         <TableRow key={row.day}>
                           <TableCell className="pl-6 font-medium">{row.day}</TableCell>
                           <TableCell className="whitespace-nowrap">{row.date}</TableCell>
@@ -280,11 +267,11 @@ export default function EventDetails() {
           <TabsContent value="faq">
             <Card>
               <CardHeader>
-                <CardTitle className="font-heading text-lg">Before you register</CardTitle>
+                <CardTitle className="font-heading text-lg">Frequently asked questions</CardTitle>
               </CardHeader>
               <CardContent>
                 <Accordion className="w-full">
-                  {upcomingEvent.faqs.map((faq, index) => (
+                  {event.faqs.map((faq, index) => (
                     <AccordionItem key={faq.q} value={`event-faq-${index}`}>
                       <AccordionTrigger className="text-left text-sm font-medium">
                         <span className="flex items-start gap-3">
@@ -377,7 +364,7 @@ export default function EventDetails() {
                 </CardHeader>
                 <CardContent className="gap-3">
                   <p className="text-sm leading-relaxed text-muted-foreground">
-                    {upcomingEvent.venue} — Gokaraju Rangaraju Institute of
+                    {event.venue} — Gokaraju Rangaraju Institute of
                     Engineering and Technology, Bachupally, Hyderabad.
                   </p>
                   <Button
@@ -400,12 +387,12 @@ export default function EventDetails() {
           </TabsContent>
         </Tabs>
 
-        {/* ---------- Registration summary ---------- */}
+        {/* ---------- Event summary ---------- */}
         <Card className="mt-10">
           <CardHeader>
             <ClipboardTextIcon className="size-5 text-muted-foreground" />
             <CardTitle className="mt-2 font-heading text-lg">
-              Registration at a glance
+              Event overview
             </CardTitle>
           </CardHeader>
           <CardContent className="gap-2">
@@ -415,13 +402,13 @@ export default function EventDetails() {
                   Team size
                 </ItemTitle>
               </ItemContent>
-              <ItemActions className="font-medium">{upcomingEvent.teamSize}</ItemActions>
+              <ItemActions className="font-medium">{event.teamSize}</ItemActions>
             </Item>
             <Item variant="muted" size="sm">
               <ItemContent>
                 <ItemTitle className="font-normal text-muted-foreground">Fee</ItemTitle>
               </ItemContent>
-              <ItemActions className="font-medium">{upcomingEvent.fee}</ItemActions>
+              <ItemActions className="font-medium">{event.fee}</ItemActions>
             </Item>
             <Item variant="muted" size="sm">
               <ItemContent>
@@ -430,48 +417,11 @@ export default function EventDetails() {
                 </ItemTitle>
               </ItemContent>
               <ItemActions className="font-medium">
-                {upcomingEvent.certificates}
+                {event.certificates}
               </ItemActions>
             </Item>
           </CardContent>
         </Card>
-      </div>
-
-      {/* ---------- Sticky mobile CTA ---------- */}
-      <div
-        className={cn(
-          "fixed inset-x-0 bottom-0 z-40 border-t bg-background/95 p-3 backdrop-blur md:hidden",
-          "supports-[backdrop-filter]:bg-background/80"
-        )}
-      >
-        <div className="flex items-center gap-2">
-          <div className="min-w-0 flex-1">
-            <p className="truncate text-xs text-muted-foreground">
-              {upcomingEvent.shortDate} · {upcomingEvent.fee}
-            </p>
-            <p className="truncate text-sm font-medium">{seatsLeft} slots left</p>
-          </div>
-          <Button
-            variant="outline"
-            size="icon"
-            aria-label="Share event"
-            onClick={shareEvent}
-          >
-            <ShareNetworkIcon className="size-4" />
-          </Button>
-          <Button
-            render={
-              <a
-                href={upcomingEvent.registerUrl}
-                target="_blank"
-                rel="noopener noreferrer"
-              />
-            }
-          >
-            Register
-            <ArrowUpRightIcon data-icon="inline-end" className="size-3.5" />
-          </Button>
-        </div>
       </div>
     </div>
   )

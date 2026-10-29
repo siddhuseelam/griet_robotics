@@ -26,21 +26,6 @@ export const navigation = [
     to: routes.events,
     icon: "CalendarDotsIcon",
     description: "Workshops and hackathons.",
-    children: [
-      {
-        title: "Next-Gen Robotics",
-        to: routes.nextGenRobotics,
-        icon: "TicketIcon",
-        description: "Registrations open.",
-        badge: "Open",
-      },
-      {
-        title: "All events",
-        to: routes.events,
-        icon: "CalendarBlankIcon",
-        description: "Upcoming and past.",
-      },
-    ],
   },
   {
     title: "Club",
@@ -92,11 +77,11 @@ export const contacts = [
    EVENTS
    ========================================================= */
 
-export const upcomingEvent = {
+export const nextGenRoboticsEvent = {
   slug: "next-gen-robotics",
   to: routes.nextGenRobotics,
   title: "Next-Gen Robotics",
-  status: "upcoming",
+  status: "completed",
   category: "Workshop",
   tagline: "2-day hands-on robotics workshop",
   date: "18 – 19 September 2026",
@@ -106,16 +91,15 @@ export const upcomingEvent = {
   teamSize: "4 – 6 members",
   fee: "₹1200 per team",
   certificates: "For all participants",
-  registerUrl: "https://forms.gle/oZ1LaBSqneapcQAf6",
   seatsTotal: 40,
-  seatsFilled: 27,
+  seatsFilled: 40,
   cover: "/images/next-gen-robotics-banner.jpeg",
   description:
-    "Join us for an exciting robotics workshop focused on learning, innovation, technology and hands-on exploration. Discover what the next generation of robotics has to offer.",
+    "A 2-day hands-on robotics workshop organized by the Robotics Club, GRIET in association with the AI/ML Department focusing on learning, innovation, and practical exploration.",
   about: [
-    "Next-Gen Robotics is a 2-day workshop organized by the Robotics Club, GRIET in association with the AI/ML Department.",
-    "The workshop focuses on robotics, technology, hands-on learning and innovation. Participants will get an opportunity to learn, experiment and work together while exploring the possibilities of next-generation robotics.",
-    "Gather your squad, bring your ideas and get ready to experience an exciting journey into robotics.",
+    "Next-Gen Robotics was a 2-day workshop organized by the Robotics Club, GRIET in association with the AI/ML Department.",
+    "The workshop focused on robotics, technology, hands-on learning and innovation. Participants had the opportunity to learn, experiment and work together exploring next-generation robotics.",
+    "Teams designed, built, and programmed practical hardware projects with mentorship from domain leads.",
   ],
   schedule: [
     { day: "DAY 01", date: "18 September 2026", time: "9:00 AM – 3:30 PM", focus: "Fundamentals & build" },
@@ -124,24 +108,42 @@ export const upcomingEvent = {
   faqs: [
     {
       q: "Do we need to bring our own hardware?",
-      a: "No. All the kits, boards and tools you need for the two days are provided by the club. Bring a laptop if you have one.",
+      a: "No. All the kits, boards and tools needed for the two days were provided by the club.",
     },
     {
-      q: "Can we register as a team of 3?",
-      a: "Teams must have between 4 and 6 members. If you are short, reach out to us and we will help you pair up with other participants.",
+      q: "Was this open to all branches?",
+      a: "Yes, students across all years and departments participated.",
     },
     {
-      q: "Is the fee per person or per team?",
-      a: "₹1200 covers the entire team, not each member. It includes the kit, refreshments and certificates.",
-    },
-    {
-      q: "Will certificates be provided?",
-      a: "Yes — every participant who attends both days receives a certificate of participation.",
+      q: "Were certificates provided?",
+      a: "Yes — every participant who completed the two-day workshop received a certificate of participation.",
     },
   ],
 }
 
+export const upcomingEvent = null
+
 export const pastEvents = [
+  {
+    slug: "next-gen-robotics",
+    to: routes.nextGenRobotics,
+    title: "Next-Gen Robotics",
+    status: "completed",
+    category: "Workshop",
+    date: "18 – 19 September 2026",
+    year: 2026,
+    venue: "GRIET Campus",
+    attendees: 150,
+    cover: "/images/next-gen-robotics-banner.jpeg",
+    description:
+      "A 2-day flagship robotics workshop focused on learning, innovation, technology and hands-on exploration in association with the AI/ML Department.",
+    highlights: [
+      "Hardware kits, boards and tools provided by the club",
+      "Hands-on sessions on fundamentals, automation and build",
+      "Showcase demo and participation certificates for all teams",
+    ],
+    images: ["/images/next-gen-robotics-banner.jpeg", "/images/gallery1.jpg", "/images/gallery2.jpg"],
+  },
   {
     slug: "iot-to-robotics",
     title: "Transforming IoT Ideas to Robotics Reality",
@@ -224,5 +226,5 @@ export const clubTimeline = [
   { year: "2025", title: "Club founded", text: "The Robotics Club is formed at GRIET with a handful of students and a lot of ambition." },
   { year: "2026", title: "First event", text: "Transforming IoT Ideas to Robotics Reality brings 120 students together over two days." },
   { year: "2026", title: "Domains formed", text: "Seven specialised domains are set up, from Technical to Creative & Design." },
-  { year: "Next", title: "Next-Gen Robotics", text: "Our flagship 2-day workshop, with registrations open right now." },
+  { year: "2026", title: "Next-Gen Robotics", text: "Flagship 2-day hands-on workshop hosted in association with the AI/ML Department." },
 ]

@@ -46,6 +46,8 @@ import { SectionHeading } from "./section-heading"
 import { SmartImage } from "./smart-image"
 
 function UpcomingEventCard() {
+  if (!upcomingEvent) return null
+
   return (
     <Card className="overflow-hidden p-0 md:flex-row">
       <div className="md:w-2/5 md:shrink-0">
@@ -91,19 +93,21 @@ function UpcomingEventCard() {
             View event details
             <ArrowRightIcon data-icon="inline-end" className="size-4" />
           </Button>
-          <Button
-            variant="outline"
-            render={
-              <a
-                href={upcomingEvent.registerUrl}
-                target="_blank"
-                rel="noopener noreferrer"
-              />
-            }
-          >
-            Register
-            <ArrowUpRightIcon data-icon="inline-end" className="size-4" />
-          </Button>
+          {upcomingEvent.registerUrl && (
+            <Button
+              variant="outline"
+              render={
+                <a
+                  href={upcomingEvent.registerUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                />
+              }
+            >
+              Register
+              <ArrowUpRightIcon data-icon="inline-end" className="size-4" />
+            </Button>
+          )}
         </div>
       </CardContent>
     </Card>
@@ -214,6 +218,17 @@ function HighlightsModal({ event, onOpenChange }) {
               </Item>
             ))}
           </div>
+
+          {event.to && (
+            <Button
+              variant="outline"
+              className="mt-2 w-full"
+              render={<Link to={event.to} />}
+            >
+              View event overview
+              <ArrowRightIcon data-icon="inline-end" className="size-4" />
+            </Button>
+          )}
         </div>
       )}
     </ResponsiveModal>
@@ -255,19 +270,23 @@ export default function EventGallery() {
         />
 
         {/* ---------- Upcoming ---------- */}
-        <section className="mt-12">
-          <div className="mb-5 flex items-center gap-2.5">
-            <CalendarDotsIcon className="size-5 text-muted-foreground" />
-            <h2 className="font-heading text-lg font-semibold">Upcoming</h2>
-            <Badge variant="secondary" className="ml-1">
-              1
-            </Badge>
-          </div>
+        {upcomingEvent && (
+          <>
+            <section className="mt-12">
+              <div className="mb-5 flex items-center gap-2.5">
+                <CalendarDotsIcon className="size-5 text-muted-foreground" />
+                <h2 className="font-heading text-lg font-semibold">Upcoming</h2>
+                <Badge variant="secondary" className="ml-1">
+                  1
+                </Badge>
+              </div>
 
-          <UpcomingEventCard />
-        </section>
+              <UpcomingEventCard />
+            </section>
 
-        <Separator className="my-12" />
+            <Separator className="my-12" />
+          </>
+        )}
 
         {/* ---------- Past ---------- */}
         <section>

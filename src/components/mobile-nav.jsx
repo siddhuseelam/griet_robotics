@@ -1,10 +1,8 @@
 import * as React from "react"
 import { Link, useLocation } from "react-router-dom"
 import {
-  ArrowUpRightIcon,
   CaretDownIcon,
   ListIcon,
-  TicketIcon,
   XIcon,
 } from "@phosphor-icons/react"
 
@@ -38,7 +36,7 @@ import {
 import { Tooltip, TooltipContent, TooltipTrigger } from "./ui/tooltip"
 import { Icon } from "@/lib/icons"
 import { cn } from "cn"
-import { navigation, socials, upcomingEvent } from "@/lib/site-data"
+import { navigation, socials } from "@/lib/site-data"
 import { memberCount } from "@/lib/team"
 import { isActivePath } from "@/lib/nav"
 import { ModeToggleGroup } from "./mode-toggle"
@@ -240,54 +238,10 @@ export function MobileNav() {
               )
             )}
           </nav>
-
-          <Separator />
-
-          <div className="p-3">
-            <p className="px-1 pb-2 font-heading text-[0.65rem] tracking-[0.18em] text-muted-foreground uppercase">
-              Happening now
-            </p>
-            <Item
-              variant="muted"
-              size="sm"
-              render={<Link to={upcomingEvent.to} onClick={close} />}
-              className="flex-nowrap"
-            >
-              <ItemMedia variant="icon" className="size-9 rounded-md border bg-background">
-                <TicketIcon className="size-4" />
-              </ItemMedia>
-              <ItemContent className="min-w-0 gap-0.5">
-                <ItemTitle className="block w-full truncate text-[0.95rem]">
-                  {upcomingEvent.title}
-                </ItemTitle>
-                <ItemDescription className="truncate text-xs">
-                  {upcomingEvent.shortDate} · {upcomingEvent.venue}
-                </ItemDescription>
-              </ItemContent>
-              <ItemActions className="shrink-0">
-                <Badge>Open</Badge>
-              </ItemActions>
-            </Item>
-          </div>
         </ScrollArea>
 
         {/* ---------- Sticky footer ---------- */}
         <SheetFooter className="gap-3 border-t p-4">
-          <Button
-            size="lg"
-            className="w-full"
-            render={
-              <a
-                href={upcomingEvent.registerUrl}
-                target="_blank"
-                rel="noopener noreferrer"
-                onClick={close}
-              />
-            }
-          >
-            Register now
-            <ArrowUpRightIcon data-icon="inline-end" className="size-4" />
-          </Button>
 
           <ModeToggleGroup className="w-full *:flex-1" />
 
